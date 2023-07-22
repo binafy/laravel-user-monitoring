@@ -27,6 +27,6 @@ class VisitMonitoring extends Model
 
     public function user()
     {
-        return $this->belongsTo(\stdClass::class, 'user_id'); // TODO: Read from config
+        return $this->belongsTo(config('user-monitoring.user.model'), config('user-monitoring.user.foreign_key'));
     }
 }

@@ -20,11 +20,11 @@ class MonitorVisitMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $agent = new Agent();
+        $guard = config('user-monitoring.user.guard');
 
-        // TODO: read guard for user from somewhere
         // Store visit
         VisitMonitoring::query()->create([
-            'user_id' => auth()->id(),
+            'user_id' => auth($guard)->id(),
             'browser_name' => $agent->browser(),
             'platform' => $agent->platform(),
             'device' => $agent->device(),

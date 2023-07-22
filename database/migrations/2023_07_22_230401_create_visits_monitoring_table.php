@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('visits_monitoring', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete(); // TODO: read from config
+            $table->foreignId(config('user-monitoring.user.foreign_key'))
+                ->nullable()
+                ->constrained(config('user-monitoring.user.tables'))
+                ->nullOnDelete();
+
             $table->string('browser_name');
             $table->string('platform');
             $table->string('device');
