@@ -1,0 +1,19 @@
+{
+    "name": "binafy/laravel-user-monitoring",
+    "description": "Monitor your user and all activity on your application",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Binafy\\LaravelUserMonitoring\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "miladev-ent",
+            "email": "98118400+milwad-dev@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
