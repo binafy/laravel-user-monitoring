@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('visits_monitoring', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete(); // TODO: read from config
-            $table->string('browse_name');
+            $table->string('browser_name');
             $table->string('platform');
             $table->string('device');
             $table->string('ip');
