@@ -19,5 +19,13 @@
         "php": "^8.1",
         "laravel/framework": "^10.0",
         "jenssegers/agent": "^2.6.4"
+    },
+    "require-dev": {
+        "pestphp/pest-plugin-laravel": "^2.1.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     }
 }

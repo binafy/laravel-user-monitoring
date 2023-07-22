@@ -15,7 +15,7 @@ return [
 
     /*
      * Monitor actions.
-     * 
+     *
      * You can set true/false for monitor action like (store, update and ...).
      */
     'monitor_actions' => [
