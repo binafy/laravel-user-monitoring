@@ -1,8 +1,9 @@
 <?php
 
+use Binafy\LaravelUserMonitoring\Models\ActionMonitoring;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
-use function Pest\Laravel\get;
+use Tests\SetUp\Models\Product;
+use function Pest\Laravel\{assertDatabaseCount, assertDatabaseMissing, delete, get};
 
 /*
  * Use `RefreshDatabase` for delete migration data for each test.
@@ -13,4 +14,16 @@ test('index actions-monitoring is return correct view with data', function () {
     $response = get(route('user-monitoring.actions-monitoring'));
     $response->assertViewIs('LaravelUserMonitoring::actions-monitoring.index');
     $response->assertViewHas('actions');
+});
+
+test('delete actions-monitoring route delete action monitoring and redirect', function () {
+    Product::query()->create(['title' => 'Binafy']);
+    $actionMonitoring = ActionMonitoring::query()->first();
+
+    $response = delete(route('user-monitoring.actions-monitoring-delete', $actionMonitoring->id));
+    $response->assertRedirect(route('user-monitoring.actions-monitoring'));
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 0);
+    assertDatabaseMissing(config('user-monitoring.action_monitoring.table'), ['page' => url('/')]);
 });

@@ -11,5 +11,5 @@ Route::prefix('user-monitoring')->as('user-monitoring.')->group(function ($route
 
     // Action Monitoring Routes
     $router->get('actions-monitoring', [ActionMonitoringController::class, 'index'])->name('actions-monitoring');
-    $router->delete('actions-monitoring/{visitMonitoring}', [ActionMonitoringController::class, 'destroy'])->name('actions-monitoring-delete');
+    $router->delete('actions-monitoring/{actionMonitoring}', [ActionMonitoringController::class, 'destroy'])->name('actions-monitoring-delete');
 });
