@@ -41,10 +41,9 @@ test('store activity without user when see a page', function () {
 /**
  * Create user.
  *
- * @param  array $data
  * @return bool
  */
-function createUser(array $data = [])
+function createUser()
 {
     return User::query()->create([
         'name' => 'milwad',
