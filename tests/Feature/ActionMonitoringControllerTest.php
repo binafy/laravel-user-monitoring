@@ -9,3 +9,8 @@ use function Pest\Laravel\get;
  */
 uses(RefreshDatabase::class);
 
+test('index actions-monitoring is return correct view with data', function () {
+    $response = get(route('user-monitoring.actions-monitoring'));
+    $response->assertViewIs('LaravelUserMonitoring::actions-monitoring.index');
+    $response->assertViewHas('actions');
+});
