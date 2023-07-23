@@ -16,6 +16,7 @@
         "monitoring",
         "laravel middleware"
     ],
+    "homepage": "https://github.com/binafy/laravel-user-monitoring",
     "type": "library",
     "license": "MIT",
     "minimum-stability": "dev",
@@ -46,8 +47,20 @@
         "orchestra/testbench": "^8.5.10"
     },
     "config": {
+        "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage-html ./coverage"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Binafy\\LaravelUserMonitoring\\LaravelUserMonitoringServiceProvider"
+            ]
         }
     }
 }
