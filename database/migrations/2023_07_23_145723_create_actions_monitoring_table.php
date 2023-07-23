@@ -13,6 +13,19 @@ return new class extends Migration
     {
         Schema::create('actions_monitoring', function (Blueprint $table) {
             $table->id();
+            $table->foreignId(config('user-monitoring.user.foreign_key'))
+                ->nullable()
+                ->constrained(config('user-monitoring.user.tables'))
+                ->nullOnDelete();
+
+            $table->string('action_type');
+            $table->string('table_name');
+
+            $table->string('browser_name');
+            $table->string('platform');
+            $table->string('device');
+            $table->string('ip');
+            $table->text('page');
             $table->timestamps();
         });
     }
