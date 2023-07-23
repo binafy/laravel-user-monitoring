@@ -2,7 +2,7 @@
 
 namespace Binafy\LaravelUserMonitoring\Middlewares;
 
-use App\Models\VisitMonitoring;
+use Binafy\LaravelUserMonitoring\Models\VisitMonitoring;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;

@@ -4,7 +4,9 @@ namespace Tests;
 
 use Binafy\LaravelUserMonitoring\LaravelUserMonitoringServiceProvider;
 use Binafy\LaravelUserMonitoring\Middlewares\MonitorVisitMiddleware;
+use Illuminate\Encryption\Encrypter;
 use Illuminate\Support\Facades\Route;
+use Tests\SetUp\Models\User;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
 {
@@ -27,13 +29,24 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
      */
     protected function getEnvironmentSetUp($app)
     {
-        // Setup default database to use sqlite :memory:
+        // Set default database to use sqlite :memory:
         $app['config']->set('database.default', 'testing');
         $app['config']->set('database.connections.testing', [
             'driver'   => 'sqlite',
             'database' => ':memory:',
             'prefix'   => '',
         ]);
+
+        // Set app key
+        $app['config']->set('app.key', 'base64:'.base64_encode(
+            Encrypter::generateKey(config()['app.cipher'])
+        ));
+
+        // Set views config
+        $app['config']->set('view.paths', [__DIR__.'/SetUp/Resources/views']);
+
+        // Set user model
+        $app['config']->set('auth.providers.users.model', User::class);
     }
 
     protected function setUp(): void
