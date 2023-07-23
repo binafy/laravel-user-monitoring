@@ -9,6 +9,11 @@
             "Binafy\\LaravelUserMonitoring\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Binafy\\LaravelUserMonitoring\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "miladev-ent",
@@ -21,7 +26,8 @@
         "jenssegers/agent": "^2.6.4"
     },
     "require-dev": {
-        "pestphp/pest-plugin-laravel": "^2.1.0"
+        "pestphp/pest-plugin-laravel": "^2.1.0",
+        "orchestra/testbench": "^8.5.10"
     },
     "config": {
         "allow-plugins": {
