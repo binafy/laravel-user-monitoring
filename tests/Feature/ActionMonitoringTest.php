@@ -49,7 +49,7 @@ test('store action monitoring when a model created without login user', function
     assertDatabaseHas(config('user-monitoring.action_monitoring.table'), ['page' => url('/')]);
 });
 
-test('update action monitoring when a model created with login user', function () {
+test('store action monitoring when a model updated with login user', function () {
     $user = createUser();
     auth()->login($user);
 
@@ -70,8 +70,7 @@ test('update action monitoring when a model created with login user', function (
     assertDatabaseHas(config('user-monitoring.action_monitoring.table'), ['page' => url('/')]);
 });
 
-
-test('update action monitoring when a model created without login user', function () {
+test('store action monitoring when a model updated without login user', function () {
     $product = Product::query()->create([
         'title' => 'milwad'
     ]);
