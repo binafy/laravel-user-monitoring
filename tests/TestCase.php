@@ -47,6 +47,9 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
 
         // Set user model
         $app['config']->set('auth.providers.users.model', User::class);
+
+        // Set user model for monitoring config
+        $app['config']->set('user-monitoring.user.model', User::class);
     }
 
     protected function setUp(): void

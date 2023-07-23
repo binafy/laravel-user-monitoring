@@ -1,11 +1,11 @@
 <?php
 
+use Binafy\LaravelUserMonitoring\Models\VisitMonitoring;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
 use Tests\SetUp\Models\User;
-use function Pest\Laravel\actingAs;
-use function Pest\Laravel\assertDatabaseCount;
 
+use function Pest\Laravel\actingAs;
+use function Pest\Laravel\{assertDatabaseCount, assertDatabaseHas};
 /*
  * Use `RefreshDatabase` for delete migration data for each test.
  */
@@ -17,8 +17,12 @@ test('store login user activity when see a page', function () {
     $response = actingAs($user)->get('/');
     $response->assertContent('milwad');
 
+    // Assertions
+    expect($user->name)->toBe(VisitMonitoring::first()->user->name);
+
     // DB Assertions
     assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 1);
+    assertDatabaseHas(config('user-monitoring.visit_monitoring.table'), ['page' => url('/')]);
 });
 
 /**
