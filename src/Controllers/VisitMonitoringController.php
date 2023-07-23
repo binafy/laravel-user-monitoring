@@ -18,6 +18,6 @@ class VisitMonitoringController extends BaseController
         $visitMonitoring->delete();
 
         // TODO: Add alert
-        return to_route('user-monitoring.visit-monitoring');
+        return to_route('user-monitoring.visits-monitoring');
     }
 }
