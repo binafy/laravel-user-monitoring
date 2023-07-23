@@ -22,8 +22,6 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
         $this->app['router']->aliasMiddleware('monitor-visit-middleware', MonitorVisitMiddleware::class);
 
         Route::middleware('web')->group(__DIR__ . '/../routes/web.php');
-
-        // TODO: Add publish
     }
 
     /**
@@ -33,6 +31,19 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->publishConfig();
+        $this->publishMigrations();
+    }
 
+    /**
+     * Publish config files.
+     *
+     * @return void
+     */
+    private function publishConfig()
+    {
+        $this->publishes([
+            __DIR__ . '/../config/user-monitoring.php' => config_path('user-monitoring.php'),
+        ], 'laravel-user-monitoring-config');
     }
 }
