@@ -39,6 +39,5 @@ return [
         'on_read'       => true,
         'on_restore'    => false, // Release next version :)
         'on_replicate'  => false, // Release next version :)
-        // TODO: Check for truncate
     ],
 ];

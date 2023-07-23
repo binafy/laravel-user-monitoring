@@ -21,7 +21,9 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
 
         $this->app['router']->aliasMiddleware('monitor-visit-middleware', MonitorVisitMiddleware::class);
 
-        Route::middleware('web')->group(__DIR__ . '/../routes/web.php');
+        Route::middleware('web')
+            ->middleware(MonitorVisitMiddleware::class)
+            ->group(__DIR__ . '/../routes/web.php');
     }
 
     /**

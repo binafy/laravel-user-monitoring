@@ -68,9 +68,10 @@ trait Actionable
     private static function insertActionMonitoring(mixed $model, string $actionType): void
     {
         $agent = new Agent();
+        $guard = config('user-monitoring.user.guard');
 
         DB::table(config('user-monitoring.action_monitoring.table'))->insert([
-            'user_id' => auth()->id(),
+            'user_id' => auth($guard)->id(),
             'action_type' => $actionType,
             'table_name' => $model->getTable(),
             'browser_name' => $agent->browser(),
