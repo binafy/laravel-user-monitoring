@@ -1,7 +1,7 @@
 <?php
 
-use Binafy\LaravelUserMonitoring\Controllers\VisitMonitoringController;
 use Binafy\LaravelUserMonitoring\Controllers\ActionMonitoringController;
+use Binafy\LaravelUserMonitoring\Controllers\VisitMonitoringController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('user-monitoring')->as('user-monitoring.')->group(function ($router) {
