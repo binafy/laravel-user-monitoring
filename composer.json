@@ -1,6 +1,21 @@
 {
     "name": "binafy/laravel-user-monitoring",
     "description": "Monitor your user and all activity on your application",
+    "keywords": [
+        "binafy",
+        "milwad",
+        "laravel",
+        "framework",
+        "monitoring",
+        "laravel user monitoring package",
+        "laravel user monitoring",
+        "laravel package",
+        "laravel-monitoring",
+        "laravel-tracking",
+        "laravel-tracking",
+        "monitoring",
+        "laravel middleware"
+    ],
     "type": "library",
     "license": "MIT",
     "minimum-stability": "dev",
