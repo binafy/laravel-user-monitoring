@@ -46,4 +46,16 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
             __DIR__ . '/../config/user-monitoring.php' => config_path('user-monitoring.php'),
         ], 'laravel-user-monitoring-config');
     }
+
+    /**
+     * Publish migration files.
+     *
+     * @return void
+     */
+    private function publishMigrations()
+    {
+        $this->publishes([
+            __DIR__ . '/../database/migrations' => database_path('migrations'),
+        ], 'laravel-user-monitoring-migrations');
+    }
 }
