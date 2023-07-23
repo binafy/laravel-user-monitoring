@@ -1,8 +1,8 @@
 <?php
 
-use Binafy\LaravelUserMonitoring\Tests\SetUp\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+use Tests\SetUp\Models\User;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseCount;
 
@@ -18,22 +18,20 @@ test('store login user activity when see a page', function () {
     $response->assertContent('milwad');
 
     // DB Assertions
-    assertDatabaseCount(config('user-monitoring.visit_monitoring,table'), 1);
+    assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 1);
 });
 
 /**
  * Create user.
  *
  * @param  array $data
- * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+ * @return bool
  */
 function createUser(array $data = [])
 {
-    $data = array_merge($data, [
+    return User::query()->create([
         'name' => 'milwad',
         'email' => 'milwad@gmail.com',
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
     ]);
-
-    return User::query()->create($data);
 }

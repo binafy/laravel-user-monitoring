@@ -11,7 +11,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Binafy\\LaravelUserMonitoring\\Tests\\": "tests/"
+            "Tests\\": "tests/"
         }
     },
     "authors": [

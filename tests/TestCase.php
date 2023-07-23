@@ -4,7 +4,6 @@ namespace Tests;
 
 use Binafy\LaravelUserMonitoring\LaravelUserMonitoringServiceProvider;
 use Binafy\LaravelUserMonitoring\Middlewares\MonitorVisitMiddleware;
-use Binafy\LaravelUserMonitoring\Tests\User;
 use Illuminate\Support\Facades\Route;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
@@ -30,11 +29,6 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     {
         // Setup default database to use sqlite :memory:
         $app['config']->set('database.default', 'testing');
-        $app['config']->set('database.connections.sqlite', [
-            'driver' => 'sqlite',
-            'database' => ':memory:',
-            'prefix' => '',
-        ]);
         $app['config']->set('database.connections.testing', [
             'driver'   => 'sqlite',
             'database' => ':memory:',
@@ -47,6 +41,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         parent::setUp();
 
         Route::middleware([MonitorVisitMiddleware::class, 'web'])->group(__DIR__ . '/SetUp/Routes/web_tests.php');
+
         $this->loadMigrationsFrom(__DIR__.'/SetUp/Migrations');
     }
 }
