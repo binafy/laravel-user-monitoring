@@ -147,3 +147,21 @@ test('store action monitoring when a model read with login user', function () {
     assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 2);
     assertDatabaseHas(config('user-monitoring.action_monitoring.table'), ['page' => url('/')]);
 });
+
+test('store action monitoring when a model read without login user', function () {
+    Product::query()->create([
+        'title' => 'milwad'
+    ]);
+    Product::query()->get();
+
+    // Assertions
+    expect(ActionMonitoring::query()->value('table_name'))
+        ->toBe('products')
+        ->and(ActionMonitoring::query()->where('id', 2)->value('action_type'))
+        ->toBe(ActionEnum::ACTION_READ->value)
+        ->and(ActionMonitoring::first()->user)->toBeNull();
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 2);
+    assertDatabaseHas(config('user-monitoring.action_monitoring.table'), ['page' => url('/')]);
+});
