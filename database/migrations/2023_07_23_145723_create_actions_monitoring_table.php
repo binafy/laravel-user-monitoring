@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('actions_monitoring', function (Blueprint $table) {
+        Schema::create(config('user-monitoring.action_monitoring.table'), function (Blueprint $table) {
             $table->id();
             $table->foreignId(config('user-monitoring.user.foreign_key'))
                 ->nullable()
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('actions_monitoring');
+        Schema::dropIfExists(config('user-monitoring.action_monitoring.table'));
     }
 };

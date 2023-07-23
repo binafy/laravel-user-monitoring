@@ -14,18 +14,29 @@ return [
     ],
 
     /*
-     * Monitor actions.
+     * Visit monitoring configurations.
      *
-     * You can set true/false for monitor action like (store, update and ...).
+     * You can config of visit monitoring.
      */
-    'monitor_actions' => [
-        'on_store'      => false,
-        'on_update'     => true,
-        'on_destroy'    => true,
-        // TODO: Check for truncate
-    ],
-
     'visit_monitoring' => [
         'table' => 'visits_monitoring',
+    ],
+
+    /*
+     * Action monitoring configurations.
+     */
+    'action_monitoring' => [
+        'table' => 'actions_monitoring',
+
+        /*
+         * Monitor actions.
+         *
+         * You can set true/false for monitor action like (store, update and ...).
+         */
+        'on_store'      => true,
+        'on_update'     => true,
+        'on_destroy'    => true,
+        'on_read'       => true,
+        // TODO: Check for truncate
     ],
 ];
