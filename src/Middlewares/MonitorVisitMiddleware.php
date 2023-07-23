@@ -17,7 +17,7 @@ class MonitorVisitMiddleware
      * @param  Closure $next
      * @return Response
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
         $agent = new Agent();
         $guard = config('user-monitoring.user.guard');

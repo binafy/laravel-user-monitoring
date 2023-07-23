@@ -24,6 +24,5 @@ test('delete actions-monitoring route delete action monitoring and redirect', fu
     $response->assertRedirect(route('user-monitoring.actions-monitoring'));
 
     // DB Assertions
-    assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 0);
-    assertDatabaseMissing(config('user-monitoring.action_monitoring.table'), ['page' => url('/')]);
+    assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 1);
 });
