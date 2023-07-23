@@ -1,6 +1,6 @@
 <?php
 
-namespace Binafy\LaravelUserMonitoring\Tests;
+namespace Binafy\LaravelUserMonitoring\Tests\SetUp\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

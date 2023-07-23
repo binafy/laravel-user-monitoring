@@ -23,5 +23,9 @@ return [
         'on_update'     => true,
         'on_destroy'    => true,
         // TODO: Check for truncate
-    ]
+    ],
+
+    'visit_monitoring' => [
+        'table' => 'visits_monitoring',
+    ],
 ];
