@@ -6,5 +6,6 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('user-monitoring')->as('user-monitoring.')->group(function ($router) {
     // Visit Monitoring Routes
     $router->get('visits-monitoring', [VisitMonitoringController::class, 'index'])->name('visit-monitoring');
+    $router->delete('visits-monitoring/{visitMonitoring}', [VisitMonitoringController::class, 'destroy'])->name('visit-monitoring-delete');
 });
 
