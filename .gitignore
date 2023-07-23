@@ -3,3 +3,4 @@ composer.lock
 .idea
 .phpunit.result.cache
 coverage
+TODO.txt
