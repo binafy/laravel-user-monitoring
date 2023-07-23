@@ -78,6 +78,8 @@ trait Actionable
             'device' => $agent->device(),
             'ip' => request()->ip(),
             'page' => request()->url(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }
