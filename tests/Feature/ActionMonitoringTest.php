@@ -31,3 +31,20 @@ test('store action monitoring when a model created with login user', function ()
     assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 1);
     assertDatabaseHas(config('user-monitoring.action_monitoring.table'), ['page' => url('/')]);
 });
+
+test('store action monitoring when a model created without login user', function () {
+    Product::query()->create([
+        'title' => 'milwad'
+    ]);
+
+    // Assertions
+    expect(ActionMonitoring::query()->value('table_name'))
+        ->toBe('products')
+        ->and(ActionMonitoring::query()->value('action_type'))
+        ->toBe(ActionEnum::ACTION_STORE->value)
+        ->and(ActionMonitoring::query()->first()->user)->toBeNull();
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 1);
+    assertDatabaseHas(config('user-monitoring.action_monitoring.table'), ['page' => url('/')]);
+});
