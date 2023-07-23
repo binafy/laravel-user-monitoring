@@ -87,3 +87,24 @@ test('store action monitoring when a model updated without login user', function
     assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 2);
     assertDatabaseHas(config('user-monitoring.action_monitoring.table'), ['page' => url('/')]);
 });
+
+test('store action monitoring when a model deleted with login user', function () {
+    $user = createUser();
+    auth()->login($user);
+
+    $product = Product::query()->create([
+        'title' => 'milwad'
+    ]);
+    $product->delete();
+
+    // Assertions
+    expect(ActionMonitoring::query()->value('table_name'))
+        ->toBe('products')
+        ->and(ActionMonitoring::query()->where('id', 2)->value('action_type'))
+        ->toBe(ActionEnum::ACTION_DELETE->value)
+        ->and($user->name)->toBe(ActionMonitoring::first()->user->name);
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 2);
+    assertDatabaseHas(config('user-monitoring.action_monitoring.table'), ['page' => url('/')]);
+});
