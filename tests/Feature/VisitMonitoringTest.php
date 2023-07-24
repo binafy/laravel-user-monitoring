@@ -5,7 +5,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\SetUp\Models\User;
 
 use function Pest\Laravel\{actingAs, get};
-use function Pest\Laravel\{assertDatabaseCount, assertDatabaseHas};
+use function Pest\Laravel\{assertDatabaseCount, assertDatabaseHas, assertDatabaseMissing};
 
 /*
  * Use `RefreshDatabase` for delete migration data for each test.
@@ -36,6 +36,17 @@ test('store activity without user when see a page', function () {
     // DB Assertions
     assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 1);
     assertDatabaseHas(config('user-monitoring.visit_monitoring.table'), ['page' => url('/')]);
+});
+
+test('check except pages are not store', function () {
+    config()->set('user-monitoring.visit_monitoring.expect_pages', ['/']);
+
+    $response = get('/');
+    $response->assertContent('milwad');
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 0);
+    assertDatabaseMissing(config('user-monitoring.visit_monitoring.table'), ['page' => url('/')]);
 });
 
 /**

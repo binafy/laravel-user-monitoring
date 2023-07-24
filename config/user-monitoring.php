@@ -20,6 +20,13 @@ return [
      */
     'visit_monitoring' => [
         'table' => 'visits_monitoring',
+
+        /*
+         * You can specify pages not to be monitored.
+         */
+        'expect_pages' => [
+            // 'home',
+        ],
     ],
 
     /*
