@@ -1,6 +1,6 @@
 <?php
 
-namespace Binafy\LaravelUserMonitoring;
+namespace Binafy\LaravelUserMonitoring\Providers;
 
 use Binafy\LaravelUserMonitoring\Middlewares\MonitorVisitMiddleware;
 use Illuminate\Support\Facades\Route;
