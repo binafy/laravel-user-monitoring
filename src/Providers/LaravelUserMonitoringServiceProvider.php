@@ -20,6 +20,7 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../../config/user-monitoring.php', 'user-monitoring');
 
         $this->app['router']->aliasMiddleware('monitor-visit-middleware', MonitorVisitMiddleware::class);
+        $this->app->register(LaravelUserMonitoringEventServiceProvider::class);
 
         Route::middleware('web')
             ->middleware(MonitorVisitMiddleware::class)
