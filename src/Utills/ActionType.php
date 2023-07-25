@@ -2,7 +2,7 @@
 
 namespace Binafy\LaravelUserMonitoring\Utills;
 
-class ActionEnum
+class ActionType
 {
     public const ACTION_STORE = 'store';
     public const ACTION_UPDATE = 'update';

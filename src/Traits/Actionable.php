@@ -2,7 +2,7 @@
 
 namespace Binafy\LaravelUserMonitoring\Traits;
 
-use Binafy\LaravelUserMonitoring\Utills\ActionEnum;
+use Binafy\LaravelUserMonitoring\Utills\ActionType;
 use Illuminate\Support\Facades\DB;
 use Jenssegers\Agent\Agent;
 
@@ -17,37 +17,37 @@ trait Actionable
 
         if (config('user-monitoring.action_monitoring.on_store', false)) {
             static::created(function (mixed $model) {
-                static::insertActionMonitoring($model, ActionEnum::ACTION_STORE);
+                static::insertActionMonitoring($model, ActionType::ACTION_STORE);
             });
         }
 
         if (config('user-monitoring.action_monitoring.on_update', false)) {
             static::updated(function (mixed $model) {
-                static::insertActionMonitoring($model, ActionEnum::ACTION_UPDATE);
+                static::insertActionMonitoring($model, ActionType::ACTION_UPDATE);
             });
         }
 
         if (config('user-monitoring.action_monitoring.on_destroy', false)) {
             static::deleted(function (mixed $model) {
-                static::insertActionMonitoring($model, ActionEnum::ACTION_DELETE);
+                static::insertActionMonitoring($model, ActionType::ACTION_DELETE);
             });
         }
 
         if (config('user-monitoring.action_monitoring.on_read', false)) {
             static::retrieved(function (mixed $model) {
-                static::insertActionMonitoring($model, ActionEnum::ACTION_READ);
+                static::insertActionMonitoring($model, ActionType::ACTION_READ);
             });
         }
 
 //        if (config('user-monitoring.action_monitoring.on_restore', false)) {
 //            static::restored(function (mixed $model) {
-//                static::insertActionMonitoring($model, ActionEnum::ACTION_RESTORED);
+//                static::insertActionMonitoring($model, ActionType::ACTION_RESTORED);
 //            });
 //        }TODO: Release next version
 
 //        if (config('user-monitoring.action_monitoring.on_replicate', false)) {
 //            static::restored(function (mixed $model) {
-//                static::insertActionMonitoring($model, ActionEnum::ACTION_REPLICATE);
+//                static::insertActionMonitoring($model, ActionType::ACTION_REPLICATE);
 //            });
 //        }TODO: Release next version
         /*
