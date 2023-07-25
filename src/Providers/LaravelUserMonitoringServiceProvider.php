@@ -1,6 +1,6 @@
 <?php
 
-namespace Binafy\LaravelUserMonitoring;
+namespace Binafy\LaravelUserMonitoring\Providers;
 
 use Binafy\LaravelUserMonitoring\Middlewares\MonitorVisitMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -15,15 +15,16 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'LaravelUserMonitoring');
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-        $this->mergeConfigFrom(__DIR__ . '/../config/user-monitoring.php', 'user-monitoring');
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views/', 'LaravelUserMonitoring');
+        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/user-monitoring.php', 'user-monitoring');
 
         $this->app['router']->aliasMiddleware('monitor-visit-middleware', MonitorVisitMiddleware::class);
+        $this->app->register(LaravelUserMonitoringEventServiceProvider::class);
 
         Route::middleware('web')
             ->middleware(MonitorVisitMiddleware::class)
-            ->group(__DIR__ . '/../routes/web.php');
+            ->group(__DIR__ . '/../../routes/web.php');
     }
 
     /**
@@ -45,7 +46,7 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
     private function publishConfig()
     {
         $this->publishes([
-            __DIR__ . '/../config/user-monitoring.php' => config_path('user-monitoring.php'),
+            __DIR__ . '/../../config/user-monitoring.php' => config_path('user-monitoring.php'),
         ], 'laravel-user-monitoring-config');
     }
 
@@ -57,7 +58,7 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
     private function publishMigrations()
     {
         $this->publishes([
-            __DIR__ . '/../database/migrations' => database_path('migrations'),
+            __DIR__ . '/../../database/migrations' => database_path('migrations'),
         ], 'laravel-user-monitoring-migrations');
     }
 }

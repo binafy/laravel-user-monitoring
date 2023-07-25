@@ -60,7 +60,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Binafy\\LaravelUserMonitoring\\LaravelUserMonitoringServiceProvider"
+                "Binafy\\LaravelUserMonitoring\\Providers\\LaravelUserMonitoringServiceProvider"
             ]
         }
     }
