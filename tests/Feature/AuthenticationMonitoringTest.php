@@ -67,7 +67,7 @@ test('when user deleted authentications-monitoring rows were deleted', function 
     $user = createUser();
     auth()->login($user);
 
-    User::query()->first()->delete();
+    User::query()->delete();
 
     // DB Assertions
     assertDatabaseCount(config('user-monitoring.authentication_monitoring.table'), 0);
