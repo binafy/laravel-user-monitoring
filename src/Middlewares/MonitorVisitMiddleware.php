@@ -20,7 +20,7 @@ class MonitorVisitMiddleware
     public function handle(Request $request, Closure $next)
     {
         $agent = new Agent();
-        $guard = config('user-monitoring.user.guard');
+        $guard = config('user-monitoring.user.guard', 'web');
         $exceptPages = config('user-monitoring.visit_monitoring.expect_pages', []);
 
         if (empty($exceptPages) || !$this->checkIsExpectPages($request->path(), $exceptPages)) {
