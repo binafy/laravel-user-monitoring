@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use Binafy\LaravelUserMonitoring\Providers\LaravelUserMonitoringServiceProvider;
 use Binafy\LaravelUserMonitoring\Middlewares\MonitorVisitMiddleware;
+use Binafy\LaravelUserMonitoring\Providers\LaravelUserMonitoringServiceProvider;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Support\Facades\Route;
 use Tests\SetUp\Models\User;

@@ -3,7 +3,6 @@
 use Binafy\LaravelUserMonitoring\Models\VisitMonitoring;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\SetUp\Models\User;
-
 use function Pest\Laravel\{actingAs, get};
 use function Pest\Laravel\{assertDatabaseCount, assertDatabaseHas, assertDatabaseMissing};
 

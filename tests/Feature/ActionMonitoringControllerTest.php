@@ -3,7 +3,7 @@
 use Binafy\LaravelUserMonitoring\Models\ActionMonitoring;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\SetUp\Models\Product;
-use function Pest\Laravel\{assertDatabaseCount, assertDatabaseMissing, delete, get};
+use function Pest\Laravel\{assertDatabaseCount, delete, get};
 
 /*
  * Use `RefreshDatabase` for delete migration data for each test.
