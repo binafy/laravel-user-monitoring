@@ -7,3 +7,31 @@
 [![Total Downloads](http://poser.pugx.org/binafy/laravel-user-monitoring/downloads)](https://packagist.org/packages/binafy/laravel-user-monitoring)
 [![License](http://poser.pugx.org/binafy/laravel-user-monitoring/license)](https://packagist.org/packages/binafy/laravel-user-monitoring)
 [![Passed Tests](https://github.com/binafy/laravel-user-monitoring/actions/workflows/tests.yml/badge.svg)](https://github.com/binafy/laravel-user-monitoring/actions/workflows/tests.yml)
+
+# Installation
+
+You can install the package with Composer.
+
+```bash
+composer require binafy/laravel-user-monitoring
+```
+
+# Publish
+
+If you want to publish a config file you can use this command:
+
+```shell
+php artisan vendor:publish --tag="laravel-user-monitoring-config"
+```
+
+If you want to publish a migration files you can use this command:
+
+```shell
+php artisan vendor:publish --tag="laravel-user-monitoring-migrations"
+```
+
+For convience, you can use this command to publish config and migration files:
+
+```shell
+php artisan vendor:publish --provider="Binafy\LaravelUserMonitoring\Providers\LaravelUserMonitoringServiceProvider"
+```
