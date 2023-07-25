@@ -1,10 +1,9 @@
 <?php
 
-use Binafy\LaravelUserMonitoring\Enums\ActionEnum;
+use Binafy\LaravelUserMonitoring\Utills\ActionType;
 use Binafy\LaravelUserMonitoring\Models\ActionMonitoring;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\SetUp\Models\Product;
-
 use function Pest\Laravel\{assertDatabaseCount, assertDatabaseHas};
 
 /*
@@ -24,7 +23,7 @@ test('store action monitoring when a model created with login user', function ()
     expect(ActionMonitoring::query()->value('table_name'))
         ->toBe('products')
         ->and(ActionMonitoring::query()->value('action_type'))
-        ->toBe(ActionEnum::ACTION_STORE->value)
+        ->toBe(ActionType::ACTION_STORE)
         ->and($user->name)->toBe(ActionMonitoring::first()->user->name);
 
     // DB Assertions
@@ -41,7 +40,7 @@ test('store action monitoring when a model created without login user', function
     expect(ActionMonitoring::query()->value('table_name'))
         ->toBe('products')
         ->and(ActionMonitoring::query()->value('action_type'))
-        ->toBe(ActionEnum::ACTION_STORE->value)
+        ->toBe(ActionType::ACTION_STORE)
         ->and(ActionMonitoring::query()->first()->user)->toBeNull();
 
     // DB Assertions
@@ -62,7 +61,7 @@ test('store action monitoring when a model updated with login user', function ()
     expect(ActionMonitoring::query()->value('table_name'))
         ->toBe('products')
         ->and(ActionMonitoring::query()->where('id', 2)->value('action_type'))
-        ->toBe(ActionEnum::ACTION_UPDATE->value)
+        ->toBe(ActionType::ACTION_UPDATE)
         ->and($user->name)->toBe(ActionMonitoring::first()->user->name);
 
     // DB Assertions
@@ -80,7 +79,7 @@ test('store action monitoring when a model updated without login user', function
     expect(ActionMonitoring::query()->value('table_name'))
         ->toBe('products')
         ->and(ActionMonitoring::query()->where('id', 2)->value('action_type'))
-        ->toBe(ActionEnum::ACTION_UPDATE->value)
+        ->toBe(ActionType::ACTION_UPDATE)
         ->and(ActionMonitoring::first()->user)->toBeNull();
 
     // DB Assertions
@@ -101,7 +100,7 @@ test('store action monitoring when a model deleted with login user', function ()
     expect(ActionMonitoring::query()->value('table_name'))
         ->toBe('products')
         ->and(ActionMonitoring::query()->where('id', 2)->value('action_type'))
-        ->toBe(ActionEnum::ACTION_DELETE->value)
+        ->toBe(ActionType::ACTION_DELETE)
         ->and($user->name)->toBe(ActionMonitoring::first()->user->name);
 
     // DB Assertions
@@ -119,7 +118,7 @@ test('store action monitoring when a model deleted without login user', function
     expect(ActionMonitoring::query()->value('table_name'))
         ->toBe('products')
         ->and(ActionMonitoring::query()->where('id', 2)->value('action_type'))
-        ->toBe(ActionEnum::ACTION_DELETE->value)
+        ->toBe(ActionType::ACTION_DELETE)
         ->and(ActionMonitoring::first()->user)->toBeNull();
 
     // DB Assertions
@@ -140,7 +139,7 @@ test('store action monitoring when a model read with login user', function () {
     expect(ActionMonitoring::query()->value('table_name'))
         ->toBe('products')
         ->and(ActionMonitoring::query()->where('id', 2)->value('action_type'))
-        ->toBe(ActionEnum::ACTION_READ->value)
+        ->toBe(ActionType::ACTION_READ)
         ->and($user->name)->toBe(ActionMonitoring::first()->user->name);
 
     // DB Assertions
@@ -158,7 +157,7 @@ test('store action monitoring when a model read without login user', function ()
     expect(ActionMonitoring::query()->value('table_name'))
         ->toBe('products')
         ->and(ActionMonitoring::query()->where('id', 2)->value('action_type'))
-        ->toBe(ActionEnum::ACTION_READ->value)
+        ->toBe(ActionType::ACTION_READ)
         ->and(ActionMonitoring::first()->user)->toBeNull();
 
     // DB Assertions
