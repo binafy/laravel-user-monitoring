@@ -39,13 +39,13 @@
         }
     },
     "require": {
-        "php": "^8.1",
-        "laravel/framework": "^10.0",
+        "php": "^8.0",
+        "laravel/framework": "^9.0|^10.0",
         "jenssegers/agent": "^2.6.4"
     },
     "require-dev": {
-        "pestphp/pest-plugin-laravel": "^2.1.0",
-        "orchestra/testbench": "^8.5.10"
+        "pestphp/pest-plugin-laravel": "^1.4.0|^2.0.0",
+        "orchestra/testbench": "^7.0|^8.0"
     },
     "config": {
         "sort-packages": true,
