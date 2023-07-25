@@ -15,18 +15,19 @@ class LaravelUserMonitoringEventServiceProvider extends EventServiceProvider
     {
         $agent = new Agent();
         $guard = config('user-monitoring.user.guard');
+        $table = config('user-monitoring.authentication_monitoring.table');
 
         // Login Event
-        Event::listen(function (Login $event) use ($agent, $guard) {
-            DB::table(config('user-monitoring.visit_monitoring.table'))
+        Event::listen(function (Login $event) use ($agent, $guard, $table) {
+            DB::table($table)
                 ->insert(
                     $this->insertData($guard, $agent, 'login'),
                 );
         });
 
         // Logout Event
-        Event::listen(function (Logout $event) use ($agent, $guard) {
-            DB::table(config('user-monitoring.visit_monitoring.table'))
+        Event::listen(function (Logout $event) use ($agent, $guard, $table) {
+            DB::table($table)
                 ->insert(
                     $this->insertData($guard, $agent, 'logout'),
                 );
