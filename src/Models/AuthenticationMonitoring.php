@@ -15,4 +15,18 @@ class AuthenticationMonitoring extends Model
      * @var string
      */
     protected $table = 'authentications_monitoring';
+
+    /**
+     * Guarded columns.
+     *
+     * @var string[]
+     */
+    protected $guarded = ['id'];
+
+    # Relations
+
+    public function user()
+    {
+        return $this->belongsTo(config('user-monitoring.user.model'), config('user-monitoring.user.foreign_key'));
+    }
 }

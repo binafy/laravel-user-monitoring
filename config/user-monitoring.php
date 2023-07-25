@@ -55,8 +55,8 @@ return [
         'table' => 'authentications_monitoring',
 
         /*
-         * If you want to delete authentications-monitoring rows when user deleted from users table you can set true.
+         * If you want to delete authentications-monitoring rows when user deleted from users table you can set true or false.
          */
-        'delete_user_record_when_user_delete' => false,
+        'delete_user_record_when_user_delete' => true,
     ],
 ];
