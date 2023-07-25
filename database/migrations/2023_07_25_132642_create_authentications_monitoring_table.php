@@ -11,8 +11,27 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('authentications_monitoring', function (Blueprint $table) {
+        Schema::create(config('user-monitoring.authentication_monitoring.table'), function (Blueprint $table) {
             $table->id();
+
+            if (config('user-monitoring.authentication_monitoring.delete_user_record_when_user_delete', false)) {
+                $table->foreignId(config('user-monitoring.user.foreign_key'))
+                    ->constrained(config('user-monitoring.user.tables'))
+                    ->cascadeOnDelete();
+            } else {
+                $table->foreignId(config('user-monitoring.user.foreign_key'))
+                    ->nullable()
+                    ->constrained(config('user-monitoring.user.tables'))
+                    ->nullOnDelete();
+            }
+
+            $table->string('action_type');
+
+            $table->string('browser_name');
+            $table->string('platform');
+            $table->string('device');
+            $table->string('ip');
+            $table->text('page');
             $table->timestamps();
         });
     }
@@ -22,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('authentications_monitoring');
+        Schema::dropIfExists(config('user-monitoring.authentication_monitoring.table'));
     }
 };

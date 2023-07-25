@@ -47,4 +47,16 @@ return [
         'on_restore'    => false, // Release next version :)
         'on_replicate'  => false, // Release next version :)
     ],
+
+    /*
+     * Authentication monitoring configurations.
+     */
+    'authentication_monitoring' => [
+        'table' => 'authentications_monitoring',
+
+        /*
+         * If you want to delete authentications-monitoring rows when user deleted from users table you can set true.
+         */
+        'delete_user_record_when_user_delete' => false,
+    ],
 ];
