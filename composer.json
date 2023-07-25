@@ -44,7 +44,7 @@
         "jenssegers/agent": "^2.6.4"
     },
     "require-dev": {
-        "pestphp/pest-plugin-laravel": "^2.1.0",
+        "pestphp/pest-plugin-laravel": "^1.4.0|^2.0.0",
         "orchestra/testbench": "^7.0|^8.0"
     },
     "config": {
