@@ -4,7 +4,7 @@ return [
     /*
      * User properties.
      *
-     * You can customize the use guard, table, foreign_key and ... .
+     * You can customize the user guard, table, foreign key, and ... .
      */
     'user' => [
         'model' => 'App\Models\User',
@@ -15,8 +15,6 @@ return [
 
     /*
      * Visit monitoring configurations.
-     *
-     * You can config of visit monitoring.
      */
     'visit_monitoring' => [
         'table' => 'visits_monitoring',
@@ -38,14 +36,14 @@ return [
         /*
          * Monitor actions.
          *
-         * You can set true/false for monitor action like (store, update and ...).
+         * You can set true/false for monitor actions like (store, update, and ...).
          */
         'on_store'      => true,
         'on_update'     => true,
         'on_destroy'    => true,
         'on_read'       => true,
-        'on_restore'    => false, // Release next version :)
-        'on_replicate'  => false, // Release next version :)
+        'on_restore'    => false, // Release for next version :)
+        'on_replicate'  => false, // Release for next version :)
     ],
 
     /*
@@ -55,7 +53,7 @@ return [
         'table' => 'authentications_monitoring',
 
         /*
-         * If you want to delete authentications-monitoring rows when user deleted from users table you can set true or false.
+         * If you want to delete authentications-monitoring rows when the user is deleted from the users table you can set true or false.
          */
         'delete_user_record_when_user_delete' => true,
     ],
