@@ -24,7 +24,8 @@ test('store action monitoring when a model created with login user', function ()
         ->toBe('products')
         ->and(ActionMonitoring::query()->value('action_type'))
         ->toBe(ActionType::ACTION_STORE)
-        ->and($user->name)->toBe(ActionMonitoring::first()->user->name);
+        ->and($user->name)
+        ->toBe(ActionMonitoring::first()->user->name);
 
     // DB Assertions
     assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 1);
