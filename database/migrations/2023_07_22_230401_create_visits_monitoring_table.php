@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId(config('user-monitoring.user.foreign_key'))
                 ->nullable()
-                ->constrained(config('user-monitoring.user.tables'))
+                ->constrained(config('user-monitoring.user.table'))
                 ->nullOnDelete();
 
             $table->string('browser_name');

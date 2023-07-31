@@ -16,11 +16,11 @@ return new class extends Migration
 
             if (config('user-monitoring.authentication_monitoring.delete_user_record_when_user_delete', true)) {
                 $table->foreignId(config('user-monitoring.user.foreign_key'))
-                    ->constrained(config('user-monitoring.user.tables'))
+                    ->constrained(config('user-monitoring.user.table'))
                     ->cascadeOnDelete();
             } else {
                 $table->foreignId(config('user-monitoring.user.foreign_key'))
-                    ->constrained(config('user-monitoring.user.tables'))
+                    ->constrained(config('user-monitoring.user.table'))
                     ->nullOnDelete();
             }
 

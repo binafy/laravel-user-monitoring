@@ -7,10 +7,30 @@ return [
      * You can customize the user guard, table, foreign key, and ... .
      */
     'user' => [
+        /*
+         * User model.
+         */
         'model' => 'App\Models\User',
+
+        /*
+         * Foreign Key column name.
+         */
         'foreign_key' => 'user_id',
-        'tables' => 'users',
+
+        /*
+         * Users table name.
+         */
+        'table' => 'users',
+
+        /*
+         * The correct guard.
+         */
         'guard' => 'web',
+
+        /*
+         * If you are using uuid or ulid you can change it for type of foreign_key.
+         */
+        'foreign_key_type' => 'id', // uuid, ulid
     ],
 
     /*
