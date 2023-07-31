@@ -16,7 +16,9 @@
   - [Authentication Monitoring](#authentication-monitoring)
 - [Contributors](#contributors)
 - [Security](#security)
+- [Changelog](#changelog)
 - [License](#license)
+- [Conclusion](#conclusion)
 
 <a name="introduction"></a>
 ## Introduction
@@ -143,6 +145,20 @@ If you want to disable some action like created, you can use config file:
 <a name="authentication-monitoring"></a>
 ## Authentication Monitoring
 
+Have you ever thought about monitoring the entry and exit of users of your application? Now you can :) <br>
+If you want to monitor users when login or logout in your application, you need migrate the migrations and go to config file and change true for monitoring authentication.
+
+```php
+'authentication_monitoring' => [
+    ...
+
+    /*
+     * You can set true/false for monitor login or logout. 
+     */
+    'on_login' => true,
+    'on_logout' => true,
+],
+```
 
 <a name="contributors"></a>
 ## Contributors
@@ -156,7 +172,17 @@ Thanks to all the people who contribute. [Contributors](https://github.com/binaf
 
 If you discover any security-related issues, please email `binafy23@gmail.com` instead of using the issue tracker.
 
+<a name="chanelog"></a>
+## Changelog
+
+The changelog can be found in the `CHANGELOG.md` file of the GitHub repository. It lists the changes, bug fixes, and improvements made to each version of the Laravel User Monitoring package.
+
 <a name="license"></a>
 ## License
 
 The MIT License (MIT). Please see [License File](https://github.com/binafy/laravel-user-monitoring/blob/0.x-dev/LICENSE) for more information.
+
+<a name="conclusion"></a>
+## Conclusion
+
+Congratulations! You have successfully installed and integrated the Laravel User Monitoring package into your Laravel application. By effectively logging and analyzing user activity, you can gain valuable insights that can help you improve your application's user experience and performance. If you have any questions or need further assistance, feel free to refer to the documentation or seek help from the package's GitHub repository. Happy monitoring!
