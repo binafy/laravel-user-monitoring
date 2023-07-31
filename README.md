@@ -58,6 +58,8 @@ For convience, you can use this command to publish config and migration files:
 php artisan vendor:publish --provider="Binafy\LaravelUserMonitoring\Providers\LaravelUserMonitoringServiceProvider"
 ```
 
+After publishing, run `php artisan migrate` command.
+
 <a name="visit-monitoring"></a>
 ## Visit Monitoring
 
