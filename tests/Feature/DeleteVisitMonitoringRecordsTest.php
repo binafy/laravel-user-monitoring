@@ -77,3 +77,8 @@ test('rows are not deleted after 1 day', function () {
     // DB Assertions
     assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 2);
 });
+
+test('throw an error when days equal to 0', function () {
+    artisan('laravel-user-monitoring:remove-visit-monitoring-records')
+        ->expectsOutput('Your delete days are 0, You can go to the config file and change it!');
+});
