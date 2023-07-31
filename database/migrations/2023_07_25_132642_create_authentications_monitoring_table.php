@@ -25,7 +25,6 @@ return new class extends Migration
             }
 
             $table->string('action_type');
-
             $table->string('browser_name');
             $table->string('platform');
             $table->string('device');
