@@ -10,7 +10,7 @@
 
 - [Introduction](#introduction)
 - [Installation](#installation)
-- [Usage](#usage)
+- Usage
   - [Visit Monitoring](#visit-monitoring)
   - [Action Monitoring](#action-monitoring)
   - [Authentication Monitoring](#authentication-monitoring)
