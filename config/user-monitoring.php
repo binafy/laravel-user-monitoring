@@ -30,7 +30,7 @@ return [
         /*
          * If you are using uuid or ulid you can change it for type of foreign_key.
          */
-        'foreign_key_type' => 'id', // uuid, ulid
+        'foreign_key_type' => 'id', // uuid, ulid, id
     ],
 
     /*
