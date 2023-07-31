@@ -20,6 +20,11 @@ return [
         'table' => 'visits_monitoring',
 
         /*
+         * If you want to disable visit monitoring, you can change it to false.
+         */
+        'turn_on' => true,
+
+        /*
          * You can specify pages not to be monitored.
          */
         'expect_pages' => [
