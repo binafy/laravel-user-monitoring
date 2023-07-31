@@ -29,6 +29,8 @@ return [
 
         /*
          * If you are using uuid or ulid you can change it for type of foreign_key.
+         *
+         * When you are using ulid or uuid, you need to add related trait into the models.
          */
         'foreign_key_type' => 'id', // uuid, ulid, id
     ],
