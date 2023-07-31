@@ -8,7 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Jenssegers\Agent\Agent;
 
-class MonitorVisitMiddleware
+class VisitMonitoringMiddleware
 {
     /**
      * Handle.

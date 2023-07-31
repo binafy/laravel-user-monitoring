@@ -25,6 +25,14 @@ return [
         'expect_pages' => [
             // 'home',
         ],
+
+        /*
+         * If you want to delete visit rows after some days, you can change this like 360,
+         * but you don't like to delete rows you can change it to 0.
+         *
+         * For this feature you need Task-Scheduling => https://laravel.com/docs/10.x/scheduling
+         */
+        'delete_days' => 0,
     ],
 
     /*
