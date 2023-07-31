@@ -64,5 +64,11 @@ return [
          * If you want to delete authentications-monitoring rows when the user is deleted from the users table you can set true or false.
          */
         'delete_user_record_when_user_delete' => true,
+
+        /*
+         * You can set true/false for monitor login or logout.
+         */
+        'on_login' => true,
+        'on_logout' => true,
     ],
 ];
