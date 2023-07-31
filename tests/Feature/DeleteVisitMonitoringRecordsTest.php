@@ -13,7 +13,7 @@ uses(RefreshDatabase::class);
 
 test('rows are delete by 1 days', function () {
     // Set delete days
-    config(['user-monitoring.visit_monitoring.delete_days', 1]);
+    config()->set('user-monitoring.visit_monitoring.delete_days', 1);
 
      // Store old records for 1 day age
     $user = createUser();
