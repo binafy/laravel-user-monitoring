@@ -61,6 +61,41 @@ php artisan vendor:publish --provider="Binafy\LaravelUserMonitoring\Providers\La
 <a name="visit-monitoring"></a>
 ## Visit Monitoring
 
+When you want to monitor all views of your application, you must follow below:
+
+1. Publish the [Migrations](#publish)
+
+2. Use `VisitMonitoringMiddleware` in Kernel.php, you can go to `App/Http` folder and open the `Kernel.php` file and add `VisitMonitoringMiddleware` into your middleware for example:
+```php
+protected $middlewareGroups = [
+    'web' => [
+        ...
+        \Binafy\LaravelUserMonitoring\Middlewares\VisitMonitoringMiddleware::class,
+    ],
+
+    'api' => [
+        // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+        \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+        \Illuminate\Routing\Middleware\SubstituteBindings::class,
+    ],
+];
+```
+
+After, you can see all pages monitoring :)
+
+If you want to disable monitoring for specific pages you can go to `user-monitoring.php` that exists in `config` folder and add pages into `visit_monitoring` key:
+
+```php
+'visit_monitoring' => [
+    /*
+     * You can specify pages not to be monitored.
+     */
+    'expect_pages' => [
+        'home',
+        'admin/dashboard',
+    ],
+],
+```
 
 <a name="action-monitoring"></a>
 ## Action Monitoring
