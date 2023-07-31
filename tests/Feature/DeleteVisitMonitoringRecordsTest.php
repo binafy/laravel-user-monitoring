@@ -4,14 +4,13 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use function Pest\Laravel\artisan;
 use function Pest\Laravel\assertDatabaseCount;
-use function Pest\Laravel\assertDatabaseMissing;
 
 /*
  * Use `RefreshDatabase` for delete migration data for each test.
  */
 uses(RefreshDatabase::class);
 
-test('rows are delete after 1 days', function () {
+test('rows are deleted after 1 day', function () {
     // Set delete days
     config()->set('user-monitoring.visit_monitoring.delete_days', 1);
 
