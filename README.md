@@ -102,6 +102,43 @@ If you want to disable monitoring for specific pages you can go to `user-monitor
 <a name="action-monitoring"></a>
 ## Action Monitoring
 
+If you want to monitor your models actions, you can use `Actionable` trait into your model:
+
+```php
+<?php
+
+namespace App\Models;
+
+use Binafy\LaravelUserMonitoring\Traits\Actionable;
+use Illuminate\Database\Eloquent\Model;
+
+class Product extends Model
+{
+    use Actionable;
+}
+```
+
+Now when a product readed, created, updated or deleted, you can see which users doing that.
+
+If you want to disable some action like created, you can use config file:
+
+```php
+'action_monitoring' => [
+    ...
+    
+    /*
+     * Monitor actions.
+     *
+     * You can set true/false for monitor actions like (store, update, and ...).
+     */
+    'on_store'      => false,
+    'on_update'     => true,
+    'on_destroy'    => true,
+    'on_read'       => true,
+    'on_restore'    => false,
+    'on_replicate'  => false,
+],
+```
 
 <a name="authentication-monitoring"></a>
 ## Authentication Monitoring
