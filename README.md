@@ -76,3 +76,5 @@ php artisan vendor:publish --provider="Binafy\LaravelUserMonitoring\Providers\La
 
 <a name="license"></a>
 # License
+
+The MIT License (MIT). Please see [License File](https://github.com/binafy/laravel-user-monitoring/blob/0.x-dev/LICENSE) for more information.
