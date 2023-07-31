@@ -2,7 +2,8 @@
 
 namespace Binafy\LaravelUserMonitoring\Providers;
 
-use Binafy\LaravelUserMonitoring\Middlewares\MonitorVisitMiddleware;
+use Binafy\LaravelUserMonitoring\Commands\RemoveVisitMonitoringRecordsCommand;
+use Binafy\LaravelUserMonitoring\Middlewares\VisitMonitoringMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -18,12 +19,13 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../../resources/views/', 'LaravelUserMonitoring');
         $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
         $this->mergeConfigFrom(__DIR__ . '/../../config/user-monitoring.php', 'user-monitoring');
+        $this->commands(RemoveVisitMonitoringRecordsCommand::class);
 
-        $this->app['router']->aliasMiddleware('monitor-visit-middleware', MonitorVisitMiddleware::class);
+        $this->app['router']->aliasMiddleware('monitor-visit-middleware', VisitMonitoringMiddleware::class);
         $this->app->register(LaravelUserMonitoringEventServiceProvider::class);
 
         Route::middleware('web')
-            ->middleware(MonitorVisitMiddleware::class)
+            ->middleware(VisitMonitoringMiddleware::class)
             ->group(__DIR__ . '/../../routes/web.php');
     }
 
