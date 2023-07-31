@@ -15,16 +15,16 @@
   - [Action Monitoring](#action-monitoring)
   - [Authentication Monitoring](#authentication-monitoring)
 - [Contributors](#contributors)
-- [Credits](#credits)
+- [Security](#security)
 - [License](#license)
 
 <a name="introduction"></a>
-# Introduction
+## Introduction
 
 ...
 
 <a name="installation"></a>
-# Installation
+## Installation
 
 You can install the package with Composer.
 
@@ -32,7 +32,7 @@ You can install the package with Composer.
 composer require binafy/laravel-user-monitoring
 ```
 
-# Publish
+## Publish
 
 If you want to publish a config file you can use this command:
 
@@ -53,28 +53,31 @@ php artisan vendor:publish --provider="Binafy\LaravelUserMonitoring\Providers\La
 ```
 
 <a name="usage"></a>
-# Usage
+## Usage
 
 <a name="visit-monitoring"></a>
-# Visit Monitoring
+## Visit Monitoring
 
 
 <a name="action-monitoring"></a>
-# Action Monitoring
+## Action Monitoring
 
 
 <a name="authentication-monitoring"></a>
-# Authentication Monitoring
+## Authentication Monitoring
 
 
 <a name="contributors"></a>
-# Contributors
+## Contributors
 
+Thanks to all the people who contribute. [Contributors](https://github.com/binafy/laravel-user-monitoring/graphs/contributors).
 
-<a name="credits"></a>
-# Credits
+<a href="https://github.com/binafy/laravel-user-monitoring/graphs/contributors"><img src="https://opencollective.com/laravel-user-monitoring/contributors.svg?width=890&button=false" /></a>
+
+<a name="security"></a>
+## Security
 
 <a name="license"></a>
-# License
+## License
 
 The MIT License (MIT). Please see [License File](https://github.com/binafy/laravel-user-monitoring/blob/0.x-dev/LICENSE) for more information.
