@@ -19,6 +19,10 @@ class VisitMonitoringMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        if (config('user-monitoring.visit_monitoring.turn_on', false) === false) {
+            return $next($request);
+        }
+
         $agent = new Agent();
         $guard = config('user-monitoring.user.guard', 'web');
         $exceptPages = config('user-monitoring.visit_monitoring.expect_pages', []);
