@@ -6,25 +6,32 @@ use Illuminate\Database\Schema\Blueprint;
 
 class UserUtils
 {
-    public static function userForeignKey(Blueprint $table)
+    /**
+     * Set up foreign key for the user table based on the configured type.
+     *
+     * @param  \Illuminate\Database\Schema\Blueprint  $table
+     * @return void
+     */
+    public static function userForeignKey(Blueprint $table): void
     {
         $type = config('user-monitoring.user.foreign_key_type', 'id');
 
-        if ($type === 'ulid') {
-            $table->foreignUlid(config('user-monitoring.user.foreign_key'))
-                ->nullable()
-                ->constrained(config('user-monitoring.user.table'))
-                ->nullOnDelete();
-        } else if ($type === 'uuid') {
-            $table->foreignUuid(config('user-monitoring.user.foreign_key'))
-                ->nullable()
-                ->constrained(config('user-monitoring.user.table'))
-                ->nullOnDelete();
-        } else {
-            $table->foreignId(config('user-monitoring.user.foreign_key'))
-                ->nullable()
-                ->constrained(config('user-monitoring.user.table'))
-                ->nullOnDelete();
+        $foreign_key = config('user-monitoring.user.foreign_key');
+
+        $foreignConstraint = $table->nullable()->constrained(config('user-monitoring.user.table'))->nullOnDelete();
+
+        if (!in_array($type, ['ulid', 'uuid'])) {
+            $table->foreignId($foreign_key)->{$foreignConstraint};
+
+            return;
         }
+
+        if ($type === 'ulid') {
+            $table->foreignUlid($foreign_key)->{$foreignConstraint};
+
+            return;
+        }
+
+        $table->foreignUuid($foreign_key)->{$foreignConstraint};
     }
 }
