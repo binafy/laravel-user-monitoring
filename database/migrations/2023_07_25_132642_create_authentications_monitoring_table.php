@@ -1,5 +1,6 @@
 <?php
 
+use Binafy\LaravelUserMonitoring\Utills\UserUtils;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,17 +16,27 @@ return new class extends Migration
             $table->id();
 
             if (config('user-monitoring.authentication_monitoring.delete_user_record_when_user_delete', true)) {
-                $table->foreignId(config('user-monitoring.user.foreign_key'))
-                    ->constrained(config('user-monitoring.user.tables'))
-                    ->cascadeOnDelete();
+                if (config('user-monitoring.user.foreign_key_type') === 'ulid') {
+                    $table->foreignUlid(config('user-monitoring.user.foreign_key'))
+                        ->nullable()
+                        ->constrained(config('user-monitoring.user.table'))
+                        ->cascadeOnDelete();
+                } else if (config('user-monitoring.user.foreign_key_type') === 'uuid') {
+                    $table->foreignUuid(config('user-monitoring.user.foreign_key'))
+                        ->nullable()
+                        ->constrained(config('user-monitoring.user.table'))
+                        ->cascadeOnDelete();
+                } else {
+                    $table->foreignId(config('user-monitoring.user.foreign_key'))
+                        ->nullable()
+                        ->constrained(config('user-monitoring.user.table'))
+                        ->cascadeOnDelete();
+                }
             } else {
-                $table->foreignId(config('user-monitoring.user.foreign_key'))
-                    ->constrained(config('user-monitoring.user.tables'))
-                    ->nullOnDelete();
+                UserUtils::userForeignKey($table);
             }
 
             $table->string('action_type');
-
             $table->string('browser_name');
             $table->string('platform');
             $table->string('device');
