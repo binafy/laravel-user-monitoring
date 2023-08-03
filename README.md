@@ -10,7 +10,7 @@
 
 - [Introduction](#introduction)
 - [Installation](#installation)
-- Usage
+- [Usage](#usage)
     - [User Configuration](#user-configuration)
         - [Foreign Key Type (UUID, ULID, ID)](#foreign-key-type-uuid-ulid-id)
     - [Visit Monitoring](#visit-monitoring)
@@ -65,6 +65,12 @@ php artisan vendor:publish --provider="Binafy\LaravelUserMonitoring\Providers\La
 ```
 
 After publishing, run the `php artisan migrate` command.
+
+<a name="usage"></a>
+## Usage
+
+The `Laravel-User-Monitoring`, just need to use middleware, traits, etc ... and it's not hard, enjoy :)
+
 
 <a name="user-configuration"></a>
 ## User Configuration
