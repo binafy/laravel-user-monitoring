@@ -11,7 +11,7 @@ uses(RefreshDatabase::class);
 
 test('index visits-monitoring is return correct view with data', function () {
     $response = get(route('user-monitoring.visits-monitoring'));
-    $response->assertViewIs('LaravelUserMonitoring::visit-monitoring.index');
+    $response->assertViewIs('LaravelUserMonitoring::visits-monitoring.index');
     $response->assertViewHas('visits');
 });
 

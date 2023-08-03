@@ -75,6 +75,7 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
     private function viewComposer()
     {
         view()->composer([
+            'LaravelUserMonitoring::layouts.master',
             'LaravelUserMonitoring::visit-monitoring.index',
             'LaravelUserMonitoring::actions-monitoring.index',
             'LaravelUserMonitoring::authentications-monitoring.index',

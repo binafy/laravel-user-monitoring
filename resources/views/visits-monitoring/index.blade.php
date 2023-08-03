@@ -74,6 +74,6 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $visit->links() }}
+        {{ $visits->links() }}
     </div>
 @endsection
