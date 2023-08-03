@@ -12,6 +12,7 @@
 - [Installation](#installation)
 - Usage
   - [User Configuration](#user-configuration)
+    - [Foreign Key Type (UUID, ULID, ID)](#foreign-key-type-uuid-ulid-id)
   - [Visit Monitoring](#visit-monitoring)
     - [Delete Visit Monitoring Records By Specific Days](#delete-visit-monitoring-records-by-specific-days)
     - [Turn ON-OFF](#turn-on-off)
@@ -105,6 +106,26 @@ You can config your user with `user-monitoring.php` configuration file:
 - `foreign_key`: You can set the user foreign_key name, like `customer_id`.
 - `table`: You can write your users table name if is not `users.
 - `guard`: The correct guard that using for user.
+
+<a name="foreign-key-type-uuid-ulid-id"></a>
+### Foreign Key Type (UUID, ULID, ID)
+
+If you are using `uuid` or `ulid`, you can change `foreign_key_type` to your correct foreign key type:
+
+```php
+'user' => [
+    ...
+
+    /*
+     * If you are using uuid or ulid you can change it for type of foreign_key.
+     *
+     * When you are using ulid or uuid, you need to add related trait into the models.
+     */
+    'foreign_key_type' => 'uuid', // uuid, ulid, id
+],
+```
+
+> **_NOTE:_**  You must write `uuid` or `ulid` or `id`.
 
 <a name="visit-monitoring"></a>
 ## Visit Monitoring
