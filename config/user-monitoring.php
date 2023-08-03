@@ -28,9 +28,9 @@ return [
         'guard' => 'web',
 
         /*
-         * If you are using uuid or ulid you can change it for type of foreign_key.
+         * If you are using uuid or ulid you can change it for the type of foreign_key.
          *
-         * When you are using ulid or uuid, you need to add related trait into the models.
+         * When you are using ulid or uuid, you need to add related traits into the models.
          */
         'foreign_key_type' => 'id', // uuid, ulid, id
     ],
@@ -54,7 +54,7 @@ return [
         ],
 
         /*
-         * If you want to delete visit rows after some days, you can change this like 360,
+         * If you want to delete visit rows after some days, you can change this to 360 for example,
          * but you don't like to delete rows you can change it to 0.
          *
          * For this feature you need Task-Scheduling => https://laravel.com/docs/10.x/scheduling

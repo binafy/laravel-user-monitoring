@@ -11,13 +11,13 @@
 - [Introduction](#introduction)
 - [Installation](#installation)
 - Usage
-  - [User Configuration](#user-configuration)
-    - [Foreign Key Type (UUID, ULID, ID)](#foreign-key-type-uuid-ulid-id)
-  - [Visit Monitoring](#visit-monitoring)
-    - [Delete Visit Monitoring Records By Specific Days](#delete-visit-monitoring-records-by-specific-days)
-    - [Turn ON-OFF](#turn-on-off)
-  - [Action Monitoring](#action-monitoring)
-  - [Authentication Monitoring](#authentication-monitoring)
+    - [User Configuration](#user-configuration)
+        - [Foreign Key Type (UUID, ULID, ID)](#foreign-key-type-uuid-ulid-id)
+    - [Visit Monitoring](#visit-monitoring)
+        - [Delete Visit Monitoring Records By Specific Days](#delete-visit-monitoring-records-by-specific-days)
+        - [Turn ON-OFF](#turn-on-off)
+    - [Action Monitoring](#action-monitoring)
+    - [Authentication Monitoring](#authentication-monitoring)
 - [Contributors](#contributors)
 - [Security](#security)
 - [Changelog](#changelog)
@@ -52,24 +52,24 @@ If you want to publish a config file you can use this command:
 php artisan vendor:publish --tag="laravel-user-monitoring-config"
 ```
 
-If you want to publish a migration files you can use this command:
+If you want to publish migration files you can use this command:
 
 ```shell
 php artisan vendor:publish --tag="laravel-user-monitoring-migrations"
 ```
 
-For convience, you can use this command to publish config and migration files:
+For convenience, you can use this command to publish config and migration files:
 
 ```shell
 php artisan vendor:publish --provider="Binafy\LaravelUserMonitoring\Providers\LaravelUserMonitoringServiceProvider"
 ```
 
-After publishing, run `php artisan migrate` command.
+After publishing, run the `php artisan migrate` command.
 
 <a name="user-configuration"></a>
 ## User Configuration
 
-You can config your user with `user-monitoring.php` configuration file:
+You can config your user with the `user-monitoring.php` configuration file:
 
 ```php
 'user' => [
@@ -94,18 +94,18 @@ You can config your user with `user-monitoring.php` configuration file:
     'guard' => 'web',
 
     /*
-     * If you are using uuid or ulid you can change it for type of foreign_key.
+     * If you are using uuid or ulid you can change it for the type of foreign_key.
      *
-     * When you are using ulid or uuid, you need to add related trait into the models.
+     * When you are using ulid or uuid, you need to add related traits into the models.
      */
     'foreign_key_type' => 'id', // uuid, ulid, id
 ],
 ```
 
-- `model`: If your user model is exists in another place, you can change it to correct namespace.
+- `model`: If your user model exists in another place, you can change it to the correct namespace.
 - `foreign_key`: You can set the user foreign_key name, like `customer_id`.
 - `table`: You can write your users table name if is not `users.
-- `guard`: The correct guard that using for user.
+- `guard`: The correct guard that using for the user.
 
 <a name="foreign-key-type-uuid-ulid-id"></a>
 ### Foreign Key Type (UUID, ULID, ID)
@@ -117,9 +117,9 @@ If you are using `uuid` or `ulid`, you can change `foreign_key_type` to your cor
     ...
 
     /*
-     * If you are using uuid or ulid you can change it for type of foreign_key.
+     * If you are using uuid or ulid you can change it for the type of foreign_key.
      *
-     * When you are using ulid or uuid, you need to add related trait into the models.
+     * When you are using ulid or uuid, you need to add related traits into the models.
      */
     'foreign_key_type' => 'uuid', // uuid, ulid, id
 ],
@@ -134,19 +134,25 @@ When you want to monitor all views of your application, you must follow below:
 
 1. Publish the [Migrations](#publish)
 
-2. Use `VisitMonitoringMiddleware` in Kernel.php, you can go to `App/Http` folder and open the `Kernel.php` file and add `VisitMonitoringMiddleware` into your middleware for example:
+2. Use `VisitMonitoringMiddleware` in Kernel.php, you can go to the `App/Http` folder and open the `Kernel.php` file and add `VisitMonitoringMiddleware` into your middleware for example:
 ```php
 protected $middlewareGroups = [
     'web' => [
         ...
         \Binafy\LaravelUserMonitoring\Middlewares\VisitMonitoringMiddleware::class,
     ],
+
+    'api' => [
+        // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+        \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+        \Illuminate\Routing\Middleware\SubstituteBindings::class,
+    ],
 ];
 ```
 
 After, you can see all pages monitoring :)
 
-If you want to disable monitoring for specific pages you can go to `user-monitoring.php` that exists in `config` folder and add pages into `visit_monitoring` key:
+If you want to disable monitoring for specific pages you can go to `user-monitoring.php` that exists in the `config` folder and add pages into the `visit_monitoring` key:
 
 ```php
 'visit_monitoring' => [
@@ -163,17 +169,17 @@ If you want to disable monitoring for specific pages you can go to `user-monitor
 <a name="delete-visit-monitoring-records-by-specific-days"></a>
 ### Delete Visit Monitoring Records By Specific Days
 
-You may to delete records by specific days, Laravel-User-Monitoring also support this 🤩.
+You may delete records by specific days, Laravel-User-Monitoring also supports this 🤩.
 
-First, you need go to `user-monitoring` config file and highlighting the days that you want to delete:
+First, you need to go to the `user-monitoring` config file and highlight the days that you want to delete:
 
 ```php
 'visit_monitoring' => [
     ...
 
     /*
-     * If you want to delete visit rows after some days, you can change this like 360,
-     * but you don't like to delete rows you can change it to 0.
+     * If you want to delete visit rows after some days, you can change this to 360,
+     * but if you don't like to delete rows you can change it to 0.
      *
      * For this feature you need Task-Scheduling => https://laravel.com/docs/10.x/scheduling
      */
@@ -181,7 +187,7 @@ First, you need go to `user-monitoring` config file and highlighting the days th
 ],
 ```
 
-After, you need to use [Task Scheduling](https://laravel.com/docs/10.x/scheduling) to fire related command, so go to `app/Console/Kernel.php` and do like this:
+After, you need to use [Task Scheduling](https://laravel.com/docs/10.x/scheduling) to fire-related command, so go to `app/Console/Kernel.php` and do like this:
 
 ```php
 <?php
@@ -208,7 +214,7 @@ You can change `hourly` to `minute` or `second`, for more information you can re
 <a name="turn-on-off"></a>
 ### Turn ON-OFF
 
-Maybe you want to turn off visit monitoring for somedays or always, you can use configuration to turn off:
+Maybe you want to turn off visit monitoring for somedays or always, you can use configuration to turn it off:
 
 ```php
 'visit_monitoring' => [
@@ -226,7 +232,7 @@ Maybe you want to turn off visit monitoring for somedays or always, you can use 
 <a name="action-monitoring"></a>
 ## Action Monitoring
 
-If you want to monitor your models actions, you can use `Actionable` trait into your model:
+If you want to monitor your models actions, you can use the `Actionable` trait in your model:
 
 ```php
 <?php
@@ -242,9 +248,9 @@ class Product extends Model
 }
 ```
 
-Now when a product readed, created, updated or deleted, you can see which users doing that.
+Now when a product is read, created, updated, or deleted, you can see which users doing that.
 
-If you want to disable some action like created, you can use config file:
+If you want to disable some actions like created, you can use the config file:
 
 ```php
 'action_monitoring' => [
@@ -268,7 +274,7 @@ If you want to disable some action like created, you can use config file:
 ## Authentication Monitoring
 
 Have you ever thought about monitoring the entry and exit of users of your application? Now you can :) <br>
-If you want to monitor users when login or logout in your application, you need migrate the migrations and go to config file and change true for monitoring authentication.
+If you want to monitor users when login or logout of your application, you need to migrate the migrations and go to the config file and change true for monitoring authentication.
 
 ```php
 'authentication_monitoring' => [
