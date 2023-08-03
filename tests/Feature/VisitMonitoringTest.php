@@ -48,6 +48,17 @@ test('check except pages are not store', function () {
     assertDatabaseMissing(config('user-monitoring.visit_monitoring.table'), ['page' => url('/')]);
 });
 
+test('visit monitoring records didn"t store when turn_on key is off', function () {
+    config()->set('user-monitoring.visit_monitoring.turn_on', false);
+
+    $response = get('/');
+    $response->assertContent('milwad');
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 0);
+    assertDatabaseMissing(config('user-monitoring.visit_monitoring.table'), ['page' => url('/')]);
+});
+
 /**
  * Create user.
  *
