@@ -8,7 +8,7 @@ class AuthenticationMonitoringController extends BaseController
 {
     public function index()
     {
-        $authentications = AuthenticationMonitoring::query()->latest()->get();
+        $authentications = AuthenticationMonitoring::query()->latest()->paginate();
 
         return view('LaravelUserMonitoring::authentications-monitoring.index', compact('authentications'));
     }
