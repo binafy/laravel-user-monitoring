@@ -16,13 +16,12 @@ test('index visits-monitoring is return correct view with data', function () {
 });
 
 test('delete visits-monitoring route delete visit monitoring and redirect', function () {
-    get(route('user-monitoring.actions-monitoring'));
+    get(route('user-monitoring.visits-monitoring'));
 
-    $visitMonitoring = VisitMonitoring::query()->first();
-    $response = delete(route('user-monitoring.visits-monitoring-delete', $visitMonitoring->id));
+    $response = delete(route('user-monitoring.visits-monitoring-delete', 1));
     $response->assertRedirect(route('user-monitoring.visits-monitoring'));
 
     // DB Assertions
     assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 1);
-    assertDatabaseMissing(config('user-monitoring.visit_monitoring.table'), ['page' => url('/')]);
+    assertDatabaseMissing(config('user-monitoring.visit_monitoring.table'), ['page' => route('user-monitoring.visits-monitoring')]);
 });

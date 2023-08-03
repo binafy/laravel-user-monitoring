@@ -13,9 +13,9 @@ class VisitMonitoringController extends BaseController
         return view('LaravelUserMonitoring::visits-monitoring.index', compact('visits'));
     }
 
-    public function destroy(VisitMonitoring $visitMonitoring)
+    public function destroy(int $id)
     {
-        $visitMonitoring->delete();
+        VisitMonitoring::query()->findOrFail($id)->delete();
 
         // TODO: Add alert
         return to_route('user-monitoring.visits-monitoring');
