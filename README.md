@@ -12,6 +12,7 @@
 - [Installation](#installation)
 - Usage
   - [Visit Monitoring](#visit-monitoring)
+    - [Delete Visit Monitoring Records By Specific Days](#delete-visit-monitoring-records-by-specific-days)
   - [Action Monitoring](#action-monitoring)
   - [Authentication Monitoring](#authentication-monitoring)
 - [Contributors](#contributors)
@@ -101,6 +102,7 @@ If you want to disable monitoring for specific pages you can go to `user-monitor
 ],
 ```
 
+<a name="delete-visit-monitoring-records-by-specific-days"></a>
 ### Delete Visit Monitoring Records By Specific Days
 
 You may to delete records by specific days, Laravel-User-Monitoring also support this 🤩.
