@@ -13,6 +13,7 @@
 - Usage
   - [Visit Monitoring](#visit-monitoring)
     - [Delete Visit Monitoring Records By Specific Days](#delete-visit-monitoring-records-by-specific-days)
+    - [Turn ON-OFF](#turn-on-off)
   - [Action Monitoring](#action-monitoring)
   - [Authentication Monitoring](#authentication-monitoring)
 - [Contributors](#contributors)
@@ -124,6 +125,24 @@ First, you need go to `user-monitoring` config file and highlighting the days th
 ```
 
 After, you need to use [Task Scheduling](https://laravel.com/docs/10.x/scheduling) to fire related command, so go to `app/Console/Kernel.php` and do like this:
+
+<a name="turn-on-off"></a>
+### Turn ON-OFF
+
+Maybe you want to turn off visit monitoring for somedays or always, you can use configuration to turn off:
+
+```php
+'visit_monitoring' => [
+    ...
+
+    /*
+     * If you want to disable visit monitoring, you can change it to false.
+     */
+    'turn_on' => true,
+    
+    ...
+]
+```
 
 ```php
 <?php
