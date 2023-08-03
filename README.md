@@ -11,6 +11,7 @@
 - [Introduction](#introduction)
 - [Installation](#installation)
 - Usage
+  - [User Configuration](#user-configuration)
   - [Visit Monitoring](#visit-monitoring)
     - [Delete Visit Monitoring Records By Specific Days](#delete-visit-monitoring-records-by-specific-days)
     - [Turn ON-OFF](#turn-on-off)
@@ -63,6 +64,47 @@ php artisan vendor:publish --provider="Binafy\LaravelUserMonitoring\Providers\La
 ```
 
 After publishing, run `php artisan migrate` command.
+
+<a name="user-configuration"></a>
+## User Configuration
+
+You can config your user with `user-monitoring.php` configuration file:
+
+```php
+'user' => [
+    /*
+     * User model.
+     */
+    'model' => 'App\Models\User',
+
+    /*
+     * Foreign Key column name.
+     */
+    'foreign_key' => 'user_id',
+
+    /*
+     * Users table name.
+     */
+    'table' => 'users',
+
+    /*
+     * The correct guard.
+     */
+    'guard' => 'web',
+
+    /*
+     * If you are using uuid or ulid you can change it for type of foreign_key.
+     *
+     * When you are using ulid or uuid, you need to add related trait into the models.
+     */
+    'foreign_key_type' => 'id', // uuid, ulid, id
+],
+```
+
+- `model`: If your user model is exists in another place, you can change it to correct namespace.
+- `foreign_key`: You can set the user foreign_key name, like `customer_id`.
+- `table`: You can write your users table name if is not `users.
+- `guard`: The correct guard that using for user.
 
 <a name="visit-monitoring"></a>
 ## Visit Monitoring
