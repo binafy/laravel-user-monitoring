@@ -10,7 +10,7 @@ class AuthenticationMonitoringController extends BaseController
     {
         $authentications = AuthenticationMonitoring::query()->latest()->get();
 
-        return view('LaravelUserMonitoring::authenitcations-monitoring.index', compact('authentications'));
+        return view('LaravelUserMonitoring::authentications-monitoring.index', compact('authentications'));
     }
 
     public function destroy(AuthenticationMonitoring $authenticationMonitoring)
