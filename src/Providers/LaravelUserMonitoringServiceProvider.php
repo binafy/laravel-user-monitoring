@@ -6,6 +6,7 @@ use Binafy\LaravelUserMonitoring\Commands\RemoveVisitMonitoringRecordsCommand;
 use Binafy\LaravelUserMonitoring\Middlewares\VisitMonitoringMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\View;
 
 class LaravelUserMonitoringServiceProvider extends ServiceProvider
 {
@@ -38,6 +39,8 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
     {
         $this->publishConfig();
         $this->publishMigrations();
+
+        $this->viewComposer();
     }
 
     /**
@@ -62,5 +65,16 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../database/migrations' => database_path('migrations'),
         ], 'laravel-user-monitoring-migrations');
+    }
+
+    private function viewComposer()
+    {
+        view()->composer([
+            'LaravelUserMonitoring::visit-monitoring.index',
+        ], function (View $view) {
+            $title = 'Laravel User Monitoring';
+
+            $view->with('title', $title);
+        });
     }
 }

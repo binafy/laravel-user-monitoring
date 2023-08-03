@@ -1,6 +1,7 @@
 <?php
 
 use Binafy\LaravelUserMonitoring\Controllers\ActionMonitoringController;
+use Binafy\LaravelUserMonitoring\Controllers\AuthenticationMonitoringController;
 use Binafy\LaravelUserMonitoring\Controllers\VisitMonitoringController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,4 +13,8 @@ Route::prefix('user-monitoring')->as('user-monitoring.')->group(function ($route
     // Action Monitoring Routes
     $router->get('actions-monitoring', [ActionMonitoringController::class, 'index'])->name('actions-monitoring');
     $router->delete('actions-monitoring/{actionMonitoring}', [ActionMonitoringController::class, 'destroy'])->name('actions-monitoring-delete');
+
+    // Authentication Monitoring Routes
+    $router->get('authentications-monitoring', [AuthenticationMonitoringController::class, 'index'])->name('authentications-monitoring');
+    $router->delete('authentications-monitoring/{authenticationMonitoring}', [AuthenticationMonitoringController::class, 'destroy'])->name('authentications-monitoring-delete');
 });
