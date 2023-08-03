@@ -67,10 +67,17 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
         ], 'laravel-user-monitoring-migrations');
     }
 
+    /**
+     * View Composer.
+     *
+     * @return void
+     */
     private function viewComposer()
     {
         view()->composer([
             'LaravelUserMonitoring::visit-monitoring.index',
+            'LaravelUserMonitoring::actions-monitoring.index',
+            'LaravelUserMonitoring::authentications-monitoring.index',
         ], function (View $view) {
             $title = 'Laravel User Monitoring';
 
