@@ -126,24 +126,6 @@ First, you need go to `user-monitoring` config file and highlighting the days th
 
 After, you need to use [Task Scheduling](https://laravel.com/docs/10.x/scheduling) to fire related command, so go to `app/Console/Kernel.php` and do like this:
 
-<a name="turn-on-off"></a>
-### Turn ON-OFF
-
-Maybe you want to turn off visit monitoring for somedays or always, you can use configuration to turn off:
-
-```php
-'visit_monitoring' => [
-    ...
-
-    /*
-     * If you want to disable visit monitoring, you can change it to false.
-     */
-    'turn_on' => true,
-    
-    ...
-]
-```
-
 ```php
 <?php
 
@@ -165,6 +147,24 @@ class Kernel extends ConsoleKernel
 ```
 
 You can change `hourly` to `minute` or `second`, for more information you can read [Schedule Frequency Options](https://laravel.com/docs/10.x/scheduling#schedule-frequency-options).
+
+<a name="turn-on-off"></a>
+### Turn ON-OFF
+
+Maybe you want to turn off visit monitoring for somedays or always, you can use configuration to turn off:
+
+```php
+'visit_monitoring' => [
+    ...
+
+    /*
+     * If you want to disable visit monitoring, you can change it to false.
+     */
+    'turn_on' => true,
+    
+    ...
+]
+```
 
 <a name="action-monitoring"></a>
 ## Action Monitoring
