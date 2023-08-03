@@ -101,6 +101,50 @@ If you want to disable monitoring for specific pages you can go to `user-monitor
 ],
 ```
 
+### Delete Visit Monitoring Records By Specific Days
+
+You may to delete records by specific days, Laravel-User-Monitoring also support this 🤩.
+
+First, you need go to `user-monitoring` config file and highlighting the days that you want to delete:
+
+```php
+'visit_monitoring' => [
+    ...
+
+    /*
+     * If you want to delete visit rows after some days, you can change this like 360,
+     * but you don't like to delete rows you can change it to 0.
+     *
+     * For this feature you need Task-Scheduling => https://laravel.com/docs/10.x/scheduling
+     */
+    'delete_days' => 10,
+],
+```
+
+After, you need to use [Task Scheduling](https://laravel.com/docs/10.x/scheduling) to fire related command, so go to `app/Console/Kernel.php` and do like this:
+
+```php
+<?php
+
+namespace App\Console;
+
+...
+use Binafy\LaravelUserMonitoring\Commands\RemoveVisitMonitoringRecordsCommand;
+
+class Kernel extends ConsoleKernel
+{
+    /**
+     * Define the application's command schedule.
+     */
+    protected function schedule(Schedule $schedule): void
+    {
+         $schedule->command(RemoveVisitMonitoringRecordsCommand::class)->hourly();
+    }
+}
+```
+
+You can change `hourly` to `minute` or `second`, for more information you can read [Schedule Frequency Options](https://laravel.com/docs/10.x/scheduling#schedule-frequency-options).
+
 <a name="action-monitoring"></a>
 ## Action Monitoring
 
