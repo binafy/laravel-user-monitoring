@@ -6,6 +6,12 @@ use Illuminate\Database\Schema\Blueprint;
 
 class UserUtils
 {
+    /**
+     * Return user foreign key by ulid, uuid, id.
+     *
+     * @param  Blueprint $table
+     * @return void
+     */
     public static function userForeignKey(Blueprint $table)
     {
         $type = config('user-monitoring.user.foreign_key_type', 'id');
