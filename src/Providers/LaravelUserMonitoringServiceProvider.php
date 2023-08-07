@@ -39,6 +39,7 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
     {
         $this->publishConfig();
         $this->publishMigrations();
+        $this->publishViews();
 
         $this->viewComposer();
     }
@@ -65,6 +66,18 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../database/migrations' => database_path('migrations'),
         ], 'laravel-user-monitoring-migrations');
+    }
+
+    /**
+     * Publish view files.
+     *
+     * @return void
+     */
+    private function publishViews()
+    {
+        $this->publishes([
+            __DIR__ . '/../../resources/views' => resource_path('views/laravel-user-monitoring'),
+        ], 'laravel-user-monitoring-views');
     }
 
     /**
