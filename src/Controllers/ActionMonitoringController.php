@@ -8,7 +8,7 @@ class ActionMonitoringController extends BaseController
 {
     public function index()
     {
-        $actions = ActionMonitoring::query()->latest()->get();
+        $actions = ActionMonitoring::query()->latest()->paginate();
 
         return view('LaravelUserMonitoring::actions-monitoring.index', compact('actions'));
     }

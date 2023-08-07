@@ -6,6 +6,7 @@ use Binafy\LaravelUserMonitoring\Commands\RemoveVisitMonitoringRecordsCommand;
 use Binafy\LaravelUserMonitoring\Middlewares\VisitMonitoringMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\View;
 
 class LaravelUserMonitoringServiceProvider extends ServiceProvider
 {
@@ -38,6 +39,9 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
     {
         $this->publishConfig();
         $this->publishMigrations();
+        $this->publishViews();
+
+        $this->viewComposer();
     }
 
     /**
@@ -62,5 +66,36 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../database/migrations' => database_path('migrations'),
         ], 'laravel-user-monitoring-migrations');
+    }
+
+    /**
+     * Publish view files.
+     *
+     * @return void
+     */
+    private function publishViews()
+    {
+        $this->publishes([
+            __DIR__ . '/../../resources/views' => resource_path('views/laravel-user-monitoring'),
+        ], 'laravel-user-monitoring-views');
+    }
+
+    /**
+     * View Composer.
+     *
+     * @return void
+     */
+    private function viewComposer()
+    {
+        view()->composer([
+            'LaravelUserMonitoring::layouts.master',
+            'LaravelUserMonitoring::visit-monitoring.index',
+            'LaravelUserMonitoring::actions-monitoring.index',
+            'LaravelUserMonitoring::authentications-monitoring.index',
+        ], function (View $view) {
+            $title = 'Laravel User Monitoring';
+
+            $view->with('title', $title);
+        });
     }
 }
