@@ -25,7 +25,13 @@
         {
             "name": "milwad-dev",
             "email": "milwad.dev@gmail.com",
-            "role": "author"
+            "role": "author",
+            "homepage": "https://github.com/milwad-dev"
+        },
+        {
+            "name": "binafy",
+            "role": "owner",
+            "homepage": "https://github.com/binafy"
         }
     ],
     "autoload": {
