@@ -20,7 +20,7 @@
     "homepage": "https://github.com/binafy/laravel-user-monitoring",
     "type": "library",
     "license": "MIT",
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "miladev-ent",
