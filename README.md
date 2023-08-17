@@ -16,8 +16,11 @@
     - [Visit Monitoring](#visit-monitoring)
         - [Delete Visit Monitoring Records By Specific Days](#delete-visit-monitoring-records-by-specific-days)
         - [Turn ON-OFF](#turn-on-off)
+        - [Views](#visit-monitoring-views)
     - [Action Monitoring](#action-monitoring)
+        - [Views](#action-monitoring-views)
     - [Authentication Monitoring](#authentication-monitoring)
+        - [Views](#authentication-monitoring-views)
 - [Contributors](#contributors)
 - [Security](#security)
 - [Changelog](#changelog)
@@ -235,6 +238,13 @@ Maybe you want to turn off visit monitoring for somedays or always, you can use 
 ]
 ```
 
+<a name="visit-monitoring-views"></a>
+### Visit Monitoring Views
+
+Laravel-User-Monitoring also has an amazing views that you can use it very easy, just need to go to `/user-monitoring/visits-monitoring` url, and enjoy:
+
+![Visit Monitoring Preview](/art/visits-monitoring/preview.png "Visit Monitoring")
+
 <a name="action-monitoring"></a>
 ## Action Monitoring
 
@@ -276,6 +286,13 @@ If you want to disable some actions like created, you can use the config file:
 ],
 ```
 
+<a name="action-monitoring-views"></a>
+### Action Monitoring Views
+
+`Laravel-User-Monitoring` also has an amazing views that you can use it very easy, just need to go to `/user-monitoring/actions-monitoring` url, and enjoy:
+
+![Action Monitoring Preview](/art/actions-monitoring/preview.png "Action Monitoring")
+
 <a name="authentication-monitoring"></a>
 ## Authentication Monitoring
 
@@ -293,6 +310,14 @@ If you want to monitor users when login or logout of your application, you need 
     'on_logout' => true,
 ],
 ```
+
+<a name="authentication-monitoring-views"></a>
+### Authentication Monitoring Views
+
+`Laravel-User-Monitoring` also has an amazing views that you can use it very easy, just need to go to `/user-monitoring/authentications-monitoring` url, and enjoy:
+
+![Authentication Monitoring Preview](/art/authentications-monitoring/preview.png "Authentication Monitoring")
+
 
 <a name="contributors"></a>
 ## Contributors
