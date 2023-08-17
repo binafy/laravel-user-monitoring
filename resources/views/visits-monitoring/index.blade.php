@@ -1,5 +1,7 @@
 @extends('LaravelUserMonitoring::layouts.master')
 
+@section('title', 'Visit Monitoring')
+
 @section('content')
     <div class="mt-7 overflow-x-auto">
         <table class="w-full whitespace-nowrap">
