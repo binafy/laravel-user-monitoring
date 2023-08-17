@@ -1,6 +1,5 @@
 <?php
 
-use Binafy\LaravelUserMonitoring\Models\VisitMonitoring;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use function Pest\Laravel\{assertDatabaseCount, assertDatabaseMissing, delete, get};
 

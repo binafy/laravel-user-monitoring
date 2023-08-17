@@ -1,7 +1,7 @@
 <?php
 
-use Binafy\LaravelUserMonitoring\Utills\ActionType;
 use Binafy\LaravelUserMonitoring\Models\ActionMonitoring;
+use Binafy\LaravelUserMonitoring\Utills\ActionType;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\SetUp\Models\Product;
 use function Pest\Laravel\{assertDatabaseCount, assertDatabaseHas};
