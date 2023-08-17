@@ -3,6 +3,7 @@
 namespace Binafy\LaravelUserMonitoring\Controllers;
 
 use Binafy\LaravelUserMonitoring\Models\ActionMonitoring;
+use Illuminate\Support\Facades\DB;
 
 class ActionMonitoringController extends BaseController
 {
@@ -13,9 +14,11 @@ class ActionMonitoringController extends BaseController
         return view('LaravelUserMonitoring::actions-monitoring.index', compact('actions'));
     }
 
-    public function destroy(ActionMonitoring $actionMonitoring)
+    public function destroy(int $id)
     {
-        $actionMonitoring->delete();
+        DB::table(config('user-monitoring.action_monitoring.table'))
+            ->where('id', $id)
+            ->delete();
 
         // TODO: Add alert
         return to_route('user-monitoring.actions-monitoring');
