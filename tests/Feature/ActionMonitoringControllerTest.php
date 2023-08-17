@@ -18,11 +18,10 @@ test('index actions-monitoring is return correct view with data', function () {
 
 test('delete actions-monitoring route delete action monitoring and redirect', function () {
     Product::query()->create(['title' => 'Binafy']);
-    $actionMonitoring = ActionMonitoring::query()->first();
 
-    $response = delete(route('user-monitoring.actions-monitoring-delete', $actionMonitoring->id));
+    $response = delete(route('user-monitoring.actions-monitoring-delete', 1));
     $response->assertRedirect(route('user-monitoring.actions-monitoring'));
 
     // DB Assertions
-    assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 1);
+    assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 0);
 });
