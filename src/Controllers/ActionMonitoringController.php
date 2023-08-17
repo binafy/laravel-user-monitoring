@@ -20,7 +20,6 @@ class ActionMonitoringController extends BaseController
             ->where('id', $id)
             ->delete();
 
-        // TODO: Add alert
         return to_route('user-monitoring.actions-monitoring');
     }
 }

@@ -20,7 +20,6 @@ class AuthenticationMonitoringController extends BaseController
             ->where('id', $id)
             ->delete();
 
-        // TODO: Add alert
         return to_route('user-monitoring.authentications-monitoring');
     }
 }
