@@ -290,7 +290,7 @@ If you want to disable some actions like created, you can use the config file:
 <a name="action-monitoring-views"></a>
 ### Action Monitoring Views
 
-`Laravel-User-Monitoring` also has an amazing views that you can use it very easy, just need to go to `/user-monitoring/actions-monitoring` url, and enjoy:
+`Laravel-User-Monitoring` also has amazing views that you can use very easily, just need to go to the `/user-monitoring/actions-monitoring` URL, and enjoy:
 
 ![Action Monitoring Preview](/art/actions-monitoring/preview.png "Action Monitoring")
 
@@ -298,7 +298,7 @@ If you want to disable some actions like created, you can use the config file:
 ## Authentication Monitoring
 
 Have you ever thought about monitoring the entry and exit of users of your application? Now you can :) <br>
-If you want to monitor users when login or logout of your application, you need to migrate the migrations and go to the config file and change true for monitoring authentication.
+If you want to monitor users when logging in or logout of your application, you need to migrate the migrations to the config file and change true for monitoring authentication.
 
 ```php
 'authentication_monitoring' => [
@@ -315,24 +315,24 @@ If you want to monitor users when login or logout of your application, you need 
 <a name="authentication-monitoring-views"></a>
 ### Authentication Monitoring Views
 
-`Laravel-User-Monitoring` also has an amazing views that you can use it very easy, just need to go to `/user-monitoring/authentications-monitoring` url, and enjoy:
+`Laravel-User-Monitoring` also has amazing views that you can use very easily, just need to go to the `/user-monitoring/authentications-monitoring` URL, and enjoy:
 
 ![Authentication Monitoring Preview](/art/authentications-monitoring/preview.png "Authentication Monitoring")
 
 <a name="how-to-use-in-big-projects"></a>
 ## How to use in big projects
 
-If you want to use the `Laravel-User-Monitoring` is big projects, you have lots of way, but I want to say some tips and idea to help you:
+If you want to use `Laravel-User-Monitoring` is big projects, you have lots of ways, but I want to give some tips and ideas to help you:
 
 > If you have an idea for this section you can create [PRs](https://github.com/binafy/laravel-user-monitoring/pulls) or [issues](https://github.com/binafy/laravel-user-monitoring/issues) to help us.
 
 1. You can use this package with [Cache](https://laravel.com/docs/10.x/cache)
-2. You can make a seperate DB and connect to your project to seperate monitoring and application.
+2. You can make a separate DB and connect to your project to separate monitoring and application.
 
 <a name="contributors"></a>
 ## Contributors
 
-Thanks to all the people who contribute. [Contributors](https://github.com/binafy/laravel-user-monitoring/graphs/contributors).
+Thanks to all the people who contributed. [Contributors](https://github.com/binafy/laravel-user-monitoring/graphs/contributors).
 
 <a href="https://github.com/binafy/laravel-user-monitoring/graphs/contributors"><img src="https://opencollective.com/laravel-user-monitoring/contributors.svg?width=890&button=false" /></a>
 
