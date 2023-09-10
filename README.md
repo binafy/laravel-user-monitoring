@@ -21,6 +21,7 @@
         - [Views](#action-monitoring-views)
     - [Authentication Monitoring](#authentication-monitoring)
         - [Views](#authentication-monitoring-views)
+    - [How to use in big projects](#how-to-use-in-big-projects)
 - [Contributors](#contributors)
 - [Security](#security)
 - [Changelog](#changelog)
@@ -318,6 +319,15 @@ If you want to monitor users when login or logout of your application, you need 
 
 ![Authentication Monitoring Preview](/art/authentications-monitoring/preview.png "Authentication Monitoring")
 
+<a name="how-to-use-in-big-projects"></a>
+## How to use in big projects
+
+If you want to use the `Laravel-User-Monitoring` is big projects, you have lots of way, but I want to say some tips and idea to help you:
+
+> If you have an idea for this section you can create [PRs](https://github.com/binafy/laravel-user-monitoring/pulls) or [issues](https://github.com/binafy/laravel-user-monitoring/issues) to help us.
+
+1. You can use this package with [Cache](https://laravel.com/docs/10.x/cache)
+2. You can make a seperate DB and connect to your project to seperate monitoring and application.
 
 <a name="contributors"></a>
 ## Contributors
