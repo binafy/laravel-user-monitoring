@@ -49,7 +49,7 @@ return [
         /*
          * You can specify pages not to be monitored.
          */
-        'expect_pages' => [
+        'except_pages' => [
             // 'home',
         ],
 

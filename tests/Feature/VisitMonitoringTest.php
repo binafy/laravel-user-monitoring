@@ -38,7 +38,7 @@ test('store activity without user when see a page', function () {
 });
 
 test('check except pages are not store', function () {
-    config()->set('user-monitoring.visit_monitoring.expect_pages', ['/']);
+    config()->set('user-monitoring.visit_monitoring.except_pages', ['/']);
 
     $response = get('/');
     $response->assertContent('milwad');

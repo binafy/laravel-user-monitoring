@@ -25,9 +25,9 @@ class VisitMonitoringMiddleware
 
         $agent = new Agent();
         $guard = config('user-monitoring.user.guard', 'web');
-        $exceptPages = config('user-monitoring.visit_monitoring.expect_pages', []);
+        $exceptPages = config('user-monitoring.visit_monitoring.except_pages', []);
 
-        if (empty($exceptPages) || !$this->checkIsExpectPages($request->path(), $exceptPages)) {
+        if (empty($exceptPages) || !$this->checkIsExceptPages($request->path(), $exceptPages)) {
             // Store visit
             DB::table(config('user-monitoring.visit_monitoring.table'))->insert([
                 'user_id' => auth($guard)->id(),
@@ -51,7 +51,7 @@ class VisitMonitoringMiddleware
      * @param  array $exceptPages
      * @return bool
      */
-    private function checkIsExpectPages(string $page, array $exceptPages)
+    private function checkIsExceptPages(string $page, array $exceptPages)
     {
         return collect($exceptPages)->contains($page);
     }
