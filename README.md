@@ -169,7 +169,7 @@ If you want to disable monitoring for specific pages you can go to `user-monitor
     /*
      * You can specify pages not to be monitored.
      */
-    'expect_pages' => [
+    'except_pages' => [
         'home',
         'admin/dashboard',
     ],
