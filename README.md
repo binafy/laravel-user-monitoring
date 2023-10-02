@@ -56,10 +56,22 @@ If you want to publish a config file you can use this command:
 php artisan vendor:publish --tag="laravel-user-monitoring-config"
 ```
 
-If you want to publish migration files you can use this command:
+If you want to publish the migrations you can use this command:
 
 ```shell
 php artisan vendor:publish --tag="laravel-user-monitoring-migrations"
+```
+
+If you want to publish the views you can use this command:
+
+```shell
+php artisan vendor:publish --tag="laravel-user-monitoring-views"
+```
+
+If you want to publish the middlewares you can use this command:
+
+```shell
+php artisan vendor:publish --tag="laravel-user-monitoring-middlewares"
 ```
 
 For convenience, you can use this command to publish config and migration files:
