@@ -40,6 +40,7 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
         $this->publishConfig();
         $this->publishMigrations();
         $this->publishViews();
+        $this->publishMiddleware();
 
         $this->viewComposer();
     }
@@ -78,6 +79,18 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../resources/views' => resource_path('views/laravel-user-monitoring'),
         ], 'laravel-user-monitoring-views');
+    }
+
+    /**
+     * Publish middleware files.
+     *
+     * @return void
+     */
+    private function publishMiddleware()
+    {
+        $this->publishes([
+            __DIR__ . '/../Middlewares' => app_path('Http/Middleware'),
+        ], 'laravel-user-monitoring-middlewares');
     }
 
     /**
