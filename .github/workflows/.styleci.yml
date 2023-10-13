@@ -1,0 +1,40 @@
+risky: false
+
+version: 8.0
+
+preset: recommended
+
+tab-width: 4
+
+use-tabs: false
+
+enabled:
+    - long_array_syntax
+    - strict
+    - unalign_double_arrow
+    - no_superfluous_phpdoc_tags
+    - declare_strict_types
+
+disabled:
+    - align_double_arrow
+    - short_array_syntax
+    - align_double_arrow
+    - include
+
+finder:
+    exclude:
+        - "tests"
+    name:
+        - "*.php"
+    not-name:
+        - "*Stub.php"
+    contains:
+        - "Foo"
+    not-contains:
+        - "config"
+    path:
+        - "foo/Stuff"
+    not-path:
+        - "libraries"
+    depth:
+        - "< 3"
