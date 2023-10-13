@@ -2,6 +2,15 @@
 
 return [
     /*
+     * Configurations.
+     */
+    'config' => [
+        'routes' => [
+            'file_path' => 'routes/user-monitoring.php',
+        ],
+    ],
+
+    /*
      * User properties.
      *
      * You can customize the user guard, table, foreign key, and ... .
