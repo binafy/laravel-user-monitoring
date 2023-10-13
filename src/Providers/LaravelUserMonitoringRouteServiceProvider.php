@@ -20,7 +20,7 @@ class LaravelUserMonitoringRouteServiceProvider extends RouteServiceProvider
         );
 
         if (! file_exists($path)) {
-            throw new \RuntimeException('The route file is not exists!');
+            $path = __DIR__ . '/../../routes/web.php';
         }
 
         Route::middleware('web')
