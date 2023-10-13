@@ -11,6 +11,8 @@
 - [Introduction](#introduction)
 - [Installation](#installation)
 - [Usage](#usage)
+    - [Configuration](#configuration)
+        - [Routes](#routes) 
     - [User Configuration](#user-configuration)
         - [Foreign Key Type (UUID, ULID, ID)](#foreign-key-type-uuid-ulid-id)
     - [Visit Monitoring](#visit-monitoring)
@@ -74,7 +76,13 @@ If you want to publish the middlewares you can use this command:
 php artisan vendor:publish --tag="laravel-user-monitoring-middlewares"
 ```
 
-For convenience, you can use this command to publish config and migration files:
+If you want to publish the routes you can use this command:
+
+```shell
+php artisan vendor:publish --tag="laravel-user-monitoring-routes"
+```
+
+For convenience, you can use this command to publish config, migration and ... files:
 
 ```shell
 php artisan vendor:publish --provider="Binafy\LaravelUserMonitoring\Providers\LaravelUserMonitoringServiceProvider"
@@ -87,6 +95,29 @@ After publishing, run the `php artisan migrate` command.
 
 The `Laravel-User-Monitoring`, just need to use middleware, traits, etc ... and it's not hard, enjoy :)
 
+<a name="routes-configuration"></a>
+## Routes Configuration
+
+If you want to cusomize the routes, you can publish the route file with this command:
+
+```shell
+php artisan vendor:publish --tag="laravel-user-monitoring-routes"
+```
+
+After, you can go to `routes/user-monitoring.php` file and customize the routes.
+
+Also, if you want to change the route file name, you can go to config file and change the `file_path`:
+
+```php
+/*
+ * Configurations.
+ */
+'config' => [
+    'routes' => [
+        'file_path' => 'routes/user-monitoring.php',
+    ],
+],
+```
 
 <a name="user-configuration"></a>
 ## User Configuration
