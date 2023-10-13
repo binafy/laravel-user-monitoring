@@ -12,7 +12,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
     - [Configuration](#configuration)
-        - [Routes](#routes) 
+        - [Routes Configuration](#routes-configuration) 
     - [User Configuration](#user-configuration)
         - [Foreign Key Type (UUID, ULID, ID)](#foreign-key-type-uuid-ulid-id)
     - [Visit Monitoring](#visit-monitoring)
@@ -70,7 +70,7 @@ If you want to publish the views you can use this command:
 php artisan vendor:publish --tag="laravel-user-monitoring-views"
 ```
 
-If you want to publish the middlewares you can use this command:
+If you want to publish the middleware you can use this command:
 
 ```shell
 php artisan vendor:publish --tag="laravel-user-monitoring-middlewares"
@@ -82,7 +82,7 @@ If you want to publish the routes you can use this command:
 php artisan vendor:publish --tag="laravel-user-monitoring-routes"
 ```
 
-For convenience, you can use this command to publish config, migration and ... files:
+For convenience, you can use this command to publish config, migration, and ... files:
 
 ```shell
 php artisan vendor:publish --provider="Binafy\LaravelUserMonitoring\Providers\LaravelUserMonitoringServiceProvider"
@@ -93,20 +93,20 @@ After publishing, run the `php artisan migrate` command.
 <a name="usage"></a>
 ## Usage
 
-The `Laravel-User-Monitoring`, just need to use middleware, traits, etc ... and it's not hard, enjoy :)
+The `Laravel-User-Monitoring`, just need to use middleware, traits, etc ... and it's not hard, enjoys :)
 
 <a name="routes-configuration"></a>
 ## Routes Configuration
 
-If you want to cusomize the routes, you can publish the route file with this command:
+If you want to customize the routes, you can publish the route file with this command:
 
 ```shell
 php artisan vendor:publish --tag="laravel-user-monitoring-routes"
 ```
 
-After, you can go to `routes/user-monitoring.php` file and customize the routes.
+After, you can go to the `routes/user-monitoring.php` file and customize the routes.
 
-Also, if you want to change the route file name, you can go to config file and change the `file_path`:
+Also, if you want to change the route file name, you can go to the config file and change the `file_path`:
 
 ```php
 /*
