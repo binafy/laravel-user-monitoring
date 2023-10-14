@@ -4,7 +4,6 @@ namespace Binafy\LaravelUserMonitoring\Providers;
 
 use Binafy\LaravelUserMonitoring\Commands\RemoveVisitMonitoringRecordsCommand;
 use Binafy\LaravelUserMonitoring\Middlewares\VisitMonitoringMiddleware;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\View;
 
@@ -23,11 +22,9 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
         $this->commands(RemoveVisitMonitoringRecordsCommand::class);
 
         $this->app['router']->aliasMiddleware('monitor-visit-middleware', VisitMonitoringMiddleware::class);
-        $this->app->register(LaravelUserMonitoringEventServiceProvider::class);
 
-        Route::middleware('web')
-            ->middleware(VisitMonitoringMiddleware::class)
-            ->group(__DIR__ . '/../../routes/web.php');
+        $this->app->register(LaravelUserMonitoringEventServiceProvider::class);
+        $this->app->register(LaravelUserMonitoringRouteServiceProvider::class);
     }
 
     /**
@@ -41,6 +38,7 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
         $this->publishMigrations();
         $this->publishViews();
         $this->publishMiddleware();
+        $this->publishRoute();
 
         $this->viewComposer();
     }
@@ -91,6 +89,18 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../Middlewares' => app_path('Http/Middleware'),
         ], 'laravel-user-monitoring-middlewares');
+    }
+
+    /**
+     * Publish route files.
+     *
+     * @return void
+     */
+    private function publishRoute()
+    {
+        $this->publishes([
+            __DIR__ . '/../../routes/web.php' => base_path('routes/user-monitoring.php'),
+        ], 'laravel-user-monitoring-routes');
     }
 
     /**
