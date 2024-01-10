@@ -11,15 +11,14 @@ use Jenssegers\Agent\Agent;
 class VisitMonitoringMiddleware
 {
     /**
-     * Handle.
-     *
-     * @param  Request $request
-     * @param  Closure $next
-     * @return Response
+     * Handle monitor visiting.
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
         if (config('user-monitoring.visit_monitoring.turn_on', false) === false) {
+            return $next($request);
+        }
+        if (config('user-monitoring.visit_monitoring.ajax_requests', false) === false && $request->ajax()) {
             return $next($request);
         }
 
