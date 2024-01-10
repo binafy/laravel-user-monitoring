@@ -4,22 +4,20 @@ namespace Binafy\LaravelUserMonitoring\Middlewares;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Jenssegers\Agent\Agent;
 
 class VisitMonitoringMiddleware
 {
     /**
-     * Handle.
-     *
-     * @param  Request $request
-     * @param  Closure $next
-     * @return Response
+     * Handle monitor visiting.
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         if (config('user-monitoring.visit_monitoring.turn_on', false) === false) {
+            return $next($request);
+        }
+        if (config('user-monitoring.visit_monitoring.ajax_requests', false) === false && $request->ajax()) {
             return $next($request);
         }
 
@@ -46,12 +44,8 @@ class VisitMonitoringMiddleware
 
     /**
      * Check request page are exists in expect pages.
-     *
-     * @param  string $page
-     * @param  array $exceptPages
-     * @return bool
      */
-    private function checkIsExceptPages(string $page, array $exceptPages)
+    private function checkIsExceptPages(string $page, array $exceptPages): bool
     {
         return collect($exceptPages)->contains($page);
     }

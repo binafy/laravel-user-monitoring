@@ -51,9 +51,14 @@ return [
         'table' => 'visits_monitoring',
 
         /*
-         * If you want to disable visit monitoring, you can change it to false.
+         * If you want to disable visit monitoring, set it to false.
          */
         'turn_on' => true,
+
+        /*
+         * If you want to disable visit monitoring in Ajax mode, set it to false.
+         */
+        'ajax_requests' => true,
 
         /*
          * You can specify pages not to be monitored.

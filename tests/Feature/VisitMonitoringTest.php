@@ -59,6 +59,26 @@ test('visit monitoring records didn"t store when turn_on key is off', function (
     assertDatabaseMissing(config('user-monitoring.visit_monitoring.table'), ['page' => url('/')]);
 });
 
+// Ajax
+
+test('visit monitoring store ajax requests', function () {
+    get('/', ['X-Requested-With' => 'XMLHttpRequest']);
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 1);
+    assertDatabaseHas(config('user-monitoring.visit_monitoring.table'), ['created_at' => now()]);
+});
+
+test('visit monitoring skip store when ajax mode is off for ajax requests', function () {
+    config()->set('user-monitoring.visit_monitoring.ajax_requests', false);
+
+    get('/', ['X-Requested-With' => 'XMLHttpRequest']);
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 0);
+    assertDatabaseMissing(config('user-monitoring.visit_monitoring.table'), ['page' => 'http:\/\/localhost']);
+});
+
 /**
  * Create user.
  *
