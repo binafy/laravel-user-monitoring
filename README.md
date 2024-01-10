@@ -19,6 +19,7 @@
         - [Delete Visit Monitoring Records By Specific Days](#delete-visit-monitoring-records-by-specific-days)
         - [Turn ON-OFF](#turn-on-off)
         - [Views](#visit-monitoring-views)
+        - [Ajax Requests](#ajax-requests)
     - [Action Monitoring](#action-monitoring)
         - [Views](#action-monitoring-views)
     - [Authentication Monitoring](#authentication-monitoring)
@@ -288,6 +289,26 @@ Maybe you want to turn off visit monitoring for somedays or always, you can use 
 Laravel-User-Monitoring also has an amazing views that you can use it very easy, just need to go to `/user-monitoring/visits-monitoring` url, and enjoy:
 
 ![Visit Monitoring Preview](/art/visits-monitoring/preview.png "Visit Monitoring")
+
+<a name="ajax-requests"></a>
+### Ajax Requests
+
+Maybe you may disable record visits for `Ajax` requests, you can use config to disable it:
+
+```php
+ 'visit_monitoring' => [
+        ...
+
+        /*
+         * If you want to disable visit monitoring in Ajax mode, set it to false.
+         */
+        'ajax_requests' => true,
+
+        ...
+    ],
+```
+
+When set to false, Ajax requests will not be recorded.
 
 <a name="action-monitoring"></a>
 ## Action Monitoring
