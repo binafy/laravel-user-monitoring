@@ -46,8 +46,7 @@
     },
     "require": {
         "php": "^8.0",
-        "laravel/framework": "^9.0|^10.0",
-        "jenssegers/agent": "^2.6.4"
+        "laravel/framework": "^9.0|^10.0"
     },
     "require-dev": {
         "pestphp/pest-plugin-laravel": "^1.4.0|^2.0.0",
