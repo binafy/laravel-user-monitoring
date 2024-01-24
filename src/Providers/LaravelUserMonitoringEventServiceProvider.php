@@ -12,28 +12,28 @@ use Jenssegers\Agent\Agent;
 
 class LaravelUserMonitoringEventServiceProvider extends EventServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
-        $agent = new Agent();
+        $detector = new Detector();
         $guard = config('user-monitoring.user.guard');
         $table = config('user-monitoring.authentication_monitoring.table');
 
         // Login Event
         if (config('user-monitoring.authentication_monitoring.on_login', false)) {
-            Event::listen(function (Login $event) use ($agent, $guard, $table) {
+            Event::listen(function (Login $event) use ($detector, $guard, $table) {
                 DB::table($table)
                     ->insert(
-                        $this->insertData($guard, $agent, 'login'),
+                        $this->insertData($guard, $detector, 'login'),
                     );
             });
         }
 
         // Logout Event
         if (config('user-monitoring.authentication_monitoring.on_logout', false)) {
-            Event::listen(function (Logout $event) use ($agent, $guard, $table) {
+            Event::listen(function (Logout $event) use ($detector, $guard, $table) {
                 DB::table($table)
                     ->insert(
-                        $this->insertData($guard, $agent, 'logout'),
+                        $this->insertData($guard, $detector, 'logout'),
                     );
             });
         }

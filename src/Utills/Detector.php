@@ -37,6 +37,10 @@ class Detector
      */
     public function getBrowser(): string
     {
+        if (PHP_SAPI === 'cli') {
+            return 'CLI';
+        }
+
         $userAgent = $_SERVER['HTTP_USER_AGENT'];
 
         foreach ($this->browserName as $key => $browser) {
@@ -53,14 +57,6 @@ class Detector
      */
     public function getDevice(): string
     {
-        $userAgent = $_SERVER['HTTP_USER_AGENT'];
-
-        foreach ($this->deviceName as $pattern => $name) {
-            if (preg_match($pattern, $userAgent)) {
-                return $name;
-            }
-        }
-
-        return 'Unknown Device Name';
+        return php_uname('s');
     }
 }
