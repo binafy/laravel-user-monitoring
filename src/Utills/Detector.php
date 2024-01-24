@@ -21,7 +21,7 @@ class Detector
     ];
 
     /**
-     * Get device list names.
+     * An array of device names.
      *
      * @var array
      */
