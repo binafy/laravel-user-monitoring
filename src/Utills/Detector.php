@@ -5,7 +5,7 @@ namespace Binafy\LaravelUserMonitoring\Utills;
 class Detector
 {
     /**
-     * Get browser list names.
+     * An array of browser names.
      *
      * @var array
      */
@@ -57,6 +57,18 @@ class Detector
      */
     public function getDevice(): string
     {
-        return php_uname('s');
+        if (PHP_SAPI === 'cli') {
+            return 'CLI';
+        }
+
+        $userAgent = $_SERVER['HTTP_USER_AGENT'];
+
+        foreach ($this->deviceName as $pattern => $name) {
+            if (preg_match($pattern, $userAgent)) {
+                return $name;
+            }
+        }
+
+        return 'Unknown Device Name';
     }
 }
