@@ -6,7 +6,6 @@ use Binafy\LaravelUserMonitoring\Utills\Detector;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Jenssegers\Agent\Agent;
 
 class VisitMonitoringMiddleware
 {

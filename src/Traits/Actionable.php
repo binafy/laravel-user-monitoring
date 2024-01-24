@@ -5,7 +5,6 @@ namespace Binafy\LaravelUserMonitoring\Traits;
 use Binafy\LaravelUserMonitoring\Utills\ActionType;
 use Binafy\LaravelUserMonitoring\Utills\Detector;
 use Illuminate\Support\Facades\DB;
-use Jenssegers\Agent\Agent;
 
 trait Actionable
 {
