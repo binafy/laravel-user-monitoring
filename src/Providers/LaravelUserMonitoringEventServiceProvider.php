@@ -2,6 +2,7 @@
 
 namespace Binafy\LaravelUserMonitoring\Providers;
 
+use Binafy\LaravelUserMonitoring\Utills\Detector;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider;
@@ -39,21 +40,16 @@ class LaravelUserMonitoringEventServiceProvider extends EventServiceProvider
     }
 
     /**
-     * Insert data.
-     *
-     * @param  string $guard
-     * @param  Agent $agent
-     * @param  string $actionType
-     * @return array
+     * Get insert data.
      */
-    private function insertData(string $guard, Agent $agent, string $actionType): array
+    private function insertData(string $guard, Detector $detector, string $actionType): array
     {
         return [
             'user_id' => auth($guard)->id(),
             'action_type' => $actionType,
-            'browser_name' => $agent->browser(),
-            'platform' => $agent->platform(),
-            'device' => $agent->device(),
+            'browser_name' => $detector->getBrowser(),
+            'platform' => $detector->getBrowser(),
+            'device' => $detector->getDevice(),
             'ip' => request()->ip(),
             'page' => request()->url(),
             'created_at' => now(),
