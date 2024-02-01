@@ -47,7 +47,7 @@ class LaravelUserMonitoringEventServiceProvider extends EventServiceProvider
             'user_id' => auth($guard)->id(),
             'action_type' => $actionType,
             'browser_name' => $detector->getBrowser(),
-            'platform' => $detector->getBrowser(),
+            'platform' => $detector->getDevice(),
             'device' => $detector->getDevice(),
             'ip' => request()->ip(),
             'page' => request()->url(),

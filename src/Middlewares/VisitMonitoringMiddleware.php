@@ -30,7 +30,7 @@ class VisitMonitoringMiddleware
             DB::table(config('user-monitoring.visit_monitoring.table'))->insert([
                 'user_id' => auth($guard)->id(),
                 'browser_name' => $detector->getBrowser(),
-                'platform' => $detector->getBrowser(),
+                'platform' => $detector->getDevice(),
                 'device' => $detector->getDevice(),
                 'ip' => $request->ip(),
                 'page' => $request->url(),

@@ -71,7 +71,7 @@ trait Actionable
             'action_type' => $actionType,
             'table_name' => $model->getTable(),
             'browser_name' => $detector->getBrowser(),
-            'platform' => $detector->getBrowser(),
+            'platform' => $detector->getDevice(),
             'device' => $detector->getDevice(),
             'ip' => request()->ip(),
             'page' => request()->url(),
