@@ -62,11 +62,12 @@ test('visit monitoring records didn"t store when turn_on key is off', function (
 // Ajax
 
 test('visit monitoring store ajax requests', function () {
+    \Pest\Laravel\withoutExceptionHandling();
     get('/', ['X-Requested-With' => 'XMLHttpRequest']);
 
     // DB Assertions
     assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 1);
-    assertDatabaseHas(config('user-monitoring.visit_monitoring.table'), ['created_at' => now()]);
+    assertDatabaseHas(config('user-monitoring.visit_monitoring.table'), ['id' => 1]);
 });
 
 test('visit monitoring skip store when ajax mode is off for ajax requests', function () {

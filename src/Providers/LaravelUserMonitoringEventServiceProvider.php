@@ -2,58 +2,53 @@
 
 namespace Binafy\LaravelUserMonitoring\Providers;
 
+use Binafy\LaravelUserMonitoring\Utills\Detector;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
-use Jenssegers\Agent\Agent;
 
 class LaravelUserMonitoringEventServiceProvider extends EventServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
-        $agent = new Agent();
+        $detector = new Detector();
         $guard = config('user-monitoring.user.guard');
         $table = config('user-monitoring.authentication_monitoring.table');
 
         // Login Event
         if (config('user-monitoring.authentication_monitoring.on_login', false)) {
-            Event::listen(function (Login $event) use ($agent, $guard, $table) {
+            Event::listen(function (Login $event) use ($detector, $guard, $table) {
                 DB::table($table)
                     ->insert(
-                        $this->insertData($guard, $agent, 'login'),
+                        $this->insertData($guard, $detector, 'login'),
                     );
             });
         }
 
         // Logout Event
         if (config('user-monitoring.authentication_monitoring.on_logout', false)) {
-            Event::listen(function (Logout $event) use ($agent, $guard, $table) {
+            Event::listen(function (Logout $event) use ($detector, $guard, $table) {
                 DB::table($table)
                     ->insert(
-                        $this->insertData($guard, $agent, 'logout'),
+                        $this->insertData($guard, $detector, 'logout'),
                     );
             });
         }
     }
 
     /**
-     * Insert data.
-     *
-     * @param  string $guard
-     * @param  Agent $agent
-     * @param  string $actionType
-     * @return array
+     * Get insert data.
      */
-    private function insertData(string $guard, Agent $agent, string $actionType): array
+    private function insertData(string $guard, Detector $detector, string $actionType): array
     {
         return [
             'user_id' => auth($guard)->id(),
             'action_type' => $actionType,
-            'browser_name' => $agent->browser(),
-            'platform' => $agent->platform(),
-            'device' => $agent->device(),
+            'browser_name' => $detector->getBrowser(),
+            'platform' => $detector->getBrowser(),
+            'device' => $detector->getDevice(),
             'ip' => request()->ip(),
             'page' => request()->url(),
             'created_at' => now(),
