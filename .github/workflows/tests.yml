@@ -12,6 +12,9 @@ jobs:
         laravel: [9.*, 10.*]
         dependency-version: [prefer-lowest, prefer-stable]
         include:
+          - laravel: 11.*
+            testbench: 9.*
+            pest-plugin-laravel: 2.0.0
           - laravel: 10.*
             testbench: 8.*
             pest-plugin-laravel: 2.0.0
@@ -20,8 +23,8 @@ jobs:
             pest-plugin-laravel: 1.4.0
 
         exclude:
-          - laravel: 10.*
-            php: 8.0
+          - laravel: 11.*
+            php: 8.2
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
 
