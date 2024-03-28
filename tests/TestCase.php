@@ -5,6 +5,7 @@ namespace Tests;
 use Binafy\LaravelUserMonitoring\Middlewares\VisitMonitoringMiddleware;
 use Binafy\LaravelUserMonitoring\Providers\LaravelUserMonitoringServiceProvider;
 use Illuminate\Encryption\Encrypter;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Tests\SetUp\Models\User;
 
@@ -59,5 +60,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         Route::middleware([VisitMonitoringMiddleware::class, 'web'])->group(__DIR__ . '/SetUp/Routes/web_tests.php');
 
         $this->loadMigrationsFrom(__DIR__.'/SetUp/Migrations');
+
+        Artisan::call('migrate');
     }
 }
