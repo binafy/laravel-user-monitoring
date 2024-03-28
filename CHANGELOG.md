@@ -1,3 +1,15 @@
+## v1.1.1 - 2024-03-28
+
+### What's Changed
+
+* [1.x] Add laravel v11 support by [@OmarFaruk-0x01](https://github.com/OmarFaruk-0x01) in https://github.com/binafy/laravel-user-monitoring/pull/32
+
+### New Contributors
+
+* [@OmarFaruk-0x01](https://github.com/OmarFaruk-0x01) made their first contribution in https://github.com/binafy/laravel-user-monitoring/pull/32
+
+**Full Changelog**: https://github.com/binafy/laravel-user-monitoring/compare/v1.1...v1.1.1
+
 ## v1.1 - 2024-02-19
 
 ### What's Changed
