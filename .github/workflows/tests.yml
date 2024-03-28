@@ -14,10 +14,12 @@ jobs:
         include:
           - laravel: 11.*
             testbench: 9.*
-            pest-plugin-laravel: 2.0.0
+            pest-plugin-laravel: 2.3.0
+
           - laravel: 10.*
             testbench: 8.*
             pest-plugin-laravel: 2.0.0
+
           - laravel: 9.*
             testbench: 7.*
             pest-plugin-laravel: 1.4.0
@@ -25,10 +27,13 @@ jobs:
         exclude:
           - laravel: 11.*
             php: 8.1
+            
           - laravel: 11.*
             php: 8.0
+
           - laravel: 10.*
             php: 8.0
+
           - laravel: 9.*
             php: 8.3
 
