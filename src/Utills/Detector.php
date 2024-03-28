@@ -60,6 +60,11 @@ class Detector
             return 'CLI';
         }
 
+        // On some servers, HTTP_USER_AGENT is not available
+        if( !isset($_SERVER['HTTP_USER_AGENT'])) {
+            return 'Unknown Browser';
+        }
+
         $userAgent = $_SERVER['HTTP_USER_AGENT'];
 
         foreach ($this->browserName as $key => $browser) {
@@ -78,6 +83,11 @@ class Detector
     {
         if (PHP_SAPI === 'cli') {
             return 'CLI';
+        }
+
+        // On some servers, HTTP_USER_AGENT is not available
+        if( !isset($_SERVER['HTTP_USER_AGENT'])) {
+            return 'Unknown Device Name';
         }
 
         $userAgent = $_SERVER['HTTP_USER_AGENT'];
