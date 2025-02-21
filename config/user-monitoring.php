@@ -36,6 +36,8 @@ return [
          * store user data across different parts of the application. Each guard
          * will be checked independently, allowing users to be authenticated by
          * multiple guards and enabling more flexible user management.
+         *
+         * Make sure that each guard is properly configured under the 'guards' section in the auth.php config file.
          */
         'guards' => ['web'],
 
