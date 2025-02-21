@@ -295,7 +295,8 @@ Maybe you want to turn off visit monitoring for somedays or always, you can use 
     ...
 
     /*
-     * If you want to disable visit monitoring, you can change it to false.
+     * Enable or disable the visit monitoring feature.
+     * Set false to disable tracking of user visits.
      */
     'turn_on' => true,
     
