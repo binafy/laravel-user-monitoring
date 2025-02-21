@@ -4,6 +4,7 @@ namespace Binafy\LaravelUserMonitoring\Traits;
 
 use Binafy\LaravelUserMonitoring\Utills\ActionType;
 use Binafy\LaravelUserMonitoring\Utills\Detector;
+use Binafy\LaravelUserMonitoring\Utills\UserUtils;
 use Illuminate\Support\Facades\DB;
 
 trait Actionable
@@ -64,16 +65,16 @@ trait Actionable
     private static function insertActionMonitoring(mixed $model, string $actionType): void
     {
         $detector = new Detector;
-        $guard = config('user-monitoring.user.guard');
 
         DB::table(config('user-monitoring.action_monitoring.table'))->insert([
-            'user_id' => auth($guard)->id(),
+            'user_id' => UserUtils::getUserId(),
             'action_type' => $actionType,
             'table_name' => $model->getTable(),
             'browser_name' => $detector->getBrowser(),
             'platform' => $detector->getDevice(),
             'device' => $detector->getDevice(),
             'ip' => self::getRealIP(),
+            'user_guard' => UserUtils::getCurrentGuardName(),
             'page' => request()->url(),
             'created_at' => now(),
             'updated_at' => now(),
