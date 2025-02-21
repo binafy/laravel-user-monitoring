@@ -360,11 +360,10 @@ If you want to disable some actions like created, you can use the config file:
     ...
     
     /*
-     * Monitor actions.
-     *
-     * You can set true/false for monitor actions like (store, update, and ...).
+     * Enable or disable monitoring of specific actions (e.g., store, update, delete).
+     * Set to true to monitor actions or false to disable.
      */
-    'on_store'      => false,
+    'on_store'      => true,
     'on_update'     => true,
     'on_destroy'    => true,
     'on_read'       => true,
