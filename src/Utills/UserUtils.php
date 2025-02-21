@@ -53,12 +53,14 @@ class UserUtils
      */
     public static function getUserId(): ?int
     {
-        $guards = config('user-monitoring.user.guard', ['web']);
+        $guards = config('user-monitoring.user.guards', ['web']);
 
         foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return Auth::guard($guard)->id();
-            }
+            try {
+                if (Auth::guard($guard)->check()) {
+                    return Auth::guard($guard)->id();
+                }
+            } catch (\Exception $e) {}
         }
 
         return null;
