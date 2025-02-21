@@ -404,13 +404,21 @@ If you want to monitor users when logging in or logout of your application, you 
 If you are using Reverse Proxy (Nginx or Cloudflare), you can use config to get real IP from a specific header like `X-Real-IP` or `X-Forwarded-For`:
 
 ```php
-/** 
-*   Determines if the application should use reverse proxy headers to fetch the real client IP
-*   If set to true, it will try to get the IP from the specified header (X-Real-IP or X-Forwarded-For)
-*   This is useful when using reverse proxies like Nginx or Cloudflare.
- */
-'use_reverse_proxy_ip' => true,
-'real_ip_header' => 'X-Forwarded-For',
+'action_monitoring' => [
+    ...
+
+    /*
+     * If your application is behind a reverse proxy (e.g., Nginx or Cloudflare),
+     * enable this setting to fetch the real client IP from the proxy headers.
+     */
+    'use_reverse_proxy_ip' => false,
+
+    /*
+     * The header used by reverse proxies to forward the real client IP.
+     * Common values are 'X-Forwarded-For' or 'X-Real-IP'.
+     */
+    'real_ip_header' => 'X-Forwarded-For',
+],
 ```
 
 <a name="authentication-monitoring-views"></a>
