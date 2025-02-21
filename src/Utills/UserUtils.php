@@ -47,4 +47,20 @@ class UserUtils
 
         return null;
     }
+
+    /**
+     * Get the user id by guards.
+     */
+    public static function getUserId(): ?int
+    {
+        $guards = config('user-monitoring.user.guard', ['web']);
+
+        foreach ($guards as $guard) {
+            if (Auth::guard($guard)->check()) {
+                return Auth::guard($guard)->id();
+            }
+        }
+
+        return null;
+    }
 }
