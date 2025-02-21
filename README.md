@@ -97,7 +97,7 @@ After publishing, run the `php artisan migrate` command.
 <a name="usage"></a>
 ## Usage
 
-The `Laravel-User-Monitoring`, need to use middleware, traits, etc ... and it's not hard, enjoys :)
+The `Laravel-User-Monitoring`, needs to use middleware, traits, etc ... and it's not hard, enjoys :)
 
 <a name="configuration"></a>
 ## Configuration
@@ -117,10 +117,13 @@ Also, if you want to change the route file name, you can go to the config file a
 
 ```php
 /*
- * Configurations.
+ * Main configuration settings for the package.
  */
 'config' => [
     'routes' => [
+        /*
+         * Path to the route file that handles user monitoring routes.
+         */
         'file_path' => 'routes/user-monitoring.php',
     ],
 ],
@@ -134,39 +137,36 @@ You can config your user with the `user-monitoring.php` configuration file:
 ```php
 'user' => [
     /*
-     * User model.
+     * Specify the fully qualified class name of the user model.
      */
     'model' => 'App\Models\User',
 
     /*
-     * Foreign Key column name.
+     * Name of the foreign key column linking user data to other models.
      */
     'foreign_key' => 'user_id',
 
     /*
-     * Users table name.
+     * Name of the table storing user data.
      */
     'table' => 'users',
 
     /*
-     * You can customize which guards are used to authenticate or
-     * store user data across different parts of the application. Each guard
-     * will be checked independently, allowing users to be authenticated by
-     * multiple guards and enabling more flexible user management.
-     *
-     * Make sure that each guard is properly configured under the 'guards' section in the auth.php config file.
+     * Defines the authentication guards used for verifying the user.
+     * Multiple guards can be specified for flexible authentication strategies.
+     * Ensure these guards are configured correctly in the 'guards' section of the auth.php config file.
      */
     'guards' => ['web'],
 
     /*
-     * If you are using uuid or ulid you can change it for the type of foreign_key.
-     *
-     * When using ulid or uuid, you need to add related traits into the models.
+     * Specify the type of foreign key being used (e.g., 'id', 'uuid', 'ulid').
+     * For non-standard IDs, make sure to add the relevant traits to your models.
      */
-    'foreign_key_type' => 'id', // uuid, ulid, id
+    'foreign_key_type' => 'id', // Options: uuid, ulid, id
 
     /*
-     * If you want to display a custom username, you can create your attribute in User and change this value.
+     * Attribute of the user model used to display the user's name.
+     * If you wish to use a different attribute (e.g., username), change this value accordingly.
      */
     'display_attribute' => 'name',
 ],
@@ -177,7 +177,7 @@ You can config your user with the `user-monitoring.php` configuration file:
 - `table`: You can write your users table name if is not `users.
 - `guards`: The guards are used to authenticate.
 - `foreign_key_type`: The foreign key type (uuid-ulid-id).
-- `display_attribute`: The special attribute of user that you want to show in views.
+- `display_attribute`: The special attribute of the user that you want to show in views.
 
 <a name="foreign-key-type-uuid-ulid-id"></a>
 ### Foreign Key Type (UUID, ULID, ID)
@@ -189,11 +189,10 @@ If you are using `uuid` or `ulid`, you can change `foreign_key_type` to your cor
     ...
 
     /*
-     * If you are using uuid or ulid you can change it for the type of foreign_key.
-     *
-     * When you are using ulid or uuid, you need to add related traits into the models.
+     * Specify the type of foreign key being used (e.g., 'id', 'uuid', 'ulid').
+     * For non-standard IDs, make sure to add the relevant traits to your models.
      */
-    'foreign_key_type' => 'uuid', // uuid, ulid, id
+    'foreign_key_type' => 'id', // Options: uuid, ulid, id
 ],
 ```
 
@@ -229,11 +228,13 @@ If you want to disable monitoring for specific pages you can go to `user-monitor
 ```php
 'visit_monitoring' => [
     /*
-     * You can specify pages not to be monitored.
+     * List of pages that should be excluded from visit monitoring.
+     * Add route names or URL paths to this array if you want to exclude certain pages.
      */
     'except_pages' => [
-        'home',
-        'admin/dashboard',
+        'user-monitoring/visits-monitoring',
+        'user-monitoring/actions-monitoring',
+        'user-monitoring/authentications-monitoring',
     ],
 ],
 ```
@@ -250,12 +251,13 @@ First, you need to go to the `user-monitoring` config file and highlight the day
     ...
 
     /*
-     * If you want to delete visit rows after some days, you can change this to 360,
-     * but if you don't like to delete rows you can change it to 0.
+     * Set the number of days after which visit records should be automatically deleted.
+     * Set to 0 to disable automatic deletion.
      *
-     * For this feature you need Task-Scheduling => https://laravel.com/docs/10.x/scheduling
+     * To enable automatic deletion, configure Laravel's task scheduling as outlined here:
+     * https://laravel.com/docs/scheduling
      */
-    'delete_days' => 10,
+    'delete_days' => 0,
 ],
 ```
 
@@ -286,14 +288,15 @@ You can change `hourly` to `minute` or `second`, for more information you can re
 <a name="turn-on-off"></a>
 ### Turn ON-OFF
 
-Maybe you want to turn off visit monitoring for somedays or always, you can use configuration to turn it off:
+Maybe you want to turn off visit monitoring for some or always, you can use configuration to turn it off:
 
 ```php
 'visit_monitoring' => [
     ...
 
     /*
-     * If you want to disable visit monitoring, you can change it to false.
+     * Enable or disable the visit monitoring feature.
+     * Set false to disable tracking of user visits.
      */
     'turn_on' => true,
     
@@ -304,7 +307,7 @@ Maybe you want to turn off visit monitoring for somedays or always, you can use 
 <a name="visit-monitoring-views"></a>
 ### Visit Monitoring Views
 
-Laravel-User-Monitoring also has an amazing views that you can use it very easy, just need to go to `/user-monitoring/visits-monitoring` url, and enjoy:
+The `Laravel-User-Monitoring` also has amazing views that you can use very easily, just need to go to the `/user-monitoring/visits-monitoring` URL, and enjoy:
 
 ![Visit Monitoring Preview](/art/visits-monitoring/preview.png "Visit Monitoring")
 
@@ -314,16 +317,17 @@ Laravel-User-Monitoring also has an amazing views that you can use it very easy,
 Maybe you may disable record visits for `Ajax` requests, you can use config to disable it:
 
 ```php
- 'visit_monitoring' => [
-        ...
+'visit_monitoring' => [
+    ...
 
-        /*
-         * If you want to disable visit monitoring in Ajax mode, set it to false.
-         */
-        'ajax_requests' => true,
+    /*
+     * Enable or disable monitoring for AJAX requests.
+     * Set to false if you do not wish to track AJAX-based page loads.
+     */
+    'ajax_requests' => true,
 
-        ...
-    ],
+    ...
+],
 ```
 
 When set to false, Ajax requests will not be recorded.
@@ -356,11 +360,10 @@ If you want to disable some actions like created, you can use the config file:
     ...
     
     /*
-     * Monitor actions.
-     *
-     * You can set true/false for monitor actions like (store, update, and ...).
+     * Enable or disable monitoring of specific actions (e.g., store, update, delete).
+     * Set to true to monitor actions or false to disable.
      */
-    'on_store'      => false,
+    'on_store'      => true,
     'on_update'     => true,
     'on_destroy'    => true,
     'on_read'       => true,
@@ -387,7 +390,8 @@ If you want to monitor users when logging in or logout of your application, you 
     ...
 
     /*
-     * You can set true/false for monitor login or logout. 
+     * Enable or disable monitoring of user login and logout events.
+     * Set to true to track these actions, or false to disable.
      */
     'on_login' => true,
     'on_logout' => true,
@@ -400,13 +404,21 @@ If you want to monitor users when logging in or logout of your application, you 
 If you are using Reverse Proxy (Nginx or Cloudflare), you can use config to get real IP from a specific header like `X-Real-IP` or `X-Forwarded-For`:
 
 ```php
-/** 
-*   Determines if the application should use reverse proxy headers to fetch the real client IP
-*   If set to true, it will try to get the IP from the specified header (X-Real-IP or X-Forwarded-For)
-*   This is useful when using reverse proxies like Nginx or Cloudflare.
- */
-'use_reverse_proxy_ip' => true,
-'real_ip_header' => 'X-Forwarded-For',
+'action_monitoring' => [
+    ...
+
+    /*
+     * If your application is behind a reverse proxy (e.g., Nginx or Cloudflare),
+     * enable this setting to fetch the real client IP from the proxy headers.
+     */
+    'use_reverse_proxy_ip' => false,
+
+    /*
+     * The header used by reverse proxies to forward the real client IP.
+     * Common values are 'X-Forwarded-For' or 'X-Real-IP'.
+     */
+    'real_ip_header' => 'X-Forwarded-For',
+],
 ```
 
 <a name="authentication-monitoring-views"></a>
@@ -441,7 +453,7 @@ If you discover any security-related issues, please email `binafy23@gmail.com` i
 <a name="chanelog"></a>
 ## Changelog
 
-The changelog can be found in the `CHANGELOG.md` file of the GitHub repository. It lists the changes, bug fixes, and improvements made to each version of the Laravel User Monitoring package.
+The changelog can be found in the `CHANGELOG.md` file of the GitHub repository. It lists the changes, bug fixes, and improvements made to each Laravel User Monitoring package version.
 
 <a name="license"></a>
 ## License
@@ -456,7 +468,7 @@ The MIT License (MIT). Please see [License File](https://github.com/binafy/larav
 <a name="conclusion"></a>
 ## Conclusion
 
-Congratulations! You have successfully installed and integrated the Laravel User Monitoring package into your Laravel application. By effectively logging and analyzing user activity, you can gain valuable insights that can help you improve your application's user experience and performance. If you have any questions or need further assistance, please refer to the documentation or seek help from the package's GitHub repository. Happy monitoring!
+Congratulations! You have successfully installed and integrated the Laravel User Monitoring package into your Laravel application. By effectively logging and analyzing user activity, you can gain valuable insights that can help you improve your application's user experience and performance. If you have any questions or need any more help, please refer to the documentation or ask for help from the package's GitHub repository. Happy monitoring!
 
 <a name="donate"></a>
 ## Donate

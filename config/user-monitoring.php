@@ -90,7 +90,7 @@ return [
          * Set to 0 to disable automatic deletion.
          *
          * To enable automatic deletion, configure Laravel's task scheduling as outlined here:
-         * https://laravel.com/docs/10.x/scheduling
+         * https://laravel.com/docs/scheduling
          */
         'delete_days' => 0,
     ],
@@ -132,6 +132,11 @@ return [
      * Configuration settings for authentication monitoring.
      */
     'authentication_monitoring' => [
+        /*
+         * The table name.
+         */
+        'table' => 'authentications_monitoring',
+
         /*
          * If enabled, authentication records will be deleted when the associated user is deleted.
          */
