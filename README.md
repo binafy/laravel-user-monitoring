@@ -390,7 +390,8 @@ If you want to monitor users when logging in or logout of your application, you 
     ...
 
     /*
-     * You can set true/false for monitor login or logout. 
+     * Enable or disable monitoring of user login and logout events.
+     * Set to true to track these actions, or false to disable.
      */
     'on_login' => true,
     'on_logout' => true,
