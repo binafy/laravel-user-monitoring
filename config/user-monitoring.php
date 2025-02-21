@@ -2,102 +2,111 @@
 
 return [
     /*
-     * Configurations.
+     * Main configuration settings for the package.
      */
     'config' => [
         'routes' => [
+            /*
+             * Path to the route file that handles user monitoring routes.
+             */
             'file_path' => 'routes/user-monitoring.php',
         ],
     ],
 
     /*
-     * User properties.
+     * User-specific configuration settings.
      *
-     * You can customize the user guard, table, foreign key, and ...
+     * Customize various aspects related to the user model, including the guard, table, foreign key, and display attributes.
      */
     'user' => [
         /*
-         * User model.
+         * Specify the fully qualified class name of the user model.
          */
         'model' => 'App\Models\User',
 
         /*
-         * Foreign Key column name.
+         * Name of the foreign key column linking user data to other models.
          */
         'foreign_key' => 'user_id',
 
         /*
-         * Users table name.
+         * Name of the table storing user data.
          */
         'table' => 'users',
 
         /*
-         * You can customize which guards are used to authenticate or
-         * store user data across different parts of the application. Each guard
-         * will be checked independently, allowing users to be authenticated by
-         * multiple guards and enabling more flexible user management.
-         *
-         * Make sure that each guard is properly configured under the 'guards' section in the auth.php config file.
+         * Defines the authentication guards used for verifying the user.
+         * Multiple guards can be specified for flexible authentication strategies.
+         * Ensure these guards are configured correctly in the 'guards' section of the auth.php config file.
          */
         'guards' => ['web'],
 
         /*
-         * If you are using uuid or ulid you can change it for the type of foreign_key.
-         *
-         * When using ulid or uuid, you need to add related traits into the models.
+         * Specify the type of foreign key being used (e.g., 'id', 'uuid', 'ulid').
+         * For non-standard IDs, make sure to add the relevant traits to your models.
          */
-        'foreign_key_type' => 'id', // uuid, ulid, id
+        'foreign_key_type' => 'id', // Options: uuid, ulid, id
 
         /*
-         * If you want to display a custom username, you can create your attribute in User and change this value.
+         * Attribute of the user model used to display the user's name.
+         * If you wish to use a different attribute (e.g., username), change this value accordingly.
          */
         'display_attribute' => 'name',
     ],
 
     /*
-     * Visit monitoring configurations.
+     * Configuration settings for visit monitoring.
      */
     'visit_monitoring' => [
+        /*
+         * The table where visit data will be stored.
+         */
         'table' => 'visits_monitoring',
 
         /*
-         * If you want to disable visit monitoring, set it to false.
+         * Enable or disable the visit monitoring feature.
+         * Set to false to disable tracking of user visits.
          */
         'turn_on' => true,
 
         /*
-         * If you want to disable visit monitoring in Ajax mode, set it to false.
+         * Enable or disable monitoring for AJAX requests.
+         * Set to false if you do not wish to track AJAX-based page loads.
          */
         'ajax_requests' => true,
 
         /*
-         * You can specify pages not to be monitored.
+         * List of pages that should be excluded from visit monitoring.
+         * Add route names or URL paths to this array if you want to exclude certain pages.
          */
         'except_pages' => [
-             'user-monitoring/visits-monitoring',
-             'user-monitoring/actions-monitoring',
-             'user-monitoring/authentications-monitoring',
+            'user-monitoring/visits-monitoring',
+            'user-monitoring/actions-monitoring',
+            'user-monitoring/authentications-monitoring',
         ],
 
         /*
-         * If you want to delete visit rows after some days, you can change this to 360 for example,
-         * but if you don't like to delete rows you can change it to 0.
+         * Set the number of days after which visit records should be automatically deleted.
+         * Set to 0 to disable automatic deletion.
          *
-         * For this feature you need Task-Scheduling => https://laravel.com/docs/10.x/scheduling
+         * To enable automatic deletion, configure Laravel's task scheduling as outlined here:
+         * https://laravel.com/docs/10.x/scheduling
          */
         'delete_days' => 0,
     ],
 
     /*
-     * Action monitoring configurations.
+     * Configuration settings for action monitoring.
      */
     'action_monitoring' => [
+        /*
+         * The table where action data (e.g., store, update, delete) will be stored.
+         */
         'table' => 'actions_monitoring',
 
         /*
-         * Monitor actions.
-         *
-         * You can set true/false for monitor actions like (store, update, and ...).
+         * Enable or disable monitoring of specific actions (e.g., store, update, delete).
+         * Set to true to monitor actions or false to disable.
          */
         'on_store'      => true,
         'on_update'     => true,
@@ -106,28 +115,31 @@ return [
         'on_restore'    => false,
         'on_replicate'  => false,
 
-        /**
-        *   Determines if the application should use reverse proxy headers to fetch the real client IP
-        *   If set to true, it will try to get the IP from the specified header (X-Real-IP or X-Forwarded-For)
-        *   This is useful when using reverse proxies like Nginx or Cloudflare.
+        /*
+         * If your application is behind a reverse proxy (e.g., Nginx or Cloudflare),
+         * enable this setting to fetch the real client IP from the proxy headers.
          */
         'use_reverse_proxy_ip' => false,
-        'real_ip_header' => 'X-Forwarded-For'
+
+        /*
+         * The header used by reverse proxies to forward the real client IP.
+         * Common values are 'X-Forwarded-For' or 'X-Real-IP'.
+         */
+        'real_ip_header' => 'X-Forwarded-For',
     ],
 
     /*
-     * Authentication monitoring configurations.
+     * Configuration settings for authentication monitoring.
      */
     'authentication_monitoring' => [
-        'table' => 'authentications_monitoring',
-
         /*
-         * If you want to delete authentications-monitoring rows when the user is deleted from the users table you can set true or false.
+         * If enabled, authentication records will be deleted when the associated user is deleted.
          */
         'delete_user_record_when_user_delete' => true,
 
         /*
-         * You can set true/false for monitor login or logout.
+         * Enable or disable monitoring of user login and logout events.
+         * Set to true to track these actions, or false to disable.
          */
         'on_login' => true,
         'on_logout' => true,
