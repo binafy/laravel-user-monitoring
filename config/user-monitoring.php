@@ -133,6 +133,11 @@ return [
      */
     'authentication_monitoring' => [
         /*
+         * The table name.
+         */
+        'table' => 'authentications_monitoring',
+
+        /*
          * If enabled, authentication records will be deleted when the associated user is deleted.
          */
         'delete_user_record_when_user_delete' => true,
