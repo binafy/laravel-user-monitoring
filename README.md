@@ -12,7 +12,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
     - [Configuration](#configuration)
-        - [Routes Configuration](#routes-configuration) 
+        - [Routes Configuration](#routes-configuration)
     - [User Configuration](#user-configuration)
         - [Foreign Key Type (UUID, ULID, ID)](#foreign-key-type-uuid-ulid-id)
     - [Visit Monitoring](#visit-monitoring)
@@ -149,23 +149,35 @@ You can config your user with the `user-monitoring.php` configuration file:
     'table' => 'users',
 
     /*
-     * The correct guard.
+     * You can customize which guards are used to authenticate or
+     * store user data across different parts of the application. Each guard
+     * will be checked independently, allowing users to be authenticated by
+     * multiple guards and enabling more flexible user management.
+     *
+     * Make sure that each guard is properly configured under the 'guards' section in the auth.php config file.
      */
-    'guard' => 'web',
+    'guards' => ['web'],
 
     /*
      * If you are using uuid or ulid you can change it for the type of foreign_key.
      *
-     * When you are using ulid or uuid, you need to add related traits into the models.
+     * When using ulid or uuid, you need to add related traits into the models.
      */
     'foreign_key_type' => 'id', // uuid, ulid, id
+
+    /*
+     * If you want to display a custom username, you can create your attribute in User and change this value.
+     */
+    'display_attribute' => 'name',
 ],
 ```
 
 - `model`: If your user model exists in another place, you can change it to the correct namespace.
 - `foreign_key`: You can set the user foreign_key name, like `customer_id`.
 - `table`: You can write your users table name if is not `users.
-- `guard`: The correct guard that using for the user.
+- `guards`: The guards are used to authenticate.
+- `foreign_key_type`: The foreign key type (uuid-ulid-id).
+- `display_attribute`: The special attribute of user that you want to show in views.
 
 <a name="foreign-key-type-uuid-ulid-id"></a>
 ### Foreign Key Type (UUID, ULID, ID)
