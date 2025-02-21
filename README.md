@@ -137,39 +137,36 @@ You can config your user with the `user-monitoring.php` configuration file:
 ```php
 'user' => [
     /*
-     * User model.
+     * Specify the fully qualified class name of the user model.
      */
     'model' => 'App\Models\User',
 
     /*
-     * Foreign Key column name.
+     * Name of the foreign key column linking user data to other models.
      */
     'foreign_key' => 'user_id',
 
     /*
-     * Users table name.
+     * Name of the table storing user data.
      */
     'table' => 'users',
 
     /*
-     * You can customize which guards are used to authenticate or
-     * store user data across different parts of the application. Each guard
-     * will be checked independently, allowing users to be authenticated by
-     * multiple guards and enabling more flexible user management.
-     *
-     * Make sure that each guard is properly configured under the 'guards' section in the auth.php config file.
+     * Defines the authentication guards used for verifying the user.
+     * Multiple guards can be specified for flexible authentication strategies.
+     * Ensure these guards are configured correctly in the 'guards' section of the auth.php config file.
      */
     'guards' => ['web'],
 
     /*
-     * If you are using uuid or ulid you can change it for the type of foreign_key.
-     *
-     * When using ulid or uuid, you need to add related traits into the models.
+     * Specify the type of foreign key being used (e.g., 'id', 'uuid', 'ulid').
+     * For non-standard IDs, make sure to add the relevant traits to your models.
      */
-    'foreign_key_type' => 'id', // uuid, ulid, id
+    'foreign_key_type' => 'id', // Options: uuid, ulid, id
 
     /*
-     * If you want to display a custom username, you can create your attribute in User and change this value.
+     * Attribute of the user model used to display the user's name.
+     * If you wish to use a different attribute (e.g., username), change this value accordingly.
      */
     'display_attribute' => 'name',
 ],
