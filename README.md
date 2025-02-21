@@ -189,11 +189,10 @@ If you are using `uuid` or `ulid`, you can change `foreign_key_type` to your cor
     ...
 
     /*
-     * If you are using uuid or ulid you can change it for the type of foreign_key.
-     *
-     * When you are using ulid or uuid, you need to add related traits into the models.
+     * Specify the type of foreign key being used (e.g., 'id', 'uuid', 'ulid').
+     * For non-standard IDs, make sure to add the relevant traits to your models.
      */
-    'foreign_key_type' => 'uuid', // uuid, ulid, id
+    'foreign_key_type' => 'id', // Options: uuid, ulid, id
 ],
 ```
 
@@ -229,11 +228,13 @@ If you want to disable monitoring for specific pages you can go to `user-monitor
 ```php
 'visit_monitoring' => [
     /*
-     * You can specify pages not to be monitored.
+     * List of pages that should be excluded from visit monitoring.
+     * Add route names or URL paths to this array if you want to exclude certain pages.
      */
     'except_pages' => [
-        'home',
-        'admin/dashboard',
+        'user-monitoring/visits-monitoring',
+        'user-monitoring/actions-monitoring',
+        'user-monitoring/authentications-monitoring',
     ],
 ],
 ```
@@ -250,12 +251,13 @@ First, you need to go to the `user-monitoring` config file and highlight the day
     ...
 
     /*
-     * If you want to delete visit rows after some days, you can change this to 360,
-     * but if you don't like to delete rows you can change it to 0.
+     * Set the number of days after which visit records should be automatically deleted.
+     * Set to 0 to disable automatic deletion.
      *
-     * For this feature you need Task-Scheduling => https://laravel.com/docs/10.x/scheduling
+     * To enable automatic deletion, configure Laravel's task scheduling as outlined here:
+     * https://laravel.com/docs/scheduling
      */
-    'delete_days' => 10,
+    'delete_days' => 0,
 ],
 ```
 
