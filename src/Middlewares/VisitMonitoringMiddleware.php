@@ -3,6 +3,7 @@
 namespace Binafy\LaravelUserMonitoring\Middlewares;
 
 use Binafy\LaravelUserMonitoring\Utills\Detector;
+use Binafy\LaravelUserMonitoring\Utills\UserUtils;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,17 +23,17 @@ class VisitMonitoringMiddleware
         }
 
         $detector = new Detector();
-        $guard = config('user-monitoring.user.guard', 'web');
         $exceptPages = config('user-monitoring.visit_monitoring.except_pages', []);
 
         if (empty($exceptPages) || !$this->checkIsExceptPages($request->path(), $exceptPages)) {
             // Store visit
             DB::table(config('user-monitoring.visit_monitoring.table'))->insert([
-                'user_id' => auth($guard)->id(),
+                'user_id' => UserUtils::getUserId(),
                 'browser_name' => $detector->getBrowser(),
                 'platform' => $detector->getDevice(),
                 'device' => $detector->getDevice(),
                 'ip' => $request->ip(),
+                'user_guard' => UserUtils::getCurrentGuardName(),
                 'page' => $request->url(),
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -45,7 +46,7 @@ class VisitMonitoringMiddleware
     /**
      * Check request page are exists in expect pages.
      */
-    private function checkIsExceptPages(string $page, array $exceptPages): bool
+    protected function checkIsExceptPages(string $page, array $exceptPages): bool
     {
         return collect($exceptPages)->contains($page);
     }

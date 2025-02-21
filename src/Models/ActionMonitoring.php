@@ -2,6 +2,7 @@
 
 namespace Binafy\LaravelUserMonitoring\Models;
 
+use Binafy\LaravelUserMonitoring\Utills\ActionType;
 use Illuminate\Database\Eloquent\Model;
 
 class ActionMonitoring extends Model
@@ -22,21 +23,27 @@ class ActionMonitoring extends Model
 
     # Methods
 
+    /**
+     * Get the type color by action type.
+     */
     public function getTypeColor(): string
     {
         return match ($this->action_type) {
-            'read' => 'blue',
-            'store' => 'green',
-            'update' => 'purple',
-            'delete' => 'red',
-            'restore' => 'yellow',
-            'replicate' => 'pink',
+            ActionType::ACTION_READ => 'blue',
+            ActionType::ACTION_STORE => 'green',
+            ActionType::ACTION_UPDATE => 'purple',
+            ActionType::ACTION_DELETE => 'red',
+            ActionType::ACTION_RESTORED => 'yellow',
+            ActionType::ACTION_REPLICATE => 'pink',
             default => 'gray',
         };
     }
 
     # Relations
 
+    /**
+     * Relation one-to-many, User model.
+     */
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(

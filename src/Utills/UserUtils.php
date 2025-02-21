@@ -3,16 +3,14 @@
 namespace Binafy\LaravelUserMonitoring\Utills;
 
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Auth;
 
 class UserUtils
 {
     /**
      * Return user foreign key by ulid, uuid, id.
-     *
-     * @param  Blueprint $table
-     * @return void
      */
-    public static function userForeignKey(Blueprint $table)
+    public static function userForeignKey(Blueprint $table): void
     {
         $type = config('user-monitoring.user.foreign_key_type', 'id');
 
@@ -32,5 +30,39 @@ class UserUtils
                 ->constrained(config('user-monitoring.user.table'))
                 ->nullOnDelete();
         }
+    }
+
+    /**
+     * Get the current guard name.
+     */
+    public static function getCurrentGuardName(): ?string
+    {
+        $guards = array_keys(config('auth.guards')); // Get all guard names from config
+
+        foreach ($guards as $guard) {
+            if (Auth::guard($guard)->check()) {
+                return $guard;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Get the user id by guards.
+     */
+    public static function getUserId(): ?int
+    {
+        $guards = config('user-monitoring.user.guards', ['web']);
+
+        foreach ($guards as $guard) {
+            try {
+                if (Auth::guard($guard)->check()) {
+                    return Auth::guard($guard)->id();
+                }
+            } catch (\Exception $e) {}
+        }
+
+        return null;
     }
 }

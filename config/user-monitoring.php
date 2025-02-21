@@ -32,9 +32,14 @@ return [
         'table' => 'users',
 
         /*
-         * The correct guard.
+         * You can customize which guards are used to authenticate or
+         * store user data across different parts of the application. Each guard
+         * will be checked independently, allowing users to be authenticated by
+         * multiple guards and enabling more flexible user management.
+         *
+         * Make sure that each guard is properly configured under the 'guards' section in the auth.php config file.
          */
-        'guard' => 'web',
+        'guards' => ['web'],
 
         /*
          * If you are using uuid or ulid you can change it for the type of foreign_key.
@@ -100,8 +105,8 @@ return [
         'on_read'       => true,
         'on_restore'    => false,
         'on_replicate'  => false,
-        
-        /** 
+
+        /**
         *   Determines if the application should use reverse proxy headers to fetch the real client IP
         *   If set to true, it will try to get the IP from the specified header (X-Real-IP or X-Forwarded-For)
         *   This is useful when using reverse proxies like Nginx or Cloudflare.

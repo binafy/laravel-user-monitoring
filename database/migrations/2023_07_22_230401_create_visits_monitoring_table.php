@@ -21,7 +21,9 @@ return new class extends Migration
             $table->string('platform');
             $table->string('device');
             $table->string('ip');
+            $table->string('user_guard')->nullable();
             $table->text('page');
+
             $table->timestamps();
         });
     }
