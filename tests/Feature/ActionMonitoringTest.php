@@ -2,7 +2,9 @@
 
 use Binafy\LaravelUserMonitoring\Models\ActionMonitoring;
 use Binafy\LaravelUserMonitoring\Utills\ActionType;
+use Binafy\LaravelUserMonitoring\Utills\UserUtils;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
 use Tests\SetUp\Models\Product;
 use function Pest\Laravel\{assertDatabaseCount, assertDatabaseHas};
 
@@ -247,4 +249,33 @@ test('action not stored when the on_restore config is false', function () {
     assertDatabaseCount('products', 1);
     assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 3);
     assertDatabaseHas(config('user-monitoring.action_monitoring.table'), ['page' => url('/')]);
+});
+
+test('the getTypeColor method work as expected', function () {
+    $defaultData = [
+        'user_id' => null,
+        'table_name' => 'products',
+        'browser_name' => 'Chrome',
+        'platform' => 'Windows',
+        'device' => 'Macbook M4',
+        'ip' => '192.168.0.1',
+        'user_guard' => 'web',
+        'page' => 'https://github.com/milwad-dev',
+    ];
+    $colors = [
+        ActionType::ACTION_READ => 'blue',
+        ActionType::ACTION_STORE => 'green',
+        ActionType::ACTION_UPDATE => 'purple',
+        ActionType::ACTION_DELETE => 'red',
+        ActionType::ACTION_RESTORED => 'yellow',
+        ActionType::ACTION_REPLICATE => 'pink',
+    ];
+
+    foreach (ActionType::$types as $type) {
+        $actionMonitoring = ActionMonitoring::query()->create($defaultData + [
+            'action_type' => $type
+        ]);
+
+        expect($actionMonitoring->getTypeColor())->toBe($colors[$type]);
+    }
 });
