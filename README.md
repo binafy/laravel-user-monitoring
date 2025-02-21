@@ -317,16 +317,17 @@ Laravel-User-Monitoring also has an amazing views that you can use it very easy,
 Maybe you may disable record visits for `Ajax` requests, you can use config to disable it:
 
 ```php
- 'visit_monitoring' => [
-        ...
+'visit_monitoring' => [
+    ...
 
-        /*
-         * If you want to disable visit monitoring in Ajax mode, set it to false.
-         */
-        'ajax_requests' => true,
+    /*
+     * Enable or disable monitoring for AJAX requests.
+     * Set to false if you do not wish to track AJAX-based page loads.
+     */
+    'ajax_requests' => true,
 
-        ...
-    ],
+    ...
+],
 ```
 
 When set to false, Ajax requests will not be recorded.
