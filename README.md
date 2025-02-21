@@ -97,7 +97,7 @@ After publishing, run the `php artisan migrate` command.
 <a name="usage"></a>
 ## Usage
 
-The `Laravel-User-Monitoring`, need to use middleware, traits, etc ... and it's not hard, enjoys :)
+The `Laravel-User-Monitoring`, needs to use middleware, traits, etc ... and it's not hard, enjoys :)
 
 <a name="configuration"></a>
 ## Configuration
@@ -177,7 +177,7 @@ You can config your user with the `user-monitoring.php` configuration file:
 - `table`: You can write your users table name if is not `users.
 - `guards`: The guards are used to authenticate.
 - `foreign_key_type`: The foreign key type (uuid-ulid-id).
-- `display_attribute`: The special attribute of user that you want to show in views.
+- `display_attribute`: The special attribute of the user that you want to show in views.
 
 <a name="foreign-key-type-uuid-ulid-id"></a>
 ### Foreign Key Type (UUID, ULID, ID)
@@ -288,7 +288,7 @@ You can change `hourly` to `minute` or `second`, for more information you can re
 <a name="turn-on-off"></a>
 ### Turn ON-OFF
 
-Maybe you want to turn off visit monitoring for somedays or always, you can use configuration to turn it off:
+Maybe you want to turn off visit monitoring for some or always, you can use configuration to turn it off:
 
 ```php
 'visit_monitoring' => [
@@ -307,7 +307,7 @@ Maybe you want to turn off visit monitoring for somedays or always, you can use 
 <a name="visit-monitoring-views"></a>
 ### Visit Monitoring Views
 
-Laravel-User-Monitoring also has an amazing views that you can use it very easy, just need to go to `/user-monitoring/visits-monitoring` url, and enjoy:
+The `Laravel-User-Monitoring` also has amazing views that you can use very easily, just need to go to the `/user-monitoring/visits-monitoring` URL, and enjoy:
 
 ![Visit Monitoring Preview](/art/visits-monitoring/preview.png "Visit Monitoring")
 
@@ -453,7 +453,7 @@ If you discover any security-related issues, please email `binafy23@gmail.com` i
 <a name="chanelog"></a>
 ## Changelog
 
-The changelog can be found in the `CHANGELOG.md` file of the GitHub repository. It lists the changes, bug fixes, and improvements made to each version of the Laravel User Monitoring package.
+The changelog can be found in the `CHANGELOG.md` file of the GitHub repository. It lists the changes, bug fixes, and improvements made to each Laravel User Monitoring package version.
 
 <a name="license"></a>
 ## License
@@ -468,7 +468,7 @@ The MIT License (MIT). Please see [License File](https://github.com/binafy/larav
 <a name="conclusion"></a>
 ## Conclusion
 
-Congratulations! You have successfully installed and integrated the Laravel User Monitoring package into your Laravel application. By effectively logging and analyzing user activity, you can gain valuable insights that can help you improve your application's user experience and performance. If you have any questions or need further assistance, please refer to the documentation or seek help from the package's GitHub repository. Happy monitoring!
+Congratulations! You have successfully installed and integrated the Laravel User Monitoring package into your Laravel application. By effectively logging and analyzing user activity, you can gain valuable insights that can help you improve your application's user experience and performance. If you have any questions or need any more help, please refer to the documentation or ask for help from the package's GitHub repository. Happy monitoring!
 
 <a name="donate"></a>
 ## Donate
