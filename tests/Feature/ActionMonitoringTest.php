@@ -34,6 +34,29 @@ test('store action monitoring when a model created with login user', function ()
     assertDatabaseHas(config('user-monitoring.action_monitoring.table'), ['page' => url('/')]);
 });
 
+test('store action monitoring when a model created with login user with unknow guard', function () {
+    config(['user-monitoring.user.guards' => ['milwad']]);
+
+    $user = createUser();
+    auth()->login($user);
+
+    Product::query()->create([
+        'title' => 'milwad'
+    ]);
+
+    // Assertions
+    expect(ActionMonitoring::query()->value('table_name'))
+        ->toBe('products')
+        ->and(ActionMonitoring::query()->value('action_type'))
+        ->toBe(ActionType::ACTION_STORE)
+        ->and(ActionMonitoring::first()->user)
+        ->toBeNull();
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 1);
+    assertDatabaseHas(config('user-monitoring.action_monitoring.table'), ['page' => url('/')]);
+});
+
 test('store action monitoring when a model created without login user', function () {
     Product::query()->create([
         'title' => 'milwad'
