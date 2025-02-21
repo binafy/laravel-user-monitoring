@@ -3,6 +3,7 @@
 namespace Binafy\LaravelUserMonitoring\Providers;
 
 use Binafy\LaravelUserMonitoring\Utills\Detector;
+use Binafy\LaravelUserMonitoring\Utills\UserUtils;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider;
@@ -14,25 +15,24 @@ class LaravelUserMonitoringEventServiceProvider extends EventServiceProvider
     public function boot(): void
     {
         $detector = new Detector();
-        $guard = config('user-monitoring.user.guard');
         $table = config('user-monitoring.authentication_monitoring.table');
 
         // Login Event
         if (config('user-monitoring.authentication_monitoring.on_login', false)) {
-            Event::listen(function (Login $event) use ($detector, $guard, $table) {
+            Event::listen(function (Login $event) use ($detector, $table) {
                 DB::table($table)
                     ->insert(
-                        $this->insertData($guard, $detector, 'login'),
+                        $this->insertData($detector, 'login'),
                     );
             });
         }
 
         // Logout Event
         if (config('user-monitoring.authentication_monitoring.on_logout', false)) {
-            Event::listen(function (Logout $event) use ($detector, $guard, $table) {
+            Event::listen(function (Logout $event) use ($detector, $table) {
                 DB::table($table)
                     ->insert(
-                        $this->insertData($guard, $detector, 'logout'),
+                        $this->insertData($detector, 'logout'),
                     );
             });
         }
@@ -41,15 +41,16 @@ class LaravelUserMonitoringEventServiceProvider extends EventServiceProvider
     /**
      * Get insert data.
      */
-    private function insertData(string $guard, Detector $detector, string $actionType): array
+    private function insertData(Detector $detector, string $actionType): array
     {
         return [
-            'user_id' => auth($guard)->id(),
+            'user_id' => UserUtils::getUserId(),
             'action_type' => $actionType,
             'browser_name' => $detector->getBrowser(),
             'platform' => $detector->getDevice(),
             'device' => $detector->getDevice(),
             'ip' => request()->ip(),
+            'user_guard' => UserUtils::getCurrentGuardName(),
             'page' => request()->url(),
             'created_at' => now(),
             'updated_at' => now(),
