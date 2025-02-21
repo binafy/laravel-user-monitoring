@@ -117,10 +117,13 @@ Also, if you want to change the route file name, you can go to the config file a
 
 ```php
 /*
- * Configurations.
+ * Main configuration settings for the package.
  */
 'config' => [
     'routes' => [
+        /*
+         * Path to the route file that handles user monitoring routes.
+         */
         'file_path' => 'routes/user-monitoring.php',
     ],
 ],
