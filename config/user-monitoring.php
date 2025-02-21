@@ -65,7 +65,7 @@ return [
 
         /*
          * Enable or disable the visit monitoring feature.
-         * Set to false to disable tracking of user visits.
+         * Set false to disable tracking of user visits.
          */
         'turn_on' => true,
 
