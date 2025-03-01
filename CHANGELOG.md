@@ -1,3 +1,14 @@
+## v1.2.0 - 2025-03-01
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.2.0 to 2.3.0 by [@dependabot](https://github.com/dependabot) in https://github.com/binafy/laravel-user-monitoring/pull/50
+* [1.x] Feat - Support multi guards by [@milwad-dev](https://github.com/milwad-dev) in https://github.com/binafy/laravel-user-monitoring/pull/51
+* [1.x] Improve readme by [@milwad-dev](https://github.com/milwad-dev) in https://github.com/binafy/laravel-user-monitoring/pull/52
+* [1.x] Support Laravel 12 by [@milwad-dev](https://github.com/milwad-dev) in https://github.com/binafy/laravel-user-monitoring/pull/53
+
+**Full Changelog**: https://github.com/binafy/laravel-user-monitoring/compare/v1.1.5...v1.2.0
+
 ## v1.1.5 - 2024-12-16
 
 ### What's Changed
