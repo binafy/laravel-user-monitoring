@@ -51,7 +51,7 @@ class UserUtils
     /**
      * Get the user id by guards.
      */
-    public static function getUserId(): ?int
+    public static function getUserId(): int|string|null
     {
         $guards = config('user-monitoring.user.guards', ['web']);
 
