@@ -1,3 +1,11 @@
+## v1.2.1 - 2025-03-08
+
+### What's Changed
+
+* [1.x] Add string type to `UserUtils::getUserId()` by [@milwad-dev](https://github.com/milwad-dev) in https://github.com/binafy/laravel-user-monitoring/pull/55
+
+**Full Changelog**: https://github.com/binafy/laravel-user-monitoring/compare/v1.2.0...v1.2.1
+
 ## v1.2.0 - 2025-03-01
 
 ### What's Changed
