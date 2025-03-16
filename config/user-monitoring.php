@@ -93,6 +93,11 @@ return [
          * https://laravel.com/docs/scheduling
          */
         'delete_days' => 0,
+
+        /*
+         * Determines whether to store `visits` even when the user is not logged in.
+         */
+        'guest_mode' => true,
     ],
 
     /*
@@ -126,6 +131,11 @@ return [
          * Common values are 'X-Forwarded-For' or 'X-Real-IP'.
          */
         'real_ip_header' => 'X-Forwarded-For',
+
+        /*
+         * Determines whether to store `actions` even when the user is not logged in.
+         */
+        'guest_mode' => true,
     ],
 
     /*
@@ -148,5 +158,10 @@ return [
          */
         'on_login' => true,
         'on_logout' => true,
+
+        /*
+         * Determines whether to store `authentication` even when the user is not logged in.
+         */
+        'guest_mode' => true,
     ],
 ];
