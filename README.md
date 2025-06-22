@@ -51,6 +51,9 @@ Whether you are building a new project or looking to enhance an existing one, "L
 <a name="installation"></a>
 ## Installation
 
+- ```PHP >= 8.0```
+- ```Laravel >= 9.0```
+
 You can install the package with Composer.
 
 ```bash
