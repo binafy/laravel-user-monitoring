@@ -123,11 +123,9 @@ test('visit monitoring store when guest mode is on and user not logged in', func
 });
 
 /**
- * Create user.
- *
- * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+ * Create user and return it.
  */
-function createUser()
+function createUser(): \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
 {
     return User::query()->create([
         'name' => 'milwad',
