@@ -90,6 +90,17 @@ test('visit monitoring skip store when guest mode is off and user not logged in'
     assertDatabaseMissing(config('user-monitoring.visit_monitoring.table'), ['page' => 'http:\/\/localhost']);
 });
 
+test('visit monitoring store when guest mode is off and user logged in', function () {
+    config()->set('user-monitoring.visit_monitoring.guest_mode', false);
+
+    $user = createUser();
+    $response = actingAs($user)->get('/');
+    $response->assertContent('milwad');
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 1);
+});
+
 /**
  * Create user.
  *
