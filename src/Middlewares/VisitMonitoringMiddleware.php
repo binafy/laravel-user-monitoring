@@ -21,6 +21,9 @@ class VisitMonitoringMiddleware
         if (config('user-monitoring.visit_monitoring.ajax_requests', false) === false && $request->ajax()) {
             return $next($request);
         }
+        if (!config('user-monitoring.visit_monitoring.guest_mode', true) && is_null(UserUtils::getUserId())) {
+            return $next($request);
+        }
 
         $detector = new Detector();
         $exceptPages = config('user-monitoring.visit_monitoring.except_pages', []);
