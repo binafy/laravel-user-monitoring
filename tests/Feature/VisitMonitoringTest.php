@@ -101,6 +101,17 @@ test('visit monitoring store when guest mode is off and user logged in', functio
     assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 1);
 });
 
+test('visit monitoring store when guest mode is on and user logged in', function () {
+    config()->set('user-monitoring.visit_monitoring.guest_mode', true);
+
+    $user = createUser();
+    $response = actingAs($user)->get('/');
+    $response->assertContent('milwad');
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 1);
+});
+
 /**
  * Create user.
  *
