@@ -158,10 +158,5 @@ return [
          */
         'on_login' => true,
         'on_logout' => true,
-
-        /*
-         * Determines whether to store `authentication` even when the user is not logged in.
-         */
-        'guest_mode' => true,
     ],
 ];
