@@ -21,7 +21,7 @@
         - [Turn ON-OFF](#turn-on-off)
         - [Views](#visit-monitoring-views)
         - [Ajax Requests](#ajax-requests)
-        - [Guest Mode](#visit-monitoring-guest-mode)
+        - [Visit Monitoring Guest Mode](#visit-monitoring-guest-mode)
     - [Action Monitoring](#action-monitoring)
         - [Views](#action-monitoring-views)
         - [Reverse Proxy Config](#action-monitoring-reverse-proxy-config)
@@ -341,7 +341,7 @@ Maybe you may disable record visits for `Ajax` requests, you can use config to d
 When set to false, Ajax requests will not be recorded.
 
 <a name="visit-monitoring-guest-mode"></a>
-### Guest Mode
+### Visit Monitoring Guest Mode
 
 Determines whether to track and store `visits` for users who are not authenticated (guests).
 When set to `true`, the package will also monitor guest user activity.
