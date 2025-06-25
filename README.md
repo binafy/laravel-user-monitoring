@@ -25,6 +25,7 @@
     - [Action Monitoring](#action-monitoring)
         - [Views](#action-monitoring-views)
         - [Reverse Proxy Config](#action-monitoring-reverse-proxy-config)
+        - [Action Monitoring Guest Mode](#action-monitoring-guest-mode)
     - [Authentication Monitoring](#authentication-monitoring)
         - [Views](#authentication-monitoring-views)
     - [How to use in big projects](#how-to-use-in-big-projects)
@@ -407,25 +408,6 @@ If you want to disable some actions like created, you can use the config file:
 
 ![Action Monitoring Preview](/art/actions-monitoring/preview.png "Action Monitoring")
 
-<a name="authentication-monitoring"></a>
-## Authentication Monitoring
-
-Have you ever thought about monitoring the entry and exit of users of your application? Now you can :) <br>
-If you want to monitor users when logging in or logout of your application, you need to migrate the migrations to the config file and change true for monitoring authentication.
-
-```php
-'authentication_monitoring' => [
-    ...
-
-    /*
-     * Enable or disable monitoring of user login and logout events.
-     * Set to true to track these actions, or false to disable.
-     */
-    'on_login' => true,
-    'on_logout' => true,
-],
-```
-
 <a name="action-monitoring-reverse-proxy-config"></a>
 ### Action Monitoring Reverse Proxy Config
 
@@ -448,6 +430,47 @@ If you are using Reverse Proxy (Nginx or Cloudflare), you can use config to get 
     'real_ip_header' => 'X-Forwarded-For',
 ],
 ```
+
+<a name="action-monitoring-guest-mode"></a>
+### Action Monitoring Guest Mode
+
+Determines whether to track and store `actions` for users who are not authenticated (guests).
+When set to `true`, the package will also monitor guest user activity.
+When set to `false`, only authenticated user visits will be recorded.
+
+```php
+/*
+ * Configuration settings for action monitoring.
+ */
+'action_monitoring' => [
+    ...
+
+    /*
+     * Determines whether to store `actions` even when the user is not logged in.
+     */
+    'guest_mode' => true,
+],
+```
+
+<a name="authentication-monitoring"></a>
+## Authentication Monitoring
+
+Have you ever thought about monitoring the entry and exit of users of your application? Now you can :) <br>
+If you want to monitor users when logging in or logout of your application, you need to migrate the migrations to the config file and change true for monitoring authentication.
+
+```php
+'authentication_monitoring' => [
+    ...
+
+    /*
+     * Enable or disable monitoring of user login and logout events.
+     * Set to true to track these actions, or false to disable.
+     */
+    'on_login' => true,
+    'on_logout' => true,
+],
+```
+
 
 <a name="authentication-monitoring-views"></a>
 ### Authentication Monitoring Views
