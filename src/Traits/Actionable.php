@@ -16,6 +16,10 @@ trait Actionable
     {
         parent::boot();
 
+        if (!config('user-monitoring.action_monitoring.guest_mode', true) && is_null(UserUtils::getUserId())) {
+            return;
+        }
+
         if (config('user-monitoring.action_monitoring.on_store', false)) {
             static::created(function (mixed $model) {
                 static::insertActionMonitoring($model, ActionType::ACTION_STORE);
