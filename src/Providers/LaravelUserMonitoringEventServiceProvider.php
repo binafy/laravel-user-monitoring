@@ -14,7 +14,7 @@ class LaravelUserMonitoringEventServiceProvider extends EventServiceProvider
 {
     public function boot(): void
     {
-        $detector = new Detector();
+        $detector = new Detector;
         $table = config('user-monitoring.authentication_monitoring.table');
 
         // Login Event

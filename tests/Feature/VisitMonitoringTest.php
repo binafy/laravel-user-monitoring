@@ -62,7 +62,6 @@ test('visit monitoring records didn"t store when turn_on key is off', function (
 // Ajax
 
 test('visit monitoring store ajax requests', function () {
-    \Pest\Laravel\withoutExceptionHandling();
     get('/', ['X-Requested-With' => 'XMLHttpRequest']);
 
     // DB Assertions
@@ -80,12 +79,53 @@ test('visit monitoring skip store when ajax mode is off for ajax requests', func
     assertDatabaseMissing(config('user-monitoring.visit_monitoring.table'), ['page' => 'http:\/\/localhost']);
 });
 
+test('visit monitoring skip store when guest mode is off and user not logged in', function () {
+    config()->set('user-monitoring.visit_monitoring.guest_mode', false);
+
+    $response = get('/');
+    $response->assertContent('milwad');
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 0);
+    assertDatabaseMissing(config('user-monitoring.visit_monitoring.table'), ['page' => 'http:\/\/localhost']);
+});
+
+test('visit monitoring store when guest mode is off and user logged in', function () {
+    config()->set('user-monitoring.visit_monitoring.guest_mode', false);
+
+    $user = createUser();
+    $response = actingAs($user)->get('/');
+    $response->assertContent('milwad');
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 1);
+});
+
+test('visit monitoring store when guest mode is on and user logged in', function () {
+    config()->set('user-monitoring.visit_monitoring.guest_mode', true);
+
+    $user = createUser();
+    $response = actingAs($user)->get('/');
+    $response->assertContent('milwad');
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 1);
+});
+
+test('visit monitoring store when guest mode is on and user not logged in', function () {
+    config()->set('user-monitoring.visit_monitoring.guest_mode', true);
+
+    $response = get('/');
+    $response->assertContent('milwad');
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 1);
+});
+
 /**
- * Create user.
- *
- * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+ * Create user and return it.
  */
-function createUser()
+function createUser(): \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
 {
     return User::query()->create([
         'name' => 'milwad',

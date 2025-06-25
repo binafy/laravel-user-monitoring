@@ -16,6 +16,10 @@ trait Actionable
     {
         parent::boot();
 
+        if (!config('user-monitoring.action_monitoring.guest_mode', true) && is_null(UserUtils::getUserId())) {
+            return;
+        }
+
         if (config('user-monitoring.action_monitoring.on_store', false)) {
             static::created(function (mixed $model) {
                 static::insertActionMonitoring($model, ActionType::ACTION_STORE);
@@ -87,7 +91,7 @@ trait Actionable
     private static function getRealIP(): string
     {
         return config('user-monitoring.use_reverse_proxy_ip')
-                ? request()->header(config('user-monitoring.real_ip_header')) ?: request()->ip()
+                ? request()->header(config('user-monitoring.real_ip_header'))
                 : request()->ip();
     }
 }
