@@ -1,3 +1,11 @@
+## v1.2.3 - 2025-06-25
+
+### What's Changed
+
+* [1.x] Add `guest` mode to config by [@milwad-dev](https://github.com/milwad-dev) in https://github.com/binafy/laravel-user-monitoring/pull/57
+
+**Full Changelog**: https://github.com/binafy/laravel-user-monitoring/compare/v1.2.2...v1.2.3
+
 ## v1.2.2 - 2025-05-16
 
 ### What's Changed
