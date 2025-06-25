@@ -345,3 +345,19 @@ test('action stored when the guest mode is off and user logged in', function () 
     // DB Assertions
     assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 2);
 });
+
+test('action stored when the guest mode is on and user logged in', function () {
+    config()->set('user-monitoring.action_monitoring.guest_mode', true);
+
+    $user = createUser();
+    auth()->login($user);
+
+    $product = Product::query()->create([
+        'title' => 'milwad',
+        'description' => 'WE ARE HELPING TO OPEN-SOURCE WORLD'
+    ]);
+    $product->delete();
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 2);
+});
