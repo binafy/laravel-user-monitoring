@@ -91,7 +91,7 @@ trait Actionable
     private static function getRealIP(): string
     {
         return config('user-monitoring.use_reverse_proxy_ip')
-                ? request()->header(config('user-monitoring.real_ip_header')) ?: request()->ip()
+                ? request()->header(config('user-monitoring.real_ip_header'))
                 : request()->ip();
     }
 }
