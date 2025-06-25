@@ -6,6 +6,7 @@ use Binafy\LaravelUserMonitoring\Utills\UserUtils;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Tests\SetUp\Models\Product;
+use Tests\SetUp\Models\ProductSoftDelete;
 use function Pest\Laravel\{assertDatabaseCount, assertDatabaseHas};
 
 /*
@@ -226,7 +227,7 @@ test('restore a model in acting monitoring', function () {
     $user = createUser();
     auth()->login($user);
 
-    $product = \Tests\SetUp\Models\ProductSoftDelete::query()->create([
+    $product = ProductSoftDelete::query()->create([
         'title' => 'milwad',
         'description' => 'WE ARE HELPING TO OPEN-SOURCE WORLD'
     ]);
@@ -252,7 +253,7 @@ test('action not stored when the on_restore config is false', function () {
     $user = createUser();
     auth()->login($user);
 
-    $product = \Tests\SetUp\Models\ProductSoftDelete::query()->create([
+    $product = ProductSoftDelete::query()->create([
         'title' => 'milwad',
         'description' => 'WE ARE HELPING TO OPEN-SOURCE WORLD'
     ]);
@@ -301,4 +302,17 @@ test('the getTypeColor method work as expected', function () {
 
         expect($actionMonitoring->getTypeColor())->toBe($colors[$type]);
     }
+});
+
+test('action not stored when the guest mode is off and user not logged in', function () {
+    config()->set('user-monitoring.action_monitoring.guest_mode', false);
+
+    $product = Product::query()->create([
+        'title' => 'milwad',
+        'description' => 'WE ARE HELPING TO OPEN-SOURCE WORLD'
+    ]);
+    $product->delete();
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 0);
 });
