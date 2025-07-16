@@ -526,6 +526,6 @@ Congratulations! You have successfully installed and integrated the Laravel User
 
 If this package is helpful for you, you can buy a coffee for me :) ❤️
 
-- Iraninan Gateway: https://daramet.com/milwad_khosravi
+- Iranian Gateway: https://daramet.com/milwad_khosravi
 - Paypal Gateway: SOON
 - MetaMask Address: `0xf208a562c5a93DEf8450b656c3dbc1d0a53BDE58`
