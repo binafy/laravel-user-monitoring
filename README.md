@@ -56,7 +56,7 @@ Whether you are building a new project or looking to enhance an existing one, "L
 - ```PHP >= 8.0```
 - ```Laravel >= 9.0```
 
-You can install the package with Composer.
+You can install the package with Composer:
 
 ```bash
 composer require binafy/laravel-user-monitoring
@@ -64,19 +64,19 @@ composer require binafy/laravel-user-monitoring
 
 ## Publish
 
-If you want to publish a config file you can use this command:
+If you want to publish a config file, you can use this command:
 
 ```shell
 php artisan vendor:publish --tag="laravel-user-monitoring-config"
 ```
 
-If you want to publish the migrations you can use this command:
+If you want to publish the migrations, you can use this command:
 
 ```shell
 php artisan vendor:publish --tag="laravel-user-monitoring-migrations"
 ```
 
-If you want to publish the views you can use this command:
+If you want to publish the views, you can use this command:
 
 ```shell
 php artisan vendor:publish --tag="laravel-user-monitoring-views"
