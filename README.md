@@ -214,19 +214,24 @@ When you want to monitor all views of your application, you must follow below:
 1. Publish the [Migrations](#publish)
 
 2. Use `VisitMonitoringMiddleware` in Kernel.php, you can go to the `App/Http` folder and open the `Kernel.php` file and add `VisitMonitoringMiddleware` into your middleware for example:
+
 ```php
+use Binafy\LaravelUserMonitoring\Middlewares\VisitMonitoringMiddleware;
+
+// Laravel 11.x or less
 protected $middlewareGroups = [
     'web' => [
         ...
-        \Binafy\LaravelUserMonitoring\Middlewares\VisitMonitoringMiddleware::class,
+        VisitMonitoringMiddleware::class,
     ],
 
-    'api' => [
-        // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-        \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
-        \Illuminate\Routing\Middleware\SubstituteBindings::class,
-    ],
+    'api' => [...],
 ];
+
+// Laravel 12.x
+->withMiddleware(function (Middleware $middleware): void {
+  $middleware->appendToGroup('web', [VisitMonitoringMiddleware::class]);
+})
 ```
 
 After, you can see all pages monitoring :)
