@@ -2,6 +2,7 @@
 
 use Binafy\LaravelUserMonitoring\Models\VisitMonitoring;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Request;
 use Tests\SetUp\Models\User;
 use function Pest\Laravel\{actingAs, get};
 use function Pest\Laravel\{assertDatabaseCount, assertDatabaseHas, assertDatabaseMissing};
@@ -114,6 +115,20 @@ test('visit monitoring store when guest mode is on and user logged in', function
 
 test('visit monitoring store when guest mode is on and user not logged in', function () {
     config()->set('user-monitoring.visit_monitoring.guest_mode', true);
+
+    $response = get('/');
+    $response->assertContent('milwad');
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 1);
+});
+
+test('visit monitoring store when config conditions are true', function () {
+    config()->set('user-monitoring.visit_monitoring.conditions', [
+        function (Request $request) {
+            return true;
+        },
+    ]);
 
     $response = get('/');
     $response->assertContent('milwad');
