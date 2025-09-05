@@ -98,6 +98,26 @@ return [
          * Determines whether to store `visits` even when the user is not logged in.
          */
         'guest_mode' => true,
+
+        /*
+        | Here you can define one or more conditions that determine whether a visit
+        | should be logged. Each condition must return a boolean (true = log visit,
+        | false = skip logging).
+        |
+        | All conditions are evaluated before monitoring. If any condition returns
+        | false, the visit will NOT be recorded.
+        |
+        | Supported formats:
+        |
+        | 1. Class name (must implement MonitoringCondition interface):
+        |    \App\Monitoring\YourCustomCondition::class
+        |
+        | 2. Closure / callback (receives the current Request and authenticated user):
+        |    function (Request $request, $user) {
+        |        return $user && $user->isAdmin();
+        |    }
+        */
+        'conditions' => [],
     ],
 
     /*
