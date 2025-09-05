@@ -44,7 +44,7 @@
 
 Welcome to the world of enhanced user monitoring with the groundbreaking `Laravel User Monitoring` package! Developed by the brilliant minds at `Binafy`, this innovative open-source solution is designed to empower Laravel developers and website administrators with invaluable insights into user activities.
 
-Tracking user behavior and interactions is now made effortless, allowing you to understand better your users' engagement, preferences, and pain points. With its seamless integration into Laravel projects, this package opens up a realm of possibilities, enabling you to optimize user experiences, detect bottlenecks, and make data-driven decisions for your platform's success.
+Tracking user behavior and interactions is now made effortless, allowing you to better understand your users' engagement, preferences, and pain points. With its seamless integration into Laravel projects, this package opens up a realm of possibilities, enabling you to optimize user experiences, detect bottlenecks, and make data-driven decisions for your platform's success.
 
 Experience real-time monitoring like never before, as you access comprehensive analytics and visualize user interactions with ease. Please don't worry, your users' data is handled securely, respecting privacy while giving you the tools to improve your application's performance and user satisfaction.
 
@@ -107,7 +107,7 @@ After publishing, run the `php artisan migrate` command.
 <a name="usage"></a>
 ## Usage
 
-The `Laravel-User-Monitoring`, needs to use middleware, traits, etc ... and it's not hard, enjoys :)
+The `Laravel-User-Monitoring` needs to use middleware, traits, etc, and it's not hard, enjoys :)
 
 <a name="configuration"></a>
 ## Configuration
@@ -121,7 +121,7 @@ If you want to customize the routes, you can publish the route file with this co
 php artisan vendor:publish --tag="laravel-user-monitoring-routes"
 ```
 
-After, you can go to the `routes/user-monitoring.php` file and customize the routes.
+After that, you can go to the `routes/user-monitoring.php` file and customize the routes.
 
 Also, if you want to change the route file name, you can go to the config file and change the `file_path`:
 
@@ -142,7 +142,7 @@ Also, if you want to change the route file name, you can go to the config file a
 <a name="user-configuration"></a>
 ## User Configuration
 
-You can config your user with the `user-monitoring.php` configuration file:
+You can configure your user with the `user-monitoring.php` configuration file:
 
 ```php
 'user' => [
@@ -184,7 +184,7 @@ You can config your user with the `user-monitoring.php` configuration file:
 
 - `model`: If your user model exists in another place, you can change it to the correct namespace.
 - `foreign_key`: You can set the user foreign_key name, like `customer_id`.
-- `table`: You can write your users table name if is not `users.
+- `table`: You can write your users table name if it is not `users.
 - `guards`: The guards are used to authenticate.
 - `foreign_key_type`: The foreign key type (uuid-ulid-id).
 - `display_attribute`: The special attribute of the user that you want to show in views.
@@ -215,7 +215,7 @@ When you want to monitor all views of your application, you must follow below:
 
 1. Publish the [Migrations](#publish)
 
-2. Use `VisitMonitoringMiddleware` in Kernel.php, you can go to the `App/Http` folder and open the `Kernel.php` file and add `VisitMonitoringMiddleware` into your middleware for example:
+2. Use `VisitMonitoringMiddleware` in Kernel.php. You can go to the `App/Http` folder and open the `Kernel.php` file and add `VisitMonitoringMiddleware` into your middleware, for example:
 
 ```php
 use Binafy\LaravelUserMonitoring\Middlewares\VisitMonitoringMiddleware;
@@ -238,7 +238,7 @@ protected $middlewareGroups = [
 
 After, you can see all pages monitoring :)
 
-If you want to disable monitoring for specific pages you can go to `user-monitoring.php` that exists in the `config` folder and add pages into the `visit_monitoring` key:
+If you want to disable monitoring for specific pages, you can go to `user-monitoring.php` that exists in the `config` folder and add pages into the `visit_monitoring` key:
 
 ```php
 'visit_monitoring' => [
@@ -276,7 +276,7 @@ First, you need to go to the `user-monitoring` config file and highlight the day
 ],
 ```
 
-After, you need to use [Task Scheduling](https://laravel.com/docs/10.x/scheduling) to fire-related command, so go to `app/Console/Kernel.php` and do like this:
+After, you need to use [Task Scheduling](https://laravel.com/docs/scheduling) to fire-related command, so go to `app/Console/Kernel.php` and do like this:
 
 ```php
 <?php
@@ -298,12 +298,12 @@ class Kernel extends ConsoleKernel
 }
 ```
 
-You can change `hourly` to `minute` or `second`, for more information you can read [Schedule Frequency Options](https://laravel.com/docs/10.x/scheduling#schedule-frequency-options).
+You can change `hourly` to `minute` or `second`. For more information, you can read [Schedule Frequency Options](https://laravel.com/docs/scheduling#schedule-frequency-options).
 
 <a name="turn-on-off"></a>
 ### Turn ON-OFF
 
-Maybe you want to turn off visit monitoring for some or always, you can use configuration to turn it off:
+Maybe you want to turn off visit monitoring for some or always; you can use the configuration to turn it off:
 
 ```php
 'visit_monitoring' => [
@@ -329,7 +329,7 @@ The `Laravel-User-Monitoring` also has amazing views that you can use very easil
 <a name="ajax-requests"></a>
 ### Ajax Requests
 
-Maybe you may disable record visits for `Ajax` requests, you can use config to disable it:
+Maybe you may disable record visits for `Ajax` requests. You can use config to disable it:
 
 ```php
 'visit_monitoring' => [
@@ -415,9 +415,9 @@ class Product extends Model
 }
 ```
 
-Now when a product is read, created, updated, or deleted, you can see which users doing that.
+Now, when a product is read, created, updated, or deleted, you can see which users are doing that.
 
-If you want to disable some actions like created, you can use the config file:
+If you want to disable some actions, like creation, you can use the config file:
 
 ```php
 'action_monitoring' => [
