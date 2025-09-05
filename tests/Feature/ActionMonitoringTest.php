@@ -378,3 +378,19 @@ test('action is stored when config conditions are true', function () {
     // DB Assertions
     assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 1);
 });
+
+test('action is not stored when config conditions are false', function () {
+    config()->set('user-monitoring.action_monitoring.conditions', [
+        function (Request $request) {
+            return false;
+        },
+    ]);
+
+    Product::query()->create([
+        'title' => 'milwad',
+        'description' => 'WE ARE HELPING TO OPEN-SOURCE WORLD'
+    ]);
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 0);
+});
