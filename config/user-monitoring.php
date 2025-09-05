@@ -146,6 +146,13 @@ return [
          * Determines whether to store `actions` even when the user is not logged in.
          */
         'guest_mode' => true,
+
+        /*
+        * Here you can define one or more conditions that determine whether an action
+        * should be logged. Each condition must return a boolean (true = log action,
+        * false = skip logging).
+        */
+        'conditions' => [],
     ],
 
     /*
