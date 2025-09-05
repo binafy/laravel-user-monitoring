@@ -2,9 +2,11 @@
 
 namespace Binafy\LaravelUserMonitoring\Traits;
 
+use Binafy\LaravelUserMonitoring\Contracts\MonitoringCondition;
 use Binafy\LaravelUserMonitoring\Utills\ActionType;
 use Binafy\LaravelUserMonitoring\Utills\Detector;
 use Binafy\LaravelUserMonitoring\Utills\UserUtils;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 trait Actionable
@@ -17,6 +19,11 @@ trait Actionable
         parent::boot();
 
         if (!config('user-monitoring.action_monitoring.guest_mode', true) && is_null(UserUtils::getUserId())) {
+            return;
+        }
+
+        // Custom conditions from config
+        if (! static::shouldMonitor(request())) {
             return;
         }
 
@@ -93,5 +100,31 @@ trait Actionable
         return config('user-monitoring.use_reverse_proxy_ip')
                 ? request()->header(config('user-monitoring.real_ip_header'))
                 : request()->ip();
+    }
+
+    /**
+     * Determine if monitoring should be performed for the given request and user.
+     */
+    protected static function shouldMonitor(Request $request): bool
+    {
+        $config = config('user-monitoring.action_monitoring.conditions', []);
+
+        foreach ($config as $condition) {
+            if (is_callable($condition)) {
+                if (! $condition($request)) {
+                    return false;
+                }
+            } elseif (is_string($condition)) {
+                $instance = new $condition;
+                if (! $instance instanceof MonitoringCondition) {
+                    continue;
+                }
+                if (! $instance->shouldMonitor($request)) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }
