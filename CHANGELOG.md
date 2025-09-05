@@ -1,3 +1,12 @@
+## v1.2.4 - 2025-09-05
+
+### What's Changed
+
+* Bump actions/checkout from 4 to 5 by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/binafy/laravel-user-monitoring/pull/64
+* [1.x] Feat/Add custom conditions by [@milwad-dev](https://github.com/milwad-dev) in https://github.com/binafy/laravel-user-monitoring/pull/65
+
+**Full Changelog**: https://github.com/binafy/laravel-user-monitoring/compare/v1.2.3...v1.2.4
+
 ## v1.2.3 - 2025-06-25
 
 ### What's Changed
