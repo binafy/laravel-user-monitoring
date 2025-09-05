@@ -2,6 +2,7 @@
 
 namespace Binafy\LaravelUserMonitoring\Middlewares;
 
+use Binafy\LaravelUserMonitoring\Contracts\MonitoringCondition;
 use Binafy\LaravelUserMonitoring\Utills\Detector;
 use Binafy\LaravelUserMonitoring\Utills\UserUtils;
 use Closure;
@@ -22,6 +23,11 @@ class VisitMonitoringMiddleware
             return $next($request);
         }
         if (!config('user-monitoring.visit_monitoring.guest_mode', true) && is_null(UserUtils::getUserId())) {
+            return $next($request);
+        }
+
+        // Custom conditions from config
+        if (! $this->shouldMonitor($request)) {
             return $next($request);
         }
 
@@ -52,5 +58,31 @@ class VisitMonitoringMiddleware
     protected function checkIsExceptPages(string $page, array $exceptPages): bool
     {
         return collect($exceptPages)->contains($page);
+    }
+
+    /**
+     * Determine if monitoring should be performed for the given request and user.
+     */
+    protected function shouldMonitor(Request $request): bool
+    {
+        $config = config('user-monitoring.visit_monitoring.conditions', []);
+
+        foreach ($config as $condition) {
+            if (is_callable($condition)) {
+                if (! $condition($request)) {
+                    return false;
+                }
+            } elseif (is_string($condition)) {
+                $instance = new $condition;
+                if (! $instance instanceof MonitoringCondition) {
+                    continue;
+                }
+                if (! $instance->shouldMonitor($request)) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }
