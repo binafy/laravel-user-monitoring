@@ -123,7 +123,7 @@ test('visit monitoring store when guest mode is on and user not logged in', func
     assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 1);
 });
 
-test('visit monitoring store when config conditions are true', function () {
+test('visit monitoring is store when config conditions are true', function () {
     config()->set('user-monitoring.visit_monitoring.conditions', [
         function (Request $request) {
             return true;
@@ -135,6 +135,20 @@ test('visit monitoring store when config conditions are true', function () {
 
     // DB Assertions
     assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 1);
+});
+
+test('visit monitoring is not store when config conditions are false', function () {
+    config()->set('user-monitoring.visit_monitoring.conditions', [
+        function (Request $request) {
+            return false;
+        },
+    ]);
+
+    $response = get('/');
+    $response->assertContent('milwad');
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 0);
 });
 
 /**
