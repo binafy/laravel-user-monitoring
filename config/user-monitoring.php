@@ -106,16 +106,6 @@ return [
         |
         | All conditions are evaluated before monitoring. If any condition returns
         | false, the visit will NOT be recorded.
-        |
-        | Supported formats:
-        |
-        | 1. Class name (must implement MonitoringCondition interface):
-        |    \App\Monitoring\YourCustomCondition::class
-        |
-        | 2. Closure / callback (receives the current Request and authenticated user):
-        |    function (Request $request, $user) {
-        |        return $user && $user->isAdmin();
-        |    }
         */
         'conditions' => [],
     ],
