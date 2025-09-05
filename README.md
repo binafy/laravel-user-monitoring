@@ -22,6 +22,7 @@
         - [Views](#visit-monitoring-views)
         - [Ajax Requests](#ajax-requests)
         - [Visit Monitoring Guest Mode](#visit-monitoring-guest-mode)
+        - [Visit Monitoring Custom Conditions](#visit-monitoring-custom-conditions)
     - [Action Monitoring](#action-monitoring)
         - [Views](#action-monitoring-views)
         - [Reverse Proxy Config](#action-monitoring-reverse-proxy-config)
@@ -363,6 +364,34 @@ When set to `false`, only authenticated user visits will be recorded.
      * Determines whether to store `visits` even when the user is not logged in.
      */
     'guest_mode' => true,
+],
+```
+
+<a name="visit-monitoring-custom-conditions"></a>
+### Visit Monitoring Custom Conditions
+
+The `Laravel User Monitoring` package allows you to define custom conditions for visit monitoring.
+Conditions give you full control over when a visit should be logged.
+
+#### 🔧 How It Works
+
+- Conditions are checked before a visit is stored.
+- If any condition returns false, the visit will be skipped.
+- You can define conditions as closures or as class-based rules.
+
+```php
+'visit_monitoring' => [
+    'conditions' => [
+        // Class-based condition (must implement MonitoringCondition interface)
+        \App\Monitoring\YourCustomCondition::class,
+
+        // Closure-based condition (receives the Request and authenticated User)
+        function (Illuminate\Http\Request $request) {
+            $user = $request->user();
+
+            return $user && $user->isAdmin();
+        },
+    ],
 ],
 ```
 
