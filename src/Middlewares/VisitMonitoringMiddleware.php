@@ -25,7 +25,7 @@ class VisitMonitoringMiddleware
             return $next($request);
         }
 
-        $detector = new Detector();
+        $detector = new Detector;
         $exceptPages = config('user-monitoring.visit_monitoring.except_pages', []);
 
         if (empty($exceptPages) || !$this->checkIsExceptPages($request->path(), $exceptPages)) {
