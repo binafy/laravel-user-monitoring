@@ -4,6 +4,7 @@ use Binafy\LaravelUserMonitoring\Models\ActionMonitoring;
 use Binafy\LaravelUserMonitoring\Utills\ActionType;
 use Binafy\LaravelUserMonitoring\Utills\UserUtils;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Tests\SetUp\Models\Product;
 use Tests\SetUp\Models\ProductSoftDelete;
@@ -360,4 +361,36 @@ test('action stored when the guest mode is on and user logged in', function () {
 
     // DB Assertions
     assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 2);
+});
+
+test('action is stored when config conditions are true', function () {
+    config()->set('user-monitoring.action_monitoring.conditions', [
+        function (Request $request) {
+            return true;
+        },
+    ]);
+
+    Product::query()->create([
+        'title' => 'milwad',
+        'description' => 'WE ARE HELPING TO OPEN-SOURCE WORLD'
+    ]);
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 1);
+});
+
+test('action is not stored when config conditions are false', function () {
+    config()->set('user-monitoring.action_monitoring.conditions', [
+        function (Request $request) {
+            return false;
+        },
+    ]);
+
+    Product::query()->create([
+        'title' => 'milwad',
+        'description' => 'WE ARE HELPING TO OPEN-SOURCE WORLD'
+    ]);
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.action_monitoring.table'), 0);
 });

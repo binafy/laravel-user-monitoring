@@ -98,6 +98,16 @@ return [
          * Determines whether to store `visits` even when the user is not logged in.
          */
         'guest_mode' => true,
+
+        /*
+        | Here you can define one or more conditions that determine whether a visit
+        | should be logged. Each condition must return a boolean (true = log visit,
+        | false = skip logging).
+        |
+        | All conditions are evaluated before monitoring. If any condition returns
+        | false, the visit will NOT be recorded.
+        */
+        'conditions' => [],
     ],
 
     /*
@@ -136,6 +146,13 @@ return [
          * Determines whether to store `actions` even when the user is not logged in.
          */
         'guest_mode' => true,
+
+        /*
+        * Here you can define one or more conditions that determine whether an action
+        * should be logged. Each condition must return a boolean (true = log action,
+        * false = skip logging).
+        */
+        'conditions' => [],
     ],
 
     /*
