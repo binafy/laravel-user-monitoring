@@ -27,6 +27,7 @@
         - [Views](#action-monitoring-views)
         - [Reverse Proxy Config](#action-monitoring-reverse-proxy-config)
         - [Action Monitoring Guest Mode](#action-monitoring-guest-mode)
+        - [Action Monitoring Custom Conditions](#action-monitoring-custom-conditions)
     - [Authentication Monitoring](#authentication-monitoring)
         - [Views](#authentication-monitoring-views)
     - [How to use in big projects](#how-to-use-in-big-projects)
@@ -483,6 +484,34 @@ When set to `false`, only authenticated user visits will be recorded.
      * Determines whether to store `actions` even when the user is not logged in.
      */
     'guest_mode' => true,
+],
+```
+
+<a name="action-monitoring-custom-conditions"></a>
+### Action Monitoring Custom Conditions
+
+The `Laravel User Monitoring` package lets you define custom conditions for action monitoring (create, update, delete events on models).
+Conditions give you control over when model actions should be logged.
+
+#### 🔧 How It Works
+
+- Conditions are checked before an action is stored.
+- If any condition returns false, the action will be skipped.
+- You can define conditions as closures or class-based rules.
+
+```php
+'action_monitoring' => [
+    'conditions' => [
+        // Class-based condition (must implement MonitoringCondition interface)
+        \App\Monitoring\YourCustomCondition::class,
+
+        // Closure-based condition (receives the Request and authenticated User)
+        function (Illuminate\Http\Request $request) {
+            $user = $request->user();
+
+            return $user && $user->isAdmin();
+        },
+    ],
 ],
 ```
 
