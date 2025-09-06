@@ -39,8 +39,6 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
         $this->publishViews();
         $this->publishMiddleware();
         $this->publishRoute();
-
-        $this->viewComposer();
     }
 
     /**
@@ -101,24 +99,5 @@ class LaravelUserMonitoringServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../routes/web.php' => base_path('routes/user-monitoring.php'),
         ], 'laravel-user-monitoring-routes');
-    }
-
-    /**
-     * View Composer.
-     *
-     * @return void
-     */
-    private function viewComposer()
-    {
-        view()->composer([
-            'LaravelUserMonitoring::layouts.master',
-            'LaravelUserMonitoring::visit-monitoring.index',
-            'LaravelUserMonitoring::actions-monitoring.index',
-            'LaravelUserMonitoring::authentications-monitoring.index',
-        ], function (View $view) {
-            $title = 'Laravel User Monitoring';
-
-            $view->with('title', $title);
-        });
     }
 }
