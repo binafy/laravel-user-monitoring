@@ -11,6 +11,11 @@ return [
              */
             'file_path' => 'routes/user-monitoring.php',
         ],
+
+        /*
+         * Enable or disable dark mode for the views.
+         */
+        'dark_mode' => false,
     ],
 
     /*
