@@ -57,9 +57,7 @@
                         </td>
                         <td class="pl-5">
                             <div class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50">
-                                    <path d="M 46 4.867188 L 4 10.117188 L 4 39.882813 L 46 45.132813 Z M 44 7.132813 L 44 24 L 25 24 L 25 9.507813 Z M 23 9.757813 L 23 24 L 6 24 L 6 11.882813 Z M 6 26 L 23 26 L 23 40.242188 L 6 38.117188 Z M 25 26 L 44 26 L 44 42.867188 L 25 40.492188 Z"></path>
-                                </svg>
+                                @include('LaravelUserMonitoring::layouts.platform', ['platform' => $visit->platform])
                                 <p class="text-sm leading-none text-gray-600 ml-2">
                                     {{ $visit->platform }}
                                 </p>
