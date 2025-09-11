@@ -1,3 +1,12 @@
+## v1.2.5 - 2025-09-10
+
+### What's Changed
+
+* [1.x] Add dark mode to views by [@milwad-dev](https://github.com/milwad-dev) in https://github.com/binafy/laravel-user-monitoring/pull/66
+* [1.x] Add svg for platforms in views by [@milwad-dev](https://github.com/milwad-dev) in https://github.com/binafy/laravel-user-monitoring/pull/67
+
+**Full Changelog**: https://github.com/binafy/laravel-user-monitoring/compare/v1.2.4...v1.2.5
+
 ## v1.2.4 - 2025-09-05
 
 ### What's Changed
