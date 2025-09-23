@@ -57,7 +57,11 @@ class VisitMonitoringMiddleware
      */
     protected function checkIsExceptPages(string $page, array $exceptPages): bool
     {
-        return collect($exceptPages)->contains($page);
+        return collect($exceptPages)->contains(function ($pattern) use ($page) {
+            $regex = str_replace('\*', '.*', preg_quote($pattern, '/'));
+
+            return preg_match('/^' . $regex . '$/', $page);
+        });
     }
 
     /**

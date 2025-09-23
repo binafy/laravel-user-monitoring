@@ -49,6 +49,16 @@ test('check except pages are not store', function () {
     assertDatabaseMissing(config('user-monitoring.visit_monitoring.table'), ['page' => url('/')]);
 });
 
+test('check except pages are not store with regex', function () {
+    config()->set('user-monitoring.visit_monitoring.except_pages', ['user-monitoring/*']);
+
+    get('user-monitoring/visit');
+
+    // DB Assertions
+    assertDatabaseCount(config('user-monitoring.visit_monitoring.table'), 0);
+    assertDatabaseMissing(config('user-monitoring.visit_monitoring.table'), ['page' => url('user-monitoring/visit')]);
+});
+
 test('visit monitoring records didn"t store when turn_on key is off', function () {
     config()->set('user-monitoring.visit_monitoring.turn_on', false);
 
