@@ -85,6 +85,7 @@ return [
          * Add route names or URL paths to this array if you want to exclude certain pages.
          */
         'except_pages' => [
+            // 'user-monitoring/*',
             'user-monitoring/visits-monitoring',
             'user-monitoring/actions-monitoring',
             'user-monitoring/authentications-monitoring',
