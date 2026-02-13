@@ -43,8 +43,9 @@ class LaravelUserMonitoringEventServiceProvider extends EventServiceProvider
      */
     private function insertData(Detector $detector, string $actionType): array
     {
+        $foreign_key = config('user-monitoring.user.foreign_key', 'user_id');
         return [
-            'user_id' => UserUtils::getUserId(),
+            $foreign_key => UserUtils::getUserId(),
             'action_type' => $actionType,
             'browser_name' => $detector->getBrowser(),
             'platform' => $detector->getDevice(),
