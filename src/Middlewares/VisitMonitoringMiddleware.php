@@ -35,9 +35,11 @@ class VisitMonitoringMiddleware
         $exceptPages = config('user-monitoring.visit_monitoring.except_pages', []);
 
         if (empty($exceptPages) || !$this->checkIsExceptPages($request->path(), $exceptPages)) {
+            
+            $foreign_key = config('user-monitoring.user.foreign_key', 'user_id');
             // Store visit
             DB::table(config('user-monitoring.visit_monitoring.table'))->insert([
-                'user_id' => UserUtils::getUserId(),
+                 $foreign_key => UserUtils::getUserId(),
                 'browser_name' => $detector->getBrowser(),
                 'platform' => $detector->getDevice(),
                 'device' => $detector->getDevice(),
