@@ -17,12 +17,12 @@ class UserUtils
         if ($type === 'ulid') {
             $table->foreignUlid(config('user-monitoring.user.foreign_key'))
                 ->nullable()
-                ->constrained(config('user-monitoring.user.table'))
+                ->constrained(config('user-monitoring.user.table'), $type)
                 ->nullOnDelete();
         } else if ($type === 'uuid') {
             $table->foreignUuid(config('user-monitoring.user.foreign_key'))
                 ->nullable()
-                ->constrained(config('user-monitoring.user.table'))
+                ->constrained(config('user-monitoring.user.table'), $type)
                 ->nullOnDelete();
         } else {
             $table->foreignId(config('user-monitoring.user.foreign_key'))
