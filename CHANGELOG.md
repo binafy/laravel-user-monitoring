@@ -1,3 +1,16 @@
+## v1.2.6 - 2026-04-22
+
+### What's Changed
+
+* [1.x] Add regex for except pages by [@milwad-dev](https://github.com/milwad-dev) in https://github.com/binafy/laravel-user-monitoring/pull/68
+* Bump actions/checkout from 5 to 6 by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/binafy/laravel-user-monitoring/pull/69
+* Bump dependabot/fetch-metadata from 2.4.0 to 2.5.0 by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/binafy/laravel-user-monitoring/pull/70
+* [1.x] Bump dependabot/fetch-metadata from 2.5.0 to 3.0.0 by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/binafy/laravel-user-monitoring/pull/73
+* Bump dependabot/fetch-metadata from 3.0.0 to 3.1.0 by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/binafy/laravel-user-monitoring/pull/74
+* [1.x] Laravel 13 by [@milwad-dev](https://github.com/milwad-dev) in https://github.com/binafy/laravel-user-monitoring/pull/75
+
+**Full Changelog**: https://github.com/binafy/laravel-user-monitoring/compare/v1.2.5...v1.2.6
+
 ## v1.2.5 - 2025-09-10
 
 ### What's Changed
