@@ -577,7 +577,7 @@ The MIT License (MIT). Please see [License File](https://github.com/binafy/larav
 <a name="start-history"></a>
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=binafy/laravel-user-monitoring&type=Date)](https://star-history.com/#binafy/laravel-user-monitoring&Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=binafy/laravel-user-monitoring&type=Date)](https://star-history.dera.page/#binafy/laravel-user-monitoring&Date)
 
 <a name="conclusion"></a>
 ## Conclusion
